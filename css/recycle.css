@@ -1,0 +1,221 @@
+
+/*.deleted {
+        width:805px;
+  
+        border-top:1px solid #000000;
+        border-right:1px solid #000000;
+        border-left:1px solid #000000;
+        border-bottom:1px solid #000000;
+        border:1px solid #000000;
+        margin:0em 26em;
+                margin:0em auto;
+        
+                border-collapse:collapse;
+position: relative;
+        }*/
+
+
+/*Sets table row height*/ 
+table tr {
+    height: 40px;
+    width: 300px;
+}
+
+tr.odd td,
+tr.odd .column1 {
+    background:#white;
+    height:100px;
+    /*        width:200px;*/
+}	
+.column1	{
+    background:#white;
+    /*        width:200px;*/
+
+}
+
+div#drag table{
+    background-color: #eee;
+    border-collapse: collapse;
+    margin: auto;
+
+}
+
+div#drag td{
+    height: 32px;
+    border: 1px solid white;
+    text-align: center;
+    font-size: 10pt;
+    padding: 2px;
+
+}
+
+.drag{
+    border-color: #43bd15;
+    cursor: move;
+    margin: auto;
+    z-index: 5;
+    background-color: white;
+    text-align: center;
+    font-size: 9pt; /* needed for cloned object */
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    /* without width, IE6/7 will not apply filter/opacity to the element ?! */
+    /* IE needs element layout */
+    width: 120px;
+    /*        border-radius: 10px;  Opera, Chrome 
+            -moz-border-radius: 10px;  FF */
+
+    /* round corners for FF, Chrome, Safari (except IE) */
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    /* shadow for FF, Chrome, Safari (except IE)*/
+    -moz-box-shadow: 4px 4px 8px #444;
+    -webkit-box-shadow: 4px 4px 8px #444;
+    box-shadow: 4px 4px 8px #444;
+
+
+}
+
+#d{
+    cursor: move;
+    margin: auto;
+    z-index: 5;
+    background-color: white;
+    text-align: center;
+    font-size: 9pt; /* needed for cloned object */
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    /* without width, IE6/7 will not apply filter/opacity to the element ?! */
+    /* IE needs element layout */
+    width: 120px;
+}
+
+.trash{
+    border-bottom: 0px solid #white;
+    border-left:0px solid #white;
+    background-color:#eee;
+}
+
+th {
+    font-weight:normal;
+    color: #eee;
+    text-align:left;
+    border-top:1px solid #white;
+    border-right:1px solid #white;
+    border-left:1px solid #white;
+    border-bottom:1px solid #white;
+    border:1px solid #white;
+
+    padding:.3em 1em;
+}	
+thead th {
+    /*background:#f4f9fe;*/
+    text-align:center;
+    font:bold 1.2em/2em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
+    color:#66a3d3
+
+}				
+
+.mark {
+    color: #66a3d3;
+    /*background-color:#eee;*/
+    text-align: center;
+    border-top:1px solid #white;
+    border-right:1px solid #white;
+    border-left:1px solid #white;
+    border-bottom:1px solid #white;
+    margin: auto;
+
+}
+
+/* blank cells (to create gap between left column and message row) */
+.blank {
+    background-color: white;
+    border-top:1px solid #white;
+
+    border-bottom:1px solid #white;
+}
+
+
+.clear { /* generic container (i.e. div) for floating buttons */
+    overflow: hidden;
+    width: 100%;
+}
+
+/*Save button*/
+a.button {
+    background: transparent url('http://www.oscaralexander.com/tutorials/img/bg_button_a.gif') no-repeat scroll top right;
+    /*    background-color: #eee;*/
+    color: #444;
+    display: block;
+    float: none;
+    font: normal 12px arial, sans-serif;
+    height: 24px;
+    /*    margin-right: 800px;
+        margin-left: 800px;*/
+    padding-right: 18px; /* sliding doors padding */
+    text-decoration: none;
+}
+
+a.button span {
+    background: transparent url('http://www.oscaralexander.com/tutorials/img/bg_button_span.gif') no-repeat;
+    display: block;
+    line-height: 14px;
+    padding: 5px 0 5px 18px;
+
+}
+
+a.button:active {
+    background-position: bottom right;
+    color: #000;
+    outline: none; /* hide dotted outline in Firefox */
+}
+
+a.button:active span {
+    background-position: bottom left;
+    padding: 6px 0 4px 18px; /* push text down 1px */
+}
+
+
+/*Export button*/
+a.button2 {
+    background: transparent url('http://www.oscaralexander.com/tutorials/img/bg_button_a.gif') no-repeat scroll top right;
+    /*    background-color: #eee;*/
+    color: #444;
+    display: block;
+    float: none;
+    font: normal 12px arial, sans-serif;
+    height: 24px;
+    /*    margin-right: 900px;
+        margin-left: 900px;*/
+    padding-right: 18px; /* sliding doors padding */
+    text-decoration: none;
+}
+
+a.button2 span {
+    background: transparent url('http://www.oscaralexander.com/tutorials/img/bg_button_span.gif') no-repeat;
+    display: block;
+    line-height: 14px;
+    padding: 5px 0 5px 18px;
+
+}
+
+a.button2:active {
+    background-position: botom right;
+    color: #000;
+    outline: none; /* hide dotted outline in Firefox */
+}
+
+a.button2:active span {
+    background-position: bottom left;
+    padding: 6px 0 4px 18px; /* push text down 1px */
+}
+
+#delete{
+    
+}
+
+#restore{
+    t
+}

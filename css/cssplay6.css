@@ -1,0 +1,242 @@
+/* ================================================================ 
+This copyright notice must be untouched at all times.
+
+The original version of this stylesheet and the associated (x)html
+is available at http://www.cssplay.co.uk/menus/css3-cssplay6.html
+Copyright (c) 2005-2009 Stu Nicholls. All rights reserved.
+This stylesheet and the associated (x)html may be modified in any 
+way to fit your requirements.
+=================================================================== */
+
+/*width:250px;*/
+/*width:400px; 8 books*/
+ul.topUL {padding:0; margin:0; list-style:none; width:6000px; margin:0 auto; position:relative; z-index:100; font-family:verdana, arial, sans-serif;}
+ul.topUL > li {float:left; margin-right:1px; position:relative; z-index:10;}
+ul.topUL > li a.p1 {display:block; width:43px; border:2px solid #333; border-width:1px 3px; height:248px; color:#fff; top:0; left:0; text-decoration:none; position:relative;
+-o-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+-moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+-webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+
+-webkit-transition: 0.25s;
+-moz-transition: 0.25s;
+-o-transition: 0.25s;
+transition: 0.25s;
+}
+ul.topUL > li > a span {display:block; width:43px; white-space:nowrap; position:absolute; left:0px; top:200px;
+-webkit-transform: rotate(-90deg);
+-moz-transform: rotate(-90deg);
+-o-transform: rotate(-90deg);
+transform: rotate(-90deg);
+}
+ul.topUL > li.b1 > a {background:#562; border-color:#340;position:relative;
+background: -moz-linear-gradient(0, #562, #784 50%, #562 100%);  
+background: -webkit-gradient(linear, 0 0, 100% 0, from(#562), color-stop(50%, #784), color-stop(100%, #562)); 
+}
+ul.topUL > li.b2 > a {background:#366; border-color:#144;position:relative;
+background: -moz-linear-gradient(0, #366, #688 50%, #366 100%);  
+background: -webkit-gradient(linear, 0 0, 100% 0, from(#366), color-stop(50%, #688), color-stop(100%, #366)); 
+}
+ul.topUL > li.b3 > a {background:#246; border-color:#024;position:relative;
+background: -moz-linear-gradient(0, #246, #579 50%, #246 100%);  
+background: -webkit-gradient(linear, 0 0, 100% 0, from(#246), color-stop(50%, #579), color-stop(100%, #246)); 
+}
+ul.topUL > li.b4 > a {background:#741; border-color:#520;position:relative;
+background: -moz-linear-gradient(0, #741, #a74 50%, #741 100%);  
+background: -webkit-gradient(linear, 0 0, 100% 0, from(#741), color-stop(50%, #a74), color-stop(100%, #741)); 
+}
+ul.topUL > li.b5 > a {background:#623; border-color:#401;position:relative;
+background: -moz-linear-gradient(0, #623, #956 50%, #623 100%);  
+background: -webkit-gradient(linear, 0 0, 100% 0, from(#623), color-stop(50%, #956), color-stop(100%, #623)); 
+}
+
+ul.topUL > li.b6 > a {background:#623; border-color:#401;position:relative;
+background: -moz-linear-gradient(0, #623, #956 50%, #623 100%);  
+background: -webkit-gradient(linear, 0 0, 100% 0, from(#623), color-stop(50%, #956), color-stop(100%, #623)); 
+}
+
+ul.topUL > li.faded > a {background:#888; border-style:dashed; border-color:#fff;position:relative;
+background: -moz-linear-gradient(0, #888, #fff 50%, #888 100%);  
+background: -webkit-gradient(linear, 0 0, 100% 0, from(#888), color-stop(50%, #fff), color-stop(100%, #888)); 
+}
+
+/*left:-510px*/
+ul.topUL ul.sub {padding:0; list-style:none; position:absolute; left:-51px; top:250px; width:0; overflow:hidden; height:250px; margin:0 0 20px 0;
+-o-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+-moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+-webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+
+-webkit-transition: 0s;
+-moz-transition: 0s;
+-o-transition: 0s;
+transition: 0s;
+transition-delay:0s;
+-o-transition-delay: 0s;
+-moz-transition-delay: 0s;
+-ms-transition-delay: 0s;
+-webkit-transition-delay: 0s;
+}
+
+ul.topUL > li.b1 > ul {background:#784;}
+ul.topUL > li.b2 > ul {background:#688;}
+ul.topUL > li.b3 > ul {background:#579;}
+ul.topUL > li.b4 > ul {background:#a74;}
+ul.topUL > li.b5 > ul {background:#956;}
+ul.topUL > li.b6 > ul {background:#956;}
+ul.topUL > li.faded > ul {background:#a6a6a6;}
+
+ul ul li.content {width:0; height:190px; position:absolute; left:0; top:10px; background:#eee; padding:40px 0 0 0; text-indent:20px; font-size:11px; color:#444; overflow:hidden;
+-o-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+-moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+-webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+
+-webkit-transition: 0s;
+-moz-transition: 0s;
+-o-transition: 0s;
+transition: 0s;
+transition-delay: 0s;
+-o-transition-delay: 0s;
+-moz-transition-delay: 0s;
+-ms-transition-delay: 0s;
+-webkit-transition-delay: 0s;
+}
+ul ul li b {display:block;}
+/*Breaks the moodle links page*/
+ul.topUL ul li a {text-decoration:none; color:#444; padding-left:20px; line-height:20px;}
+ul.topUL ul li a:hover {color:#000; text-decoration:underline;}
+
+ul ul li.cover {width:0; height:220px; position:absolute; padding-top:30px; text-indent:10px; font-size:14px font-weight:bold; color:#fff; left:0; top:0; z-index:100; overflow:hidden; white-space:nowrap;}
+
+ul ul li.cover i {font-weight:normal; font-style:normal; font-size:10px; line-height:40px; padding-left:10px;}
+ul ul li.cover em {display:block; font-weight:normal; font-style:normal; margin-top:120px; font-size:10px; line-height:40px;}
+
+ul.topUL > li.b1 li.cover {background:#562;
+background: -moz-linear-gradient(0, #562, #784 100%);  
+background: -webkit-gradient(linear, 0 0, 100% 0, from(#562), color-stop(100%, #784)); 
+}
+ul.topUL > li.b2 li.cover {background:#366;
+background: -moz-linear-gradient(0, #366, #688 100%);  
+background: -webkit-gradient(linear, 0 0, 100% 0, from(#366), color-stop(100%, #688)); 
+}
+ul.topUL > li.b3 li.cover {background:#246;
+background: -moz-linear-gradient(0, #246, #579 100%);  
+background: -webkit-gradient(linear, 0 0, 100% 0, from(#246), color-stop(100%, #579)); 
+}
+ul.topUL > li.b4 li.cover {background:#741;
+background: -moz-linear-gradient(0, #741, #a74 100%);  
+background: -webkit-gradient(linear, 0 0, 100% 0, from(#741), color-stop(100%, #a74)); 
+}
+ul.topUL > li.b5 li.cover {background:#623;
+background: -moz-linear-gradient(0, #623, #956 100%);  
+background: -webkit-gradient(linear, 0 0, 100% 0, from(#623), color-stop(100%, #956)); 
+}
+ul.topUL > li.b6 li.cover {background:#623;
+background: -moz-linear-gradient(0, #623, #956 100%);  
+background: -webkit-gradient(linear, 0 0, 100% 0, from(#623), color-stop(100%, #956)); 
+}
+
+ul.topUL > li.faded li.cover {background:#a6a6a6;
+background: -moz-linear-gradient(0, #a6a6a6, #956 100%);  
+background: -webkit-gradient(linear, 0 0, 100% 0, from(#a6a6a6), color-stop(100%, #956)); 
+}
+
+
+ul.topUL > li:hover {direction:ltr; z-index:100;}
+/*left:-560px*/
+ul.topUL > li:hover a.p1 {top:230px;left:-100px;
+-o-box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
+-moz-box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
+-webkit-box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
+box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
+
+-webkit-transition: 0.5s;
+-moz-transition: 0.5s;
+-o-transition: 0.5s;
+transition: 0.5s;
+transition-delay: 0s;
+-o-transition-delay: 0s;
+-moz-transition-delay: 0s;
+-ms-transition-delay: 0s;
+-webkit-transition-delay: 0s;
+}
+
+ul.topUL li:hover ul {width:200px;
+-o-box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
+-moz-box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
+-webkit-box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
+box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
+
+-webkit-transition: 0.5s;
+-moz-transition: 0.5s;
+-o-transition: 0.5s;
+transition: 0.5s;
+transition-delay: 0.5s;
+-o-transition-delay: .5s;
+-moz-transition-delay: 0.5s;
+-ms-transition-delay: 0.5s;
+-webkit-transition-delay: 0.5s;
+}
+ul.topUL li:hover ul li.cover {width:200px;
+-webkit-transition: 0.25s;
+-moz-transition: 0.25s;
+-o-transition: 0.25s;
+transition: 0.25s;
+}
+
+ul.topUL li:hover ul li.content {width:190px; overflow:auto;
+background: -moz-linear-gradient(0, #ddd, #fff 50%);  
+background: -webkit-gradient(linear, 0 0, 100% 0, from(#ddd), color-stop(50%, #fff)); 
+-webkit-transition: 0.5s;
+-moz-transition: 0.5s;
+-o-transition: 0.5s;
+transition: 0.5s;
+}
+
+ul.topUL li:hover ul:hover {overflow:visible;}
+
+ul.topUL li.b1:hover ul:hover li.cover {border-right:4px solid #451;}
+ul.topUL li.b2:hover ul:hover li.cover {border-right:4px solid #255;}
+ul.topUL li.b3:hover ul:hover li.cover {border-right:4px solid #135;}
+ul.topUL li.b4:hover ul:hover li.cover {border-right:4px solid #630;}
+ul.topUL li.b5:hover ul:hover li.cover {border-right:4px solid #512;}
+ul.topUL li.b6:hover ul:hover li.cover {border-right:4px solid #512;}
+
+ul.topUL li.faded:hover ul:hover li.cover {border-right:4px solid #a6a6a6;}
+
+ul.topUL li.b1:hover ul:hover li.cover {border-right:4px solid #451;}
+ul.topUL li.b2:hover ul:hover li.cover {border-right:4px solid #255;}
+ul.topUL li.b3:hover ul:hover li.cover {border-right:4px solid #135;}
+ul.topUL li.b4:hover ul:hover li.cover {border-right:4px solid #630;}
+ul.topUL li.b5:hover ul:hover li.cover {border-right:4px solid #512;}
+ul.topUL li.b6:hover ul:hover li.cover {border-right:4px solid #512;}
+
+ul.topUL li.faded:hover ul:hover li.cover {border-right:4px solid #a6a6a6;}
+
+ul.topUL li:hover ul:hover li.cover {left:-2px; width:1px; height:235px; top:-15px; padding-top:45px;
+-o-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+-moz-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+-webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+
+-webkit-transition: 0.25s;
+-moz-transition: 0.25s;
+-o-transition: 0.25s;
+transition: 0.25s;
+}
+
+.shelf {
+/*    clear:left; width:350px;*/
+/*    width:450px; 8 books*/
+clear:both; width:6050px; height:25px; 
+/*background-image:url('../background/shelf.jpg');*/
+background:#620; 
+margin:0 auto; 
+background: -moz-linear-gradient(90deg, #620, #950 20%, #620 30%);  
+background: -webkit-gradient(linear, 0 100%, 0 0 , from(#620), color-stop(20%, #950), color-stop(30%, #620)); 
+-o-box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
+-moz-box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
+-webkit-box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
+box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
+}

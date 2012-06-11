@@ -1,0 +1,64 @@
+/* The tab itself */
+
+#followTab {
+
+  /* No bullets */
+  list-style: none;
+
+  /* Position and float the tab */  
+  position: fixed;
+  z-index: 1;
+  right: 0;
+  top: 130px;
+  
+  /* Give the tab width and padding */
+  width: 24px;
+  padding: 8px 5px;
+  
+  /* Add the curved white border */
+  border: 3px solid #fff;
+  border-right: none;
+  -moz-border-radius: 10px 0 0 10px;
+  -webkit-border-radius: 10px 0 0 10px;
+  border-radius: 10px 0 0 10px;
+  
+  /* Add the drop shadow */
+  -moz-box-shadow: 0 0 7px rgba(0, 0, 0, .6);
+  -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, .6);
+  box-shadow: 0 0 7px rgba(0, 0, 0, .6);
+  
+  /* Add the semitransparent gradient background */
+  background: rgba(239, 91, 10, .75);
+  background: -moz-linear-gradient(top, rgba(243, 52, 8, .75), rgba(239, 91, 10, .75));
+  background: -webkit-gradient( linear, left top, left bottom, from( rgba(243, 52, 8, .75) ), to( rgba(239, 91, 10, .75) ) );
+  background: linear-gradient(top, rgba(243, 52, 8, .75), rgba(239, 91, 10, .75));
+  filter: progid:DXImageTransform.Microsoft.Gradient( startColorStr='#c0f33408', endColorStr='#c0ef5b0a', GradientType=0 );
+}
+
+/* Items within the tab */
+
+#followTab li {
+  margin: 9px 0 0 0;
+  line-height: 0;
+}
+
+#followTab li:first-child {
+  margin-top: 0;
+}
+
+/* General style for buttons within the tab */
+
+#followTab a {
+  display: block;
+  width: 24px;
+/*  background-image: url("images/follow-tab-buttons.png");*/
+}
+
+#followTab a span {
+  position: absolute;
+  top: -999em;
+}
+
+blockquote, ul, ol, dl {
+margin: 0em;
+}

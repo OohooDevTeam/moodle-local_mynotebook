@@ -1,0 +1,140 @@
+* {
+margin: 0;
+padding: 0;
+}
+body {
+
+
+background-image: url(../img/i27x7ym.jpg) repeat;
+	background-repeat: repeat;
+	
+
+}
+
+
+#container {
+margin: 100px  auto 0 auto ;
+
+width: 900px;
+position:relative;
+
+}
+#monitor{
+	height:858px;
+	width:845px;
+	background: transparent url(../img/machine_2.png) no-repeat 0 0;
+	position:relative;
+	top:100px;
+	z-index:2;
+	
+
+	
+}
+#write {
+margin: 0 200px;
+padding:5px;
+width: 477px;
+height: 238px;
+/*font-family:  "Courier New", Courier, monospace; */
+font-family: 'HartingPlain', Arial, sans-serif;
+font-size: 18px;
+font-style: normal;
+font-weight: 400;
+color:#000;
+background: transparent url(../img/sheet_2.png) no-repeat top left;
+line-height:29px;
+/*background:#fff url(../img/sheet.png) no-repeat top left;*/
+
+border:none;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+position:absolute;
+top:125px;
+z-index:1;
+outline:none;
+resize:none;
+
+
+
+
+}
+
+#keyboard {
+background: transparent url(../img/keyboard_3.png) no-repeat 0 0;	
+margin: 0 100px 0 140px ;
+/*padding: 20px 7px ;*/
+list-style: none;
+position:absolute;
+z-index:3;
+
+overflow:hidden;
+top:480px;
+}
+	#keyboard li {
+	float: left;
+	margin: 0 0 0 0;
+	width: 40px;
+	height: 49px;
+	line-height: 40px;
+	text-align:	 center;
+	font-family: 'Lobster', arial, serif;
+
+/*	background:#000;	*/
+	font-size:16px;
+	color:#4B3005;
+	text-shadow: -1px -1px 1px #ccc;
+/*	border: 1px solid #000;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;*/
+	}
+		li.letter,li.symbol {
+				background: transparent url(../img/key.png) no-repeat  center  5px;	
+	/*			background: transparent url(../img/h.png) no-repeat  -2px -1px ;	*/
+			}
+		.capslock, .tab, .left-shift {
+		clear: left;
+		}
+			#keyboard .tab, #keyboard .delete {
+				background: transparent url(../img/shift_key.png) no-repeat   center  center;
+					width: 58px;
+			}
+			#keyboard .capslock {
+				background: transparent url(../img/return.png) no-repeat -2px 5px;									
+				width: 104px;
+			}	
+			#keyboard .return {
+				background: transparent url(../img/shift_key.png) no-repeat center  center;							
+				width: 58px;
+			}
+			#keyboard .left-shift {
+				background: transparent url(../img/shifts_keys.png) no-repeat   center  center;
+					width: 90px;
+			}
+			#keyboard .right-shift {
+				background: transparent url(../img/shifts_keys.png) no-repeat   center  center;
+					width: 90px;
+			}
+		.lastitem {
+/*		margin-right: 0;*/
+		}
+		.uppercase {
+		text-transform: uppercase;
+		}
+		#keyboard .space {
+		clear: left;
+		width: 544px;
+		background: transparent url(../img/key_space.png) no-repeat  center center;
+		}
+		.on {
+		display: none;
+		}
+		#keyboard li:hover {
+		cursor: pointer;
+		}
+		li#send {
+				font-size:22px;
+				color:#4B3005;
+				text-shadow: -1px -1px 1px #fff;
+				width:80px;
+				background: transparent url(../img/shifts_keys.png) no-repeat    center center;
+		}

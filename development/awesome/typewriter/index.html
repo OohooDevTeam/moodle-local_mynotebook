@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+<!-- 
+El diseño html del teclado es patrociando por esta url http://net.tutsplus.com/tutorials/javascript-ajax/creating-a-keyboard-with-css-and-jquery/
+-->
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Keyboard test</title>
+    <!-- carga las fuentes patrocinadas por google orbitron y lobster-->
+   	<link href='http://fonts.googleapis.com/css?family=Orbitron:regular,500,900' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="css/stylesheet.css" type="text/css" charset="utf-8" />
+    <!-- css del contenido --> 
+	<link href="css/style.css" rel="stylesheet" type="text/css"  />
+    <link rel="stylesheet" type="text/css" href="css/flashblock.css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script type="text/javascript" src="js/soundmanager2.js"></script>
+	<script type="text/javascript">
+	// codigo para incluir la libreria precaragada
+	// La libreria fue patrocinbado por esta url http://www.schillmania.com/projects/soundmanager2/
+	
+	// flash version URL switch (for this demo page)
+		var winLoc = window.location.toString();
+
+		if (winLoc.match(/flash9/i)) {
+		  soundManager.flashVersion = 9;
+		  if (winLoc.match(/highperformance/i)) {
+			soundManager.useHighPerformance = true;
+			soundManager.useFastPolling = true;
+		  }
+		} else if (winLoc.match(/flash8/i)) {
+		  soundManager.flashVersion = 8;
+			}
+
+			soundManager.useFlashBlock = true;
+			soundManager.url = 'swf/'; // path to SoundManager2 SWF files (note trailing slash)
+			soundManager.debugMode = false;
+			soundManager.consoleOnly = false;
+			soundManager.onready(function(oStatus) {
+ 				 if (!oStatus.success) {
+				    return false;	
+				  }
+			  // soundManager is initialised, ready to use. Create a sound for this demo page.
+/*  			 	if (soundManager.flashVersion > 8) {
+		    	t = window.setInterval(checkRAM,500);
+			    document.getElementById('flash-ram-use').style.display = 'inline';
+				alert(document.getElementById('flash-ram-use').innerHTML)
+			    checkRAM();
+			  	}*/
+				 soundManager.createSound({
+				    id: 'mySound2',
+				    url: 'sound/typewriter_key_4.mp3'
+				});
+				soundManager.createSound({
+					id: 'mySound3',
+				    url: 'sound/typewriter_line_break.mp3'
+  				});
+			    soundManager.createSound({
+				    id: 'mySound5',
+			    	url: 'sound/typewriter-paper-1.mp3'
+				});
+
+			});
+
+/*function checkRAM() {
+  if (soundManager.supported()) {
+	var ram = (soundManager.getMemoryUse()/1024/1024).toFixed(2);
+    if (!isNaN(ram)) {
+      document.getElementById('flash-ram-use').innerHTML = ram+' MB';
+    } else {
+	  document.getElementById('flash-ram-use').style.display = 'none';
+    }
+  }
+}
+
+var t = null;
+
+function doEval(sHTML) {
+  var html = sHTML.replace(/\<(span|code)\>/gi,'');
+  html = html.replace(/\<[\/](span|code)\>/gi,'');
+  html = html.replace(/&gt;/gi,'>');
+  eval(html);
+  return false;
+}*/
+</script>
+    <!-- carga el contenido logico del teclado -->
+ 		<script type="text/javascript" src="js/keyboard.js"></script> 
+
+
+</head>
+<body>
+<div id="container">
+	<img src="http://www.iconshock.com/pruebas/type_4/img/vintage_images.png" usemap="#Map"  style="position:absolute; right:0;" border="0"  />
+	<map name="Map" id="Map">
+		<area shape="rect" coords="38,362,70,395" href="http://twitter.com/TutorialShock" alt="twitter" />
+	 	<area shape="rect" coords="70,361,101,396" href="http://feeds.feedburner.com/TutorialShock" alt="rss" />
+		<area shape="rect" coords="99,359,132,397" href="#" alt="facebook" />
+		<area shape="rect" coords="21,99,266,331" href="http://www.wordpressthemeshock.com/the-shock-bundle/" alt="" />
+		<area shape="rect" coords="-16,-13,284,94" href="http://www.tutorialshock.com/" alt="" />
+	</map>
+	<div id="typewritter">
+	</div>
+    <!-- textarea o simulacion de pantalla -->
+	<textarea id="write"  wrap="virtual" autocomplete="off"  ></textarea>
+    <!-- teclado virtual -->
+	<ul id="keyboard">
+		<li class="symbol"><span class="off">`</span><span class="on">~</span></li>
+		<li class="symbol"><span class="off">1</span><span class="on">!</span></li>
+		<li class="symbol"><span class="off">2</span><span class="on">@</span></li>
+		<li class="symbol"><span class="off">3</span><span class="on">#</span></li>
+		<li class="symbol"><span class="off">4</span><span class="on">$</span></li>
+		<li class="symbol"><span class="off">5</span><span class="on">%</span></li>
+		<li class="symbol"><span class="off">6</span><span class="on">^</span></li>
+		<li class="symbol"><span class="off">7</span><span class="on">&amp;</span></li>
+		<li class="symbol"><span class="off">8</span><span class="on">*</span></li>
+		<li class="symbol"><span class="off">9</span><span class="on">(</span></li>
+		<li class="symbol"><span class="off">0</span><span class="on">)</span></li>
+		<li class="symbol"><span class="off">-</span><span class="on">_</span></li>
+		<li class="symbol"><span class="off">=</span><span class="on">+</span></li>
+		<li class="delete lastitem">delete</li>
+		<li class="tab">tab</li>
+		<li class="letter">q</li>
+		<li class="letter">w</li>
+		<li class="letter">e</li>
+		<li class="letter">r</li>
+		<li class="letter">t</li>
+		<li class="letter">y</li>
+		<li class="letter">u</li>
+		<li class="letter">i</li>
+		<li class="letter">o</li>
+		<li class="letter">p</li>
+		<li class="symbol"><span class="off">[</span><span class="on">{</span></li>
+		<li class="symbol"><span class="off">]</span><span class="on">}</span></li>
+		<li class="symbol lastitem"><span class="off">\</span><span class="on">|</span></li>
+		<li class="capslock">caps lock</li>
+		<li class="letter">a</li>
+		<li class="letter">s</li>
+		<li class="letter">d</li>
+		<li class="letter">f</li>
+		<li class="letter">g</li>
+		<li class="letter">h</li>
+		<li class="letter">j</li>
+		<li class="letter">k</li>
+		<li class="letter">l</li>
+		<li class="symbol"><span class="off">;</span><span class="on">:</span></li>
+		<li class="symbol"><span class="off">'</span><span class="on">&quot;</span></li>
+		<li class="return lastitem">return</li>
+		<li class="left-shift">shift</li>
+		<li class="letter">z</li>
+		<li class="letter">x</li>
+		<li class="letter">c</li>
+		<li class="letter">v</li>
+		<li class="letter">b</li>
+		<li class="letter">n</li>
+		<li class="letter">m</li>
+		<li class="symbol"><span class="off">,</span><span class="on">&lt;</span></li>
+		<li class="symbol"><span class="off">.</span><span class="on">&gt;</span></li>
+		<li class="symbol"><span class="off">/</span><span class="on">?</span></li>
+		<li class="right-shift lastitem">shift</li>
+		<li class="space lastitem">&nbsp;</li>
+        <li id="send" class="send"><span>send</span></li>
+	</ul>
+    <!--boton enviar -->
+</div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+/*http://bmccreative.com/blog:lined-paper-with-css*/
+
+.paper {
+    font: normal 12px/1.5 "Lucida Grande", arial, sans-serif;
+    width: 300px;
+    margin: 0 auto 10px;
+    padding: 6px 5px 4px 42px;
+    position: relative;
+    color: #444;
+    line-height: 20px;
+    border: 1px solid #d2d2d2;
+ 
+/*    color of the paper background*/
+    background: #fff;
+    /*Color of the horizontal paper lines*/
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#65faff), color-stop(4%, #fff)) 0 4px;
+    background: -webkit-linear-gradient(top, #65faff 0%, #fff 8%) 0 4px;
+    background: -moz-linear-gradient(top, #65faff 0%, #fff 8%) 0 4px;
+    background: -ms-linear-gradient(top, #65faff 0%, #fff 8%) 0 4px;
+    background: -o-linear-gradient(top, #65faff 0%, #fff 8%) 0 4px;
+    background: linear-gradient(top, #65faff 0%, #fff 8%) 0 4px;
+ 
+    -webkit-background-size: 100% 20px;
+    -moz-background-size: 100% 20px;
+    -ms-background-size: 100% 20px;
+    -o-background-size: 100% 20px;
+    background-size: 100% 20px;
+ 
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+ 
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+}
+/*Vertical lines*/
+.paper::before {
+    content: '';
+    position: relative;
+    width: 4px;
+    top: 0;
+    left: 30px;
+    bottom: 0;
+    border: 1px solid;
+    border-color: transparent #dcc4c4;
+}
+
+.paper h1,
+.paper h2 {
+    font-size: 16px;
+    line-height: 16px;
+    margin: 0 0 4px;
+}
+.paper h3,
+.paper h4,
+.paper h5 {
+    font-size: 14px;
+    line-height: 16px;
+    margin: 0 0 4px;
+}
+.paper h4,
+.paper h5 {
+    font-weight: normal;
+}
+.paper p {margin: 0 0 20px;}
+.paper p:last-child {margin: 0;}
+.paper ul {margin: 0 0 20px;}

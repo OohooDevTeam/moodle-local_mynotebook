@@ -1,0 +1,130 @@
+* {
+margin: 0;
+padding: 0;
+}
+/* imagen de fondo en todo el documento */
+body {
+background-image: url('../img/i27x7ym.jpg') ;
+
+}
+
+/* caraga el contenedor donde esgta la maquina de escribir */
+#container {
+margin: 100px  auto 0 auto  ;
+width: 1300px;
+position:relative;
+
+}
+ /* typewritter  aqui carga la maquina de escrbir fisica sin teclas */
+#typewritter{
+	height:858px;
+	width:845px;
+	background: transparent url(../img/machine_2.png) no-repeat 0 0;
+	position:relative;
+	top:120px;
+	z-index:2;
+}
+ /* #write  aqui se carag el papel con un tamano de 477px de ancho y 58 de alto 
+	en la programacion se amplia a 260px 
+ */
+#write {
+margin: 0 200px;
+padding:5px;
+width: 477px;
+height: 58px;
+*height:66px;
+font-family: 'HartingPlain', Arial, sans-serif;
+font-size: 18px;
+font-style: normal;
+font-weight: 400;
+color:#000;
+background: transparent url(../img/sheet_2.png) no-repeat top left;
+line-height:30px;
+*line-height:30px;
+border:none;
+position:absolute;
+top:105px;
+*top:75px;
+z-index:3;
+outline:none;
+resize:none;
+overflow-y:hidden;
+
+}
+/* aqui carga el teclado  en la cual es un tag ul y li que carga cada tecla */
+#keyboard {
+width:auto;
+*width:614px;
+margin: 0 100px 0 140px ;
+list-style: none;
+position:absolute;
+z-index:3;
+overflow:hidden;
+top:490px;
+}
+	/* aqui carga una tecla y asignacion de character por cada li asignado dentro #keyboard*/
+	#keyboard li {
+	float: left;
+	margin: 0 0 0 0;
+	width: 40px;
+	height: 49px;
+	line-height: 40px;
+	text-align:	 center;
+	font-family: 'Lobster', arial, serif;
+	font-size:16px;
+	color:#4B3005;
+	text-shadow: -1px -1px 1px #ccc;
+	}
+		/* aqui asigna el background de las teclas en general*/	
+		li.letter,li.symbol {
+				background: transparent url(../img/key.png) no-repeat  center  5px;	
+			}
+		.capslock, .tab, .left-shift {
+		clear: left;
+		}
+			/* aqui asigna el background unicamemente para las teclas delete keyboard y return  son el mismo tamano*/	
+			#keyboard .tab, #keyboard .delete ,#keyboard .return {
+				background: transparent url(../img/shift_key.png) no-repeat   center  7px;
+					width: 58px;
+			}
+			/* aqui asigna el background unicamemente para las tecla caps lock */	
+			#keyboard .capslock {
+				background: transparent url(../img/return.png) no-repeat -2px 5px;									
+				width: 104px;
+			}	
+			/* aqui asigna el background unicamemente para las teclas shift left y right*/				
+			#keyboard .left-shift, #keyboard .right-shift {
+				background: transparent url(../img/shifts_keys.png) no-repeat   center  7px;
+					width: 90px;
+			}
+
+		.lastitem {
+				margin-right: 0;
+		}
+		/* esto aplica exclusivamente  solo cuando para las letras en el teclado las convierte en mayusculas */
+		.uppercase {
+		text-transform: uppercase;
+		}
+		/* aqui asigna el background unicamemente para las tecla space*/						
+		#keyboard .space {
+		clear: left;
+		width: 544px;
+		*width: 534px;		
+		background: transparent url(../img/key_space.png) no-repeat  center center;
+		}
+		/* esto aplica esclusivamente cuando cliquea shift camia los numeros en simbolos*/								
+		.on {
+		display: none;
+		}
+		/* convierte  en pointer cualquier teclas que esta puesta ensimade ella*/
+		#keyboard li:hover {
+		cursor: pointer;
+		}
+			/* aqui asigna el background unicamemente para las tecla send*/								
+		li#send {
+				font-size:22px;
+				color:#4B3005;
+				text-shadow: -1px -1px 1px #fff;
+				width:80px;
+				background: transparent url(../img/shifts_keys.png) no-repeat    center center;
+		}
