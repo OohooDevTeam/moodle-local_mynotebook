@@ -38,8 +38,12 @@ require_once(dirname(__FILE__) . '/mod_form.php');
 require_once($CFG->dirroot.'/lib/editor/tinymce/lib.php');
 
 $courseid = required_param('courseid', PARAM_INT);
-echo $courseid;
-echo $USER->id;
+$n = required_param('n', PARAM_INT);
+$note_name = required_param('note_name', PARAM_TEXT);
+$trim = required_param('trimmed', PARAM_TEXT);
+
+//echo $courseid;
+//echo $USER->id;
 
 $system = get_context_instance(CONTEXT_SYSTEM);
 $PAGE->set_context($system);
@@ -58,78 +62,85 @@ echo"<script type='text/javascript' src='js/jquery-ui-1.8.18.custom/js/jquery-ui
 
 echo"<script type='text/javascript' src='js/test1.js'></script>";
 
-echo "<textarea id='areaText' style='height:100%; width:100%;'></textarea>";
+//echo "<textarea id='areaText' style='height:100%; width:100%;'></textarea>";
 
 $notes = $DB->get_records('notes', array('userid' => $USER->id, 'deleted' => 0));
 $course = $DB->get_record('course', array('id' => $courseid));
 
 echo $course->fullname;
 
-$n = 0;
-foreach ($notes as $note) {
-//    echo $note->courseid;
-    if ($courseid == $note->courseid) {
+echo "<textarea id='areaText'>
+    \n $note_name 
+    \n
+    $trim
+</textarea>";
 
-        $trimmed  = $note->text;
-        $section = $DB->get_record('course_modules', array('id' => $note->cmid, 'course' => $note->courseid));
-        $format = $DB->get_record('course', array('id' => $note->courseid));
-        $var=json_encode($format);
-        
-        echo"<script>console.log($var);</script>";
-        //If the section var exists for a course activity
-        if ($section) {
-            $sql = "SELECT *
-                    FROM {course_sections} th
-                    WHERE th.id = '$section->section' AND th.course = '$note->courseid'";
-            $course_section = $DB->get_record_sql($sql);
-
-            if ($course_section->name == NULL) {
-                $course_section->name = 'Section name not specified, but section# is:' . $course_section->section;
-            }
-                //debugging
-                echo "section=" . $section->section . "</br>";
-                echo "sectionid=" . $section->id . "</br>";
-                echo "section=" . $course_section->section . "</br>";
-                    echo"<div>";
-            if ($n % 2 == 0) { //Notes on a Course Module Page
-                echo"<div >$course_section->name</div>";
-                echo"<textarea >
-                \n $note->name 
-                    \n
-                    $trimmed
-                </textarea>";
-            } else {
-                echo"<div >$course_section->name</div>";
-                echo"<textarea>
-                           \n $note->name 
-                            \n
-                            $trimmed
-                        </textarea>";
-            }
-            echo"</div>";  
-        } else { //Notes on a Course Main Page
-            echo"<div >";
-            if ($n % 2 == 0) {
-                echo"<div >Course Page</div>";
-                echo"<textarea>
-                           \n $note->name 
-                            \n
-                            $trimmed
-                        </textarea>";
-            } else {
-                echo"<div >Course Page</div>";
-                echo"<textarea>
-                           \n $note->name 
-                            \n
-                            $trimmed
-                        </textarea>";
-            }
-
-            echo"</div>";  
-        }
-        $n++;
-    }
-}
+////$n = 0;
+//foreach ($notes as $note) {
+////    echo $note->courseid;
+//    if ($courseid == $note->courseid) {
+////        //Strip all html tags
+//////        $trimmed = strip_tags($note->text);
+//        $trimmed  = $note->text;
+//        $section = $DB->get_record('course_modules', array('id' => $note->cmid, 'course' => $note->courseid));
+//        $format = $DB->get_record('course', array('id' => $note->courseid));
+//        $var=json_encode($format);
+//        
+//        echo"<script>console.log($var);</script>";
+//        //If the section var exists for a course activity
+//        if ($section) {
+//            $sql = "SELECT *
+//                    FROM {course_sections} th
+//                    WHERE th.id = '$section->section' AND th.course = '$note->courseid'";
+//            $course_section = $DB->get_record_sql($sql);
+//
+//            if ($course_section->name == NULL) {
+//                $course_section->name = 'Section name not specified, but section# is:' . $course_section->section;
+//            }
+//                //debugging
+//                echo "section=" . $section->section . "</br>";
+//                echo "sectionid=" . $section->id . "</br>";
+//                echo "section=" . $course_section->section . "</br>";
+//                    echo"<div>";
+//            if ($n % 2 == 0) { //Notes on a Course Module Page
+//                echo"<div >$course_section->name</div>";
+//                echo "<textarea id='areaText' style='height:100%; width:100%;'>
+//                \n $note->name 
+//                    \n
+//                    $trimmed
+//                </textarea>";
+//            } else {
+//                echo"<div >$course_section->name</div>";
+//                echo "<textarea id='areaText' style='height:100%; width:100%;'>
+//                           \n $note->name 
+//                            \n
+//                            $trimmed
+//                        </textarea>";
+//            }
+//            echo"</div>";  
+//        } else { //Notes on a Course Main Page
+//            echo"<div >";
+//            if ($n % 2 == 0) {
+//                echo"<div >Course Page</div>";
+//                echo "<textarea id='areaText' style='height:100%; width:100%;'>
+//                           \n $note->name 
+//                            \n
+//                            $trimmed
+//                        </textarea>";
+//            } else {
+//                echo"<div >Course Page</div>";
+//                echo "<textarea id='areaText' style='height:100%; width:100%;'>
+//                           \n $note->name 
+//                            \n
+//                            $trimmed
+//                        </textarea>";
+//            }
+//
+//            echo"</div>";  
+//        }
+//        $n++;
+//    }
+//}
 
 //Applies tinyMCE to targetted text area
 $editor = new tinymce_texteditor();

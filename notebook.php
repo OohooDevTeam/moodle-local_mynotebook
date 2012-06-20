@@ -103,6 +103,7 @@ $ordered_course_name = reorderindex($unique_course_name, $conditions_list);
 
 $notes = $DB->get_records('notes', array('userid' => $USER->id, 'deleted' => 0));
 
+/***************************************************/
 //Menubar for all coursenotes for quick access
 echo"<span ><ul id='nav'>";
     
@@ -133,7 +134,8 @@ for ($j = 0; $j < sizeof($ordered_course_id); $j++) {
 echo"<div id='lavalamp'></div>";
 echo"</ul></span>"; // End nav
 
-
+/***************************************************/
+//buttons on the right of the page
 echo"<span><ul id='options'>"; 
     echo"<li><a class='hsubs ' href='#'><img src='images/help_icon.gif'/></a></li>";
     echo"<li><a class='hsubs ' href='#'><img src='images/save.png'/></a></li>";
@@ -144,7 +146,7 @@ echo"<span><ul id='options'>";
     </a></li>";
 
 echo"</ul></span>"; // End options
-
+/***************************************************/
 
 $course = $DB->get_record('course', array('id' => $courseid));
 
@@ -152,24 +154,21 @@ echo"<div id='notebook'>";
 $n = 0;
     echo"<div id='cover'>";
         echo"<div id='notetitleleft'>$course->fullname</div>";
-    echo"</div>";
-//Creates the pages for each note
+    echo"</div>";//end cover
+    
+    
+    $n = 0;
 foreach ($notes as $note) {
 //    echo $note->courseid;
     if ($courseid == $note->courseid) {
-        //Strip all html tags
-//        $trimmed = strip_tags($note->text);
+//        //Strip all html tags
+////        $trimmed = strip_tags($note->text);
         $trimmed  = $note->text;
-
         $section = $DB->get_record('course_modules', array('id' => $note->cmid, 'course' => $note->courseid));
-
         $format = $DB->get_record('course', array('id' => $note->courseid));
-        
-//        print_r($format);
-//        console.log($format);
-//        console debugging
         $var=json_encode($format);
-echo"<script>console.log($var);</script>";
+        
+        echo"<script>console.log($var);</script>";
         //If the section var exists for a course activity
         if ($section) {
             $sql = "SELECT *
@@ -180,57 +179,65 @@ echo"<script>console.log($var);</script>";
             if ($course_section->name == NULL) {
                 $course_section->name = 'Section name not specified, but section# is:' . $course_section->section;
             }
-            //debugging
-        echo "section=" . $section->section . "</br>";
-        echo "sectionid=" . $section->id . "</br>";
-        echo "section=" . $course_section->section . "</br>";
-            echo"<div id='pagenum'>";
+                //debugging
+                echo "section=" . $section->section . "</br>";
+                echo "sectionid=" . $section->id . "</br>";
+                echo "section=" . $course_section->section . "</br>";
+                    echo"<div>";
             if ($n % 2 == 0) { //Notes on a Course Module Page
-//                echo"<div id='pagenum'>";
-                echo"<div id='notetitleright'>$course_section->name</div>";
-                echo"<textarea id='pagetextright' class='paper'>
-                           \n $note->name 
-                            \n
-                            $trimmed
-                        </textarea>";
-//                echo"</div>";
+                echo"<div >$course_section->name</div>";
+//                echo "<textarea id='areaText' style='height:100%; width:100%;'>
+//                \n $note->name 
+//                    \n
+//                    $trimmed
+//                </textarea>";
+                echo"<iframe src='notepage.php?courseid=$courseid&n=$n&note_name=$note->name&trimmed=$trimmed' style='height:100%; width:100%'></iframe>";
+
             } else {
-//                echo"<div id='pagenum'>";
-                echo"<div id='notetitleright'>$course_section->name</div>";
-                echo"<textarea id='pagetextright' class='paper'>
-                           \n $note->name 
-                            \n
-                            $trimmed
-                        </textarea>";
-//                echo"</div>";
+                echo"<div >$course_section->name</div>";
+//                echo "<textarea id='areaText' style='height:100%; width:100%;'>
+//                           \n $note->name 
+//                            \n
+//                            $trimmed
+//                        </textarea>";
+            echo"<iframe src='notepage.php?courseid=$courseid&n=$n&note_name=$note->name&trimmed=$trimmed' style='height:100%; width:100%'></iframe>";
+
             }
             echo"</div>";  
         } else { //Notes on a Course Main Page
-            echo"<div id='pagenum'>";
+            echo"<div >";
             if ($n % 2 == 0) {
-//                echo"<div id='notetitleright'>Course Page</div>";
-//                echo"<textarea id='pagetextright' class='paper'>
-//                           \n $note->name 
-//                            \n
-//                            $trimmed
-//                        </textarea>";
+                echo"<div >Course Page</div>";
+                //echo "<textarea id='areaText' style='height:100%; width:100%;'>
+                           // $note->name 
+                echo"<iframe src='notepage.php?courseid=$courseid&n=$n&note_name=$note->name&trimmed=$trimmed' style='height:100%; width:100%'></iframe>";
+
+                            //$trimmed
+                        //</textarea>";
             } else {
-//                echo"<div id='notetitleleft'>Course Page</div>";
-//                echo"<textarea id='pagetextleft' class='paper'>
-//                           \n $note->name 
-//                            \n
-//                            $trimmed
-//                        </textarea>";
+                echo"<div >Course Page</div>";
+                //echo "<textarea id='areaText' style='height:100%; width:100%;'>
+                            //$note->name 
+                echo"<iframe src='notepage.php?courseid=$courseid&n=$n&note_name=$note->name&trimmed=$trimmed' style='height:100%; width:100%'></iframe>";
+
+                            //$trimmed
+                       // </textarea>";
             }
-            echo"<iframe src='notepage.php?courseid=$courseid' style='height:100%; width:100%'></iframe>";
-            //echo "<h1 id='in_iframe'>Test</h1>";
+
             echo"</div>";  
         }
         $n++;
     }
 }
+    
+    
+    
+    
+    
+//    echo"<iframe src='notepage.php?courseid=$courseid&n=$n' style='height:100%; width:100%'></iframe>";
 
-echo"</div>";
+    
+echo"</div>";//end notebook
 
 /*********************************************************************************/
 /*********************************************************************************/
@@ -281,6 +288,85 @@ echo'<div id="controllers" style="display:none;">';
 
 </div>';
 */
+
+//Old code for displaying notes on a page
+//Creates the pages for each note
+//foreach ($notes as $note) {
+//    if ($courseid == $note->courseid) {
+////        //Strip all html tags
+//////        $trimmed = strip_tags($note->text);
+////        $trimmed  = $note->text;
+////
+//        $section = $DB->get_record('course_modules', array('id' => $note->cmid, 'course' => $note->courseid));
+//        $format = $DB->get_record('course', array('id' => $note->courseid));
+////        $var=json_encode($format);
+////echo"<script>console.log($var);</script>";
+////        //If the section var exists for a course activity
+//        if ($section) {
+//            $sql = "SELECT *
+//                    FROM {course_sections} th
+//                    WHERE th.id = '$section->section' AND th.course = '$note->courseid'";
+//            $course_section = $DB->get_record_sql($sql);
+////
+//            if ($course_section->name == NULL) {
+//                $course_section->name = 'Section name not specified, but section# is:' . $course_section->section;
+//            }
+////            //debugging
+////        echo "section=" . $section->section . "</br>";
+////        echo "sectionid=" . $section->id . "</br>";
+////        echo "section=" . $course_section->section . "</br>";
+////            echo"<div id='pagenum'>";
+//            if ($n % 2 == 0) { //Notes on a Course Module Page
+////                echo"<div id='notetitleright'>$course_section->name</div>";
+////                echo"<textarea id='pagetextright' class='paper'>
+////                           \n $note->name 
+////                            \n
+////                            $trimmed
+////                        </textarea>";
+//////                echo"</div>";
+//                echo"<iframe src='notepage.php?courseid=$courseid' style='height:100%; width:100%'></iframe>";
+//
+//            } else {
+//////                echo"<div id='pagenum'>";
+////                echo"<div id='notetitleright'>$course_section->name</div>";
+////                echo"<textarea id='pagetextright' class='paper'>
+////                           \n $note->name 
+////                            \n
+////                            $trimmed
+////                        </textarea>";
+//                echo"<iframe src='notepage.php?courseid=$courseid' style='height:100%; width:100%'></iframe>";
+//
+//            }
+////            echo"</div>";  
+//        } else { //Notes on a Course Main Page
+////            echo"<div id='pagenum'>";
+//            if ($n % 2 == 0) {
+//////                echo"<div id='notetitleright'>Course Page</div>";
+//////                echo"<textarea id='pagetextright' class='paper'>
+//////                           \n $note->name 
+//////                            \n
+//////                            $trimmed
+//////                        </textarea>";
+//                echo"<iframe src='notepage.php?courseid=$courseid' style='height:100%; width:100%'></iframe>";
+//
+//            } else {
+//////                echo"<div id='notetitleleft'>Course Page</div>";
+//////                echo"<textarea id='pagetextleft' class='paper'>
+//////                           \n $note->name 
+//////                            \n
+//////                            $trimmed
+//////                        </textarea>";
+//                echo"<iframe src='notepage.php?courseid=$courseid' style='height:100%; width:100%'></iframe>";
+//
+//            }
+////            echo"<iframe src='notepage.php?courseid=$courseid' style='height:100%; width:100%'></iframe>";
+////            //echo "<h1 id='in_iframe'>Test</h1>";
+////            echo"</div>";  
+//        }
+//        $n++;
+//    }
+//}
+
 
 echo"</body></html>";
 ?>

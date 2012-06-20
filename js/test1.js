@@ -19,7 +19,7 @@ function initMCE() {
                 {
                     $(editor.getContainer()).find(".mceToolbar, .mceStatusbar").hide()
                         var width = 500;
-                        var height = 650;
+                        var height = 620;
                         editor.theme.resizeTo(width, height);
                         
                 });
@@ -30,7 +30,7 @@ function initMCE() {
                 {
                     $(editor.getContainer()).find(".mceToolbar, .mceStatusbar").show()
                       var width = 500;
-                        var height = 552;
+                        var height = 522;
                         editor.theme.resizeTo(width, height);
                         
                         editor.addShortcut('ctrl+s', 'saveFunction', save);
