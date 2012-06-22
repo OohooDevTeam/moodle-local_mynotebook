@@ -171,10 +171,22 @@ var save = function() {
     alert('Saved');
     //Posts information from the tinyMCE to save
     $.post('save_notes.php', {
-        'test': $(editor.getBody()).html()
-    })
+        'text': $(editor.getBody()).html(),
+        'courseid': $("#courseid").val(),
+        'note_id': $("#note_id").val()
+    });
+    //alert($('#courseid').val());
 }
         
+//var save_title = function(){
+//    alert('Title saved');
+//    $_post('save_notes.php',{
+//        'title': $("#title").val(),
+//        'courseid': $("#courseid").val(),
+//        'note_id': $("#note_id").val()
+//    });
+    
+//}
         
 $(document).ready(function(){
     
@@ -184,12 +196,24 @@ $(document).ready(function(){
     $(document).bind('keydown', function(event) {
         if(event.ctrlKey && event.keyCode == 83) {
             save();
+            //Stops form from submitting normally
             event.preventDefault();
             event.stopPropagation();
             return false;
         }
     });
+    
+    
+    $('.title')
+    .on('blur', function(){
+        console.log('TITLE blur');
+        $.post('save_notes.php',{
+            'title': $(this).val(),
+//          'title': $(".title").val(),
+            'courseid1': $("#courseid1").val(),
+            'note_id1': $("#note_id1").val()
+        });
+    });
+    
 });
-
-
 

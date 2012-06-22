@@ -1,6 +1,5 @@
 <?php
 
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -27,20 +26,36 @@
  * @copyright 2010 Your Name
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 global $CFG, $DB, $USER, $PAGE;
 
 require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
-require_once(dirname(__FILE__) . '/locallib.php');
-require_once(dirname(__FILE__) . '/lib.php');
-require_once(dirname(__FILE__) . '/mod_form.php');
+//require_once(dirname(__FILE__) . '/locallib.php');
+//require_once(dirname(__FILE__) . '/lib.php');
+//require_once(dirname(__FILE__) . '/mod_form.php');
 
-require_once($CFG->dirroot.'/lib/editor/tinymce/lib.php');
+require_once($CFG->dirroot . '/lib/editor/tinymce/lib.php');
+
+//print_object($_REQUEST);
 
 $courseid = required_param('courseid', PARAM_INT);
-$n = required_param('n', PARAM_INT);
-$note_name = required_param('note_name', PARAM_TEXT);
-$trim = required_param('trimmed', PARAM_TEXT);
+//$n = required_param('n', PARAM_INT);
+$note_id = required_param('note_id', PARAM_INT);
+//$note_name = optional_param('note_name','', PARAM_TEXT);
+//$trim = optional_param('trimmed','', PARAM_TEXT);
+
+
+
+//$var1=json_encode($courseid);
+//echo"<script>console.log($var1);</script>";
+//
+//$var2=json_encode($n);
+//echo"<script>console.log($var2);</script>";
+//
+//$var3=json_encode($note_name);
+//echo"<script>console.log($var3);</script>";
+//
+//$var4=json_encode($trim);
+//echo"<script>console.log($var4);</script>";
 
 //echo $courseid;
 //echo $USER->id;
@@ -64,83 +79,26 @@ echo"<script type='text/javascript' src='js/test1.js'></script>";
 
 //echo "<textarea id='areaText' style='height:100%; width:100%;'></textarea>";
 
-$notes = $DB->get_records('notes', array('userid' => $USER->id, 'deleted' => 0));
+//$notes = $DB->get_records('notes', array('userid' => $USER->id, 'deleted' => 0));
 $course = $DB->get_record('course', array('id' => $courseid));
 
-echo $course->fullname;
+//echo $course->fullname;
 
+$trim = $DB->get_record('notes', array('userid'=>$USER->id, 'courseid'=>$courseid, 'id'=>$note_id));
+$note_name = $trim->name;
+$text = $trim->text;
 echo "<textarea id='areaText'>
     \n $note_name 
     \n
-    $trim
+    $text;
 </textarea>";
 
-////$n = 0;
-//foreach ($notes as $note) {
-////    echo $note->courseid;
-//    if ($courseid == $note->courseid) {
-////        //Strip all html tags
-//////        $trimmed = strip_tags($note->text);
-//        $trimmed  = $note->text;
-//        $section = $DB->get_record('course_modules', array('id' => $note->cmid, 'course' => $note->courseid));
-//        $format = $DB->get_record('course', array('id' => $note->courseid));
-//        $var=json_encode($format);
-//        
-//        echo"<script>console.log($var);</script>";
-//        //If the section var exists for a course activity
-//        if ($section) {
-//            $sql = "SELECT *
-//                    FROM {course_sections} th
-//                    WHERE th.id = '$section->section' AND th.course = '$note->courseid'";
-//            $course_section = $DB->get_record_sql($sql);
-//
-//            if ($course_section->name == NULL) {
-//                $course_section->name = 'Section name not specified, but section# is:' . $course_section->section;
-//            }
-//                //debugging
-//                echo "section=" . $section->section . "</br>";
-//                echo "sectionid=" . $section->id . "</br>";
-//                echo "section=" . $course_section->section . "</br>";
-//                    echo"<div>";
-//            if ($n % 2 == 0) { //Notes on a Course Module Page
-//                echo"<div >$course_section->name</div>";
-//                echo "<textarea id='areaText' style='height:100%; width:100%;'>
-//                \n $note->name 
-//                    \n
-//                    $trimmed
-//                </textarea>";
-//            } else {
-//                echo"<div >$course_section->name</div>";
-//                echo "<textarea id='areaText' style='height:100%; width:100%;'>
-//                           \n $note->name 
-//                            \n
-//                            $trimmed
-//                        </textarea>";
-//            }
-//            echo"</div>";  
-//        } else { //Notes on a Course Main Page
-//            echo"<div >";
-//            if ($n % 2 == 0) {
-//                echo"<div >Course Page</div>";
-//                echo "<textarea id='areaText' style='height:100%; width:100%;'>
-//                           \n $note->name 
-//                            \n
-//                            $trimmed
-//                        </textarea>";
-//            } else {
-//                echo"<div >Course Page</div>";
-//                echo "<textarea id='areaText' style='height:100%; width:100%;'>
-//                           \n $note->name 
-//                            \n
-//                            $trimmed
-//                        </textarea>";
-//            }
-//
-//            echo"</div>";  
-//        }
-//        $n++;
-//    }
-//}
+//echo '<input id="courseid" type="hidden" value="' . $courseid . '"/>';
+echo "<input id='courseid' type='hidden' value=' $courseid '/>";
+echo "<input id='note_id' type='hidden' value=' $note_id '/>";
+//echo "<input id='title' type='hidden' value=' $note_id '/>";
+
+
 
 //Applies tinyMCE to targetted text area
 $editor = new tinymce_texteditor();

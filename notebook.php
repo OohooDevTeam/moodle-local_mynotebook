@@ -74,7 +74,7 @@ echo"<script type='text/javascript' src='js/notebook.js'></script>";
 echo"<script type='text/javascript' src='tinymce/jscripts/tiny_mce/tiny_mce.js'></script>";
 //echo"<script type='text/javascript' language='javascript' src='$CFG->wwwroot/lib/editor/tinymce/tiny_mce/$tinymce->version/jquery.tinymce.js'></script>";
 //echo"<script type='text/javascript' language='avascript' src='$CFG->wwwroot/lib/editor/tinymce/tiny_mce/$tinymce->version/tiny_mce.js'></script>";
-echo"<script type='text/javascript' src='js/test.js'></script>";
+echo"<script type='text/javascript' src='js/test1.js'></script>";
 
 echo"</head><body>";
 
@@ -151,7 +151,6 @@ echo"</ul></span>"; // End options
 $course = $DB->get_record('course', array('id' => $courseid));
 
 echo"<div id='notebook'>";
-$n = 0;
     echo"<div id='cover'>";
         echo"<div id='notetitleleft'>$course->fullname</div>";
     echo"</div>";//end cover
@@ -160,10 +159,11 @@ $n = 0;
     $n = 0;
 foreach ($notes as $note) {
 //    echo $note->courseid;
+//    echo $note->id;
     if ($courseid == $note->courseid) {
 //        //Strip all html tags
 ////        $trimmed = strip_tags($note->text);
-        $trimmed  = $note->text;
+//        $trimmed  = urlencode($note->text);
         $section = $DB->get_record('course_modules', array('id' => $note->cmid, 'course' => $note->courseid));
         $format = $DB->get_record('course', array('id' => $note->courseid));
         $var=json_encode($format);
@@ -184,46 +184,52 @@ foreach ($notes as $note) {
                 echo "sectionid=" . $section->id . "</br>";
                 echo "section=" . $course_section->section . "</br>";
                     echo"<div>";
-            if ($n % 2 == 0) { //Notes on a Course Module Page
-                echo"<div >$course_section->name</div>";
-//                echo "<textarea id='areaText' style='height:100%; width:100%;'>
-//                \n $note->name 
-//                    \n
-//                    $trimmed
-//                </textarea>";
-                echo"<iframe src='notepage.php?courseid=$courseid&n=$n&note_name=$note->name&trimmed=$trimmed' style='height:100%; width:100%'></iframe>";
+                    
+            //Notes on a Course Module Page            
+            if ($n % 2 == 0) {
+                echo"<div >$course_section->name</div>";    
+                echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
 
+echo "<input id='courseid1' type='hidden' value=' $note->courseid '/>";
+echo "<input id='note_id1' type='hidden' value=' $note->id '/>";
+                echo $note->courseid . '</br>' . $note->id;
+                
+                echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
+           
             } else {
-                echo"<div >$course_section->name</div>";
-//                echo "<textarea id='areaText' style='height:100%; width:100%;'>
-//                           \n $note->name 
-//                            \n
-//                            $trimmed
-//                        </textarea>";
-            echo"<iframe src='notepage.php?courseid=$courseid&n=$n&note_name=$note->name&trimmed=$trimmed' style='height:100%; width:100%'></iframe>";
+                echo"<div >$course_section->name</div>";    
+                echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
 
+echo "<input id='courseid1' type='hidden' value=' $note->courseid '/>";
+echo "<input id='note_id1' type='hidden' value=' $note->id '/>";
+                echo $note->courseid . '</br>' . $note->id;
+                
+                echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
             }
             echo"</div>";  
+            
         } else { //Notes on a Course Main Page
             echo"<div >";
             if ($n % 2 == 0) {
-                echo"<div >Course Page</div>";
-                //echo "<textarea id='areaText' style='height:100%; width:100%;'>
-                           // $note->name 
-                echo"<iframe src='notepage.php?courseid=$courseid&n=$n&note_name=$note->name&trimmed=$trimmed' style='height:100%; width:100%'></iframe>";
+                echo"<div >Course Page</div>";    
+                echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
 
-                            //$trimmed
-                        //</textarea>";
+echo "<input id='courseid1' type='hidden' value=' $note->courseid '/>";
+echo "<input id='note_id1' type='hidden' value=' $note->id '/>";
+                echo $note->courseid . '</br>' . $note->id;
+                
+                echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
+           
             } else {
-                echo"<div >Course Page</div>";
-                //echo "<textarea id='areaText' style='height:100%; width:100%;'>
-                            //$note->name 
-                echo"<iframe src='notepage.php?courseid=$courseid&n=$n&note_name=$note->name&trimmed=$trimmed' style='height:100%; width:100%'></iframe>";
+                echo"<div >Course Page</div>";  
+                echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
 
-                            //$trimmed
-                       // </textarea>";
+echo "<input id='courseid1' type='hidden' value=' $note->courseid '/>";
+echo "<input id='note_id1' type='hidden' value=' $note->id '/>";
+                echo $note->courseid . '</br>' . $note->id;
+                
+                echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
             }
-
             echo"</div>";  
         }
         $n++;
