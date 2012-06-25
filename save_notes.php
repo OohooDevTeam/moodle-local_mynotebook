@@ -45,7 +45,7 @@ if (isset($_POST['title']) && isset($_POST['courseid1']) && isset($_POST['note_i
 //    $newtitle->name = $title;
 //    
 //    $update = $DB->update_record('notes', $newtitle); 
-    
+    echo "UPDATED Title!";
 }
 
 //Saves the note
@@ -54,15 +54,19 @@ if (isset($_POST['text']) && isset($_POST['courseid']) && isset($_POST['note_id'
     $courseid = $_POST['courseid'];
     $note_id = $_POST['note_id'];
     
+    echo $text . '</br>';
+    echo $courseid . '</br>';
+    echo $note_id . '</br>';
     
-//    $note = $DB->get_record('notes', array('id'=>$note_id, 'deleted'=>0, 'userid'=> $USER->id, 'courseid'=>$courseid));
-//    $note->text = $text;
-//      
-//    $update = $DB->update_record('notes', $note);  
-    
-} else {
-    ECHO"!SET";
-    
-}
+    $note = $DB->get_record('notes', array('id'=>$note_id, 'deleted'=>0, 'userid'=> $USER->id, 'courseid'=>$courseid));
+    $note->text = $text;
+     
+    $update = $DB->update_record('notes', $note);  
+    echo "UPDATED Notes!";
+} 
+//else {
+//    ECHO"!SET";
+//    
+//}
 
 ?>

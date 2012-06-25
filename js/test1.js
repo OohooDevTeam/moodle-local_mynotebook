@@ -187,10 +187,67 @@ var save = function() {
 //    });
     
 //}
+
+function trim(s)
+{
+	var l=0; var r=s.length -1;
+	while(l < s.length && s[l] == ' ')
+	{	l++; }
+	while(r > l && s[r] == ' ')
+	{	r-=1;	}
+	return s.substring(l, r+1);
+}
+    
+function test(){
+    $('.title')
+    
+//    .on('focus', function(){
+//        console.log('TITLE focus');
+//        
+//        var iterator = $(this).parent().parent().find("#iterator").val();
+//        
+////        $.post('save_notes.php',{
+////            'title': $(this).val(),
+////            'courseid1': $(this).parent().parent().find("#courseid1").val(),
+////            'note_id1': $(this).parent().parent().find("#note_id1").val()
+////        });
+//        //alert(iterator);
+//        console.log(iterator);
+//
+//    })
+    
+    .on('blur', function(){
+        var iteratorz = $(this).parent().parent().find("#iterator").val();
+        console.log('TITLE blur');
+        console.log(iteratorz);
         
+//        var course_id = $(this).parent().parent().find("#courseid1").val();
+//        var note_id = $(this).parent().parent().find("#note").val();
+        
+        var temp_course = "#courseid";
+        var temp_note = "#note_id";
+        
+        var trimmed_iterator = iteratorz.trim();
+        
+        var courseid = temp_course + trimmed_iterator;
+        var noteid = temp_note + trimmed_iterator;
+        console.log(courseid);
+        console.log(noteid);
+        
+        $.post('save_notes.php',{
+            'title': $(this).val(),
+            'courseid1': $(courseid).val(),
+            'note_id1': $(noteid).val()
+        });
+    });
+}
+
+
 $(document).ready(function(){
     
     initMCE();
+    
+    test();
 
     //Save shortcut
     $(document).bind('keydown', function(event) {
@@ -200,20 +257,7 @@ $(document).ready(function(){
             event.preventDefault();
             event.stopPropagation();
             return false;
-        }
+        } 
     });
-    
-    
-    $('.title')
-    .on('blur', function(){
-        console.log('TITLE blur');
-        $.post('save_notes.php',{
-            'title': $(this).val(),
-//          'title': $(".title").val(),
-            'courseid1': $("#courseid1").val(),
-            'note_id1': $("#note_id1").val()
-        });
-    });
-    
 });
 

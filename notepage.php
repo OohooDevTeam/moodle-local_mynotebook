@@ -29,36 +29,14 @@
 global $CFG, $DB, $USER, $PAGE;
 
 require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
-//require_once(dirname(__FILE__) . '/locallib.php');
-//require_once(dirname(__FILE__) . '/lib.php');
-//require_once(dirname(__FILE__) . '/mod_form.php');
 
 require_once($CFG->dirroot . '/lib/editor/tinymce/lib.php');
-
-//print_object($_REQUEST);
 
 $courseid = required_param('courseid', PARAM_INT);
 //$n = required_param('n', PARAM_INT);
 $note_id = required_param('note_id', PARAM_INT);
 //$note_name = optional_param('note_name','', PARAM_TEXT);
 //$trim = optional_param('trimmed','', PARAM_TEXT);
-
-
-
-//$var1=json_encode($courseid);
-//echo"<script>console.log($var1);</script>";
-//
-//$var2=json_encode($n);
-//echo"<script>console.log($var2);</script>";
-//
-//$var3=json_encode($note_name);
-//echo"<script>console.log($var3);</script>";
-//
-//$var4=json_encode($trim);
-//echo"<script>console.log($var4);</script>";
-
-//echo $courseid;
-//echo $USER->id;
 
 $system = get_context_instance(CONTEXT_SYSTEM);
 $PAGE->set_context($system);
@@ -71,7 +49,6 @@ $PAGE->set_pagelayout('popup');
 echo $OUTPUT->header();
 
 /* * ******************************************************** *///Javascript declaration
-
 echo"<script type='text/javascript' src='js/jquery-1.7.2.js'></script>";
 echo"<script type='text/javascript' src='js/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js'></script>";
 
@@ -81,8 +58,6 @@ echo"<script type='text/javascript' src='js/test1.js'></script>";
 
 //$notes = $DB->get_records('notes', array('userid' => $USER->id, 'deleted' => 0));
 $course = $DB->get_record('course', array('id' => $courseid));
-
-//echo $course->fullname;
 
 $trim = $DB->get_record('notes', array('userid'=>$USER->id, 'courseid'=>$courseid, 'id'=>$note_id));
 $note_name = $trim->name;

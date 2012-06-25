@@ -150,6 +150,7 @@ echo"</ul></span>"; // End options
 
 $course = $DB->get_record('course', array('id' => $courseid));
 
+$i = 0;
 echo"<div id='notebook'>";
     echo"<div id='cover'>";
         echo"<div id='notetitleleft'>$course->fullname</div>";
@@ -190,9 +191,11 @@ foreach ($notes as $note) {
                 echo"<div >$course_section->name</div>";    
                 echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
 
-echo "<input id='courseid1' type='hidden' value=' $note->courseid '/>";
-echo "<input id='note_id1' type='hidden' value=' $note->id '/>";
-                echo $note->courseid . '</br>' . $note->id;
+echo "<input id='iterator' type='hidden' value=' $i '/>";
+echo "<input id='courseid$i' type='hidden' value=' $note->courseid '/>";
+echo "<input id='note_id$i' type='hidden' value=' $note->id '/>";
+                //Debugging
+                echo $i . '</br>' . $note->courseid . '</br>' . $note->id;
                 
                 echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
            
@@ -200,9 +203,11 @@ echo "<input id='note_id1' type='hidden' value=' $note->id '/>";
                 echo"<div >$course_section->name</div>";    
                 echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
 
-echo "<input id='courseid1' type='hidden' value=' $note->courseid '/>";
-echo "<input id='note_id1' type='hidden' value=' $note->id '/>";
-                echo $note->courseid . '</br>' . $note->id;
+echo "<input id='iterator' type='hidden' value=' $i '/>";
+echo "<input id='courseid$i' type='hidden' value=' $note->courseid '/>";
+echo "<input id='note_id$i' type='hidden' value=' $note->id '/>";
+                //Debugging
+                echo $i . '</br>' . $note->courseid . '</br>' . $note->id;
                 
                 echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
             }
@@ -214,9 +219,11 @@ echo "<input id='note_id1' type='hidden' value=' $note->id '/>";
                 echo"<div >Course Page</div>";    
                 echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
 
-echo "<input id='courseid1' type='hidden' value=' $note->courseid '/>";
-echo "<input id='note_id1' type='hidden' value=' $note->id '/>";
-                echo $note->courseid . '</br>' . $note->id;
+echo "<input id='iterator' type='hidden' value=' $i '/>";
+echo "<input id='courseid$i' type='hidden' value=' $note->courseid '/>";
+echo "<input id='note_id$i' type='hidden' value=' $note->id '/>";
+                //Debugging
+                echo $i . '</br>' . $note->courseid . '</br>' . $note->id;
                 
                 echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
            
@@ -224,20 +231,21 @@ echo "<input id='note_id1' type='hidden' value=' $note->id '/>";
                 echo"<div >Course Page</div>";  
                 echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
 
-echo "<input id='courseid1' type='hidden' value=' $note->courseid '/>";
-echo "<input id='note_id1' type='hidden' value=' $note->id '/>";
-                echo $note->courseid . '</br>' . $note->id;
+echo "<input id='iterator' type='hidden' value=' $i '/>";
+echo "<input id='courseid$i' type='hidden' value=' $note->courseid '/>";
+echo "<input id='note_id$i' type='hidden' value=' $note->id '/>";
+                //Debugging
+                echo $i . '</br>' . $note->courseid . '</br>' . $note->id;
                 
                 echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
             }
             echo"</div>";  
         }
-        $n++;
+        $n++; $i++;
     }
 }
     
-    
-    
+
     
     
 //    echo"<iframe src='notepage.php?courseid=$courseid&n=$n' style='height:100%; width:100%'></iframe>";
