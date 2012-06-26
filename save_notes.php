@@ -41,10 +41,11 @@ if (isset($_POST['title']) && isset($_POST['courseid1']) && isset($_POST['note_i
     echo $title . '</br>';
     echo $courseid1 . '</br>';
     echo $note_id1 . '</br>';
-//    $newtitle = $DB->get_record('notes', array('id'=>$note_id, 'deleted'=>0, 'userid'=> $USER->id, 'courseid'=>$courseid));
-//    $newtitle->name = $title;
-//    
-//    $update = $DB->update_record('notes', $newtitle); 
+    
+    $newtitle = $DB->get_record('notes', array('id'=>$note_id1, 'deleted'=>0, 'userid'=> $USER->id, 'courseid'=>$courseid1));
+    $newtitle->name = $title;
+    
+    $update = $DB->update_record('notes', $newtitle); 
     echo "UPDATED Title!";
 }
 

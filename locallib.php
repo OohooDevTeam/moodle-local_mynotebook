@@ -176,10 +176,20 @@ function check_all() {
     echo "</script>";
 }
 
+//Limits the number of charater a text can have
 function text_limit($text) {
     $chars = 13;
     $points = (strlen($text) > $chars) ? '...' : '';
     return (substr($text, 0, $chars) . "" . $points);
+}
+
+//Stores all the record for the note titles
+function hidden_note_title_values($i, $courseid, $noteid) {
+    echo "<input id='iterator' type='hidden' value=' $i '/>";
+    echo "<input id='courseid$i' type='hidden' value=' $courseid '/>";
+    echo "<input id='note_id$i' type='hidden' value=' $noteid '/>";
+    //Debugging
+    echo $i . '</br>' . $courseid . '</br>' . $noteid;
 }
 
 ?>

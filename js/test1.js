@@ -199,31 +199,11 @@ function trim(s)
 }
     
 function test(){
-    $('.title')
-    
-//    .on('focus', function(){
-//        console.log('TITLE focus');
-//        
-//        var iterator = $(this).parent().parent().find("#iterator").val();
-//        
-////        $.post('save_notes.php',{
-////            'title': $(this).val(),
-////            'courseid1': $(this).parent().parent().find("#courseid1").val(),
-////            'note_id1': $(this).parent().parent().find("#note_id1").val()
-////        });
-//        //alert(iterator);
-//        console.log(iterator);
-//
-//    })
-    
-    .on('blur', function(){
+    $(document).on('blur',".title", function(){
         var iteratorz = $(this).parent().parent().find("#iterator").val();
         console.log('TITLE blur');
         console.log(iteratorz);
-        
-//        var course_id = $(this).parent().parent().find("#courseid1").val();
-//        var note_id = $(this).parent().parent().find("#note").val();
-        
+       
         var temp_course = "#courseid";
         var temp_note = "#note_id";
         
@@ -231,8 +211,6 @@ function test(){
         
         var courseid = temp_course + trimmed_iterator;
         var noteid = temp_note + trimmed_iterator;
-        console.log(courseid);
-        console.log(noteid);
         
         $.post('save_notes.php',{
             'title': $(this).val(),
@@ -244,11 +222,9 @@ function test(){
 
 
 $(document).ready(function(){
-    
     initMCE();
-    
     test();
-
+    
     //Save shortcut
     $(document).bind('keydown', function(event) {
         if(event.ctrlKey && event.keyCode == 83) {
