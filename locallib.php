@@ -183,7 +183,7 @@ function text_limit($text) {
     return (substr($text, 0, $chars) . "" . $points);
 }
 
-//Stores all the record for the note titles
+//Stores all the record for the note titles in hidden fields
 function hidden_note_title_values($i, $courseid, $noteid) {
     echo "<input id='iterator' type='hidden' value=' $i '/>";
     echo "<input id='courseid$i' type='hidden' value=' $courseid '/>";

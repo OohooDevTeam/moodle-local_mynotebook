@@ -42,7 +42,7 @@ $PAGE->set_url('/local/mynotebook/notebook.php');
 require_login();
 
 /* Should use output header for pages that are used in popups and dialogs since they
-will not display properly */
+  will not display properly */
 echo"<html><head>";
 
 global $CFG, $USER, $DB;
@@ -66,7 +66,7 @@ echo"<script type='text/javascript' src='js/jquery-ui-1.8.18.custom/js/jquery-ui
 //
 //<!--JS for page flip animation-->
 echo"<script type='text/javascript' src='js/turn.js'></script>";
- 
+
 //<!--JS for the view page-->
 echo"<script type='text/javascript' src='js/notebook.js'></script>";
 /* * ******************************************************** *///End Javascript declaration
@@ -103,10 +103,10 @@ $ordered_course_name = reorderindex($unique_course_name, $conditions_list);
 
 $notes = $DB->get_records('notes', array('userid' => $USER->id, 'deleted' => 0));
 
-/***************************************************/
+/* * ************************************************ */
 //Menubar for all coursenotes for quick access
 echo"<span ><ul id='nav'>";
-    
+
 for ($j = 0; $j < sizeof($ordered_course_id); $j++) {
     //Limits the text to 10 chars
     $name = substr($ordered_course_name[$j], 0, 4);
@@ -134,32 +134,33 @@ for ($j = 0; $j < sizeof($ordered_course_id); $j++) {
 echo"<div id='lavalamp'></div>";
 echo"</ul></span>"; // End nav
 
-/***************************************************/
+/* * ************************************************ */
 //buttons on the right of the page
-echo"<span><ul id='options'>"; 
-    echo"<li><a class='hsubs ' href='#'><img src='images/help_icon.gif'/></a></li>";
-    echo"<li><a class='hsubs ' href='#'><img src='images/save.png'/></a></li>";
+echo"<span><ul id='options'>";
+echo"<li><a class='hsubs ' href='#'><img src='images/help_icon.gif'/></a></li>";
+//echo"<li><a class='hsubs ' href='#'><img src='images/save.png'/></a></li>";
+echo"<li><a class='hsubs ' onclick='javascript:save();'><img src='images/save.png'/></a></li>";
 
-//    echo"<li><a class='hsubs ' onclick='javascript:save();'><img src='images/save.png'/></a></li>";
-    echo"<li><a class='hsubs '>
+echo"<li><a class='hsubs '>
         <div id='controls'>
             <label for='page-number'>Page:</label> <input type='text' size='3' id='page-number'> of <span id='number-pages'></span>
         </div>
     </a></li>";
 
 echo"</ul></span>"; // End options
-/***************************************************/
+/* * ************************************************ */
 
 $course = $DB->get_record('course', array('id' => $courseid));
 
 
 echo"<div id='notebook'>";
-    echo"<div id='cover'>";
-        echo"<div id='notetitleleft'>$course->fullname</div>";
-    echo"</div>";//end cover
-    
-    
-$n = 0; $i = 0;
+echo"<div id='cover'>";
+echo"<div id='notetitleleft'>$course->fullname</div>";
+echo"</div>"; //end cover
+
+
+$n = 0;
+$i = 0;
 foreach ($notes as $note) {
     //Check if the courseids match up
     if ($courseid == $note->courseid) {
@@ -168,8 +169,8 @@ foreach ($notes as $note) {
 //        $trimmed  = urlencode($note->text);
         $section = $DB->get_record('course_modules', array('id' => $note->cmid, 'course' => $note->courseid));
         $format = $DB->get_record('course', array('id' => $note->courseid));
-        $var=json_encode($format);
-        
+        $var = json_encode($format);
+
         echo"<script>console.log($var);</script>";
         //If the section var exists for a course activity
         if ($section) {
@@ -181,56 +182,51 @@ foreach ($notes as $note) {
             if ($course_section->name == NULL) {
                 $course_section->name = 'Section name not specified, but section# is:' . $course_section->section;
             }
-                //debugging
-                echo "section=" . $section->section . "</br>";
-                echo "sectionid=" . $section->id . "</br>";
-                echo "section=" . $course_section->section . "</br>";
-                    echo"<div>";
-                    
+            //debugging
+//            echo "section=" . $section->section . "</br>";
+//            echo "sectionid=" . $section->id . "</br>";
+//            echo "section=" . $course_section->section . "</br>";
+            echo"<div>";
+
             //Notes on a Course Module Page            
             if ($n % 2 == 0) {
-                echo"<div >$course_section->name</div>";    
-                echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
-                hidden_note_title_values($i, $note->courseid, $note->id);
-                
-                echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
-           
-            } else {
-                echo"<div >$course_section->name</div>";    
+                echo"<div >$course_section->name</div>";
                 echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
                 hidden_note_title_values($i, $note->courseid, $note->id);
 
-                
+                echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
+            } else {
+                echo"<div >$course_section->name</div>";
+                echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
+                hidden_note_title_values($i, $note->courseid, $note->id);
+
                 echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
             }
-            echo"</div>";  
-            
-        } else { //Notes on a Course Main Page
+            echo"</div>";
+        //Notes on a Course Main Page
+        } else { 
             echo"<div >";
             if ($n % 2 == 0) {
-                echo"<div >Course Page</div>";    
+                echo"<div >Course Page</div>";
                 echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
                 hidden_note_title_values($i, $note->courseid, $note->id);
 
-                
                 echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
-           
             } else {
-                echo"<div >Course Page</div>";  
+                echo"<div >Course Page</div>";
                 echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
                 hidden_note_title_values($i, $note->courseid, $note->id);
 
-
-                
                 echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
             }
-            echo"</div>";  
+            echo"</div>";
         }
-        $n++; $i++;
+        $n++;
+        $i++;
     }
 }
-    
-echo"</div>";//end notebook
+
+echo"</div>"; //end notebook
 
 echo"</body></html>";
 ?>

@@ -66,19 +66,8 @@ $PAGE->set_heading($USER->firstname . '\'s ' . $title);
 echo $OUTPUT->header();
 
 /* * ******************************************************** *///Javascript declaration
-//Another way of including js
-//echo<<<SCRIPT
-//..your js file
-//SCRIPT;
-
 echo"<script type='text/javascript' src='js/jquery-1.7.2.js'></script>";
 echo"<script type='text/javascript' src='js/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js'></script>";
-//echo"<script type='text/javascript' src='js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.ui.tabs.js'></script>";
-//
-
-////<!--JS for page flip animation-->
-//echo"<script type='text/javascript' src='js/turn.js'></script>";
-
 
 //Scripts needed for jquery popup dialog
 echo<<<SCRIPT
@@ -100,38 +89,10 @@ echo"<script type='text/javascript'>
 </script>";
 echo"<script type='text/javascript' src='js/trigger.js'></script>";
 
-//$tinymce = new tinymce_texteditor();
-//echo"<script type='text/javascript' src='tinymce/jscripts/tiny_mce/tiny_mce.js'></script>";
-//echo"<script type='text/javascript' language='javascript' src='$CFG->wwwroot/lib/editor/tinymce/tiny_mce/$tinymce->version/jquery.tinymce.js'></script>";
-//echo"<script type='text/javascript' language='avascript' src='$CFG->wwwroot/lib/editor/tinymce/tiny_mce/$tinymce->version/tiny_mce.js'></script>";
-//echo"<script type='text/javascript' src='js/test.js'></script>";
-//echo"<style type='text/css'>
-//	body		{ margin: 0; }
-//	a		{ margin: 1px 3px; }
-//	#wrap		{ width: 1024px; margin: 0 auto; }
-//	#content	{ border: 1px dotted #333; padding: 0 10px; }
-//	#overlay	{ top: 0; left: 0; position: absolute; width: 100%; height: 100%; background: #000000; opacity: .5; z-index:5; }
-//	#edit_area	{ z-index:10; position: absolute; width: 800px; left: 150px; top: 100px; }
-//
-//</style>";
 //<!--<script type='text/javascript' src='js/IE9.js'></script>
 //[if lt IE 9]>
 //<script src='http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js'></script>
 //<![endif]-->
-
-
-//echo"<form method='post' action='somepage' id='edit'>
-//    <div id='wrap' >
-//        <div id='content' style='display:none;'>
-//                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc turpis magna, dapibus eget egestas quis, vulputate quis dolor. Ut quis ligula condimentum orci volutpat euismod eget ut turpis. Donec ac ligula erat. Mauris eu dui sem, id auctor nisl. Aenean sagittis mauris tellus, sit amet consectetur velit. Nam a magna dolor, vitae sollicitudin odio. Cras id orci est, ut suscipit nunc. Vestibulum aliquet nisi arcu. In eu ligula ac purus rutrum pharetra. Integer non nunc quam. Vivamus laoreet nibh vitae dolor aliquet et sodales felis sodales. Cras eu libero eget mi porta pharetra. Nam quis sapien eu massa convallis scelerisque. Nam quam tellus, ullamcorper in aliquet quis, imperdiet a tellus. Duis ut leo erat, sit amet ultrices neque.</p>
-//                <p>Sed at risus sit amet nibh ullamcorper porta ac quis leo. Aliquam convallis vulputate tincidunt. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus aliquam rhoncus condimentum. Nunc malesuada quam ac neque ornare at vehicula sapien tristique. Donec quis luctus sem. Nulla rhoncus scelerisque ligula, nec rutrum nulla accumsan in. Maecenas nec dignissim urna. Maecenas gravida dictum arcu, eget varius ligula pulvinar ut. Nulla adipiscing odio turpis, ut volutpat dui.</p>
-//                <p>Duis et leo mauris, ornare varius felis. Mauris metus est, hendrerit quis volutpat ut, consequat sit amet massa. Curabitur enim elit, tempor eget imperdiet nec, vehicula sed diam. Maecenas lorem magna, cursus vel dapibus vitae, dignissim a eros. Sed ultrices sagittis magna eu vestibulum. Etiam dolor massa, mollis id volutpat id, consequat in nisi. Nunc ornare luctus sem vel iaculis. Suspendisse quis scelerisque enim. Quisque vulputate suscipit sodales. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum massa arcu, elementum at dictum a, consequat sit amet erat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum elementum mattis libero a laoreet. Sed rutrum purus in lacus posuere varius. Fusce viverra velit at tortor posuere bibendum porttitor ut ligula. Phasellus vehicula semper nulla, quis ultrices erat sollicitudin at. Aliquam laoreet mi et magna aliquam ut tristique ipsum bibendum. Cras id quam justo. Donec tristique elementum euismod.</p>
-//                <p>Sed ornare sapien ac est commodo a tincidunt diam tristique. Aliquam elit leo, volutpat sed malesuada sit amet, rhoncus eget nunc. Suspendisse id nisl sem, sit amet cursus metus. Donec fermentum, tortor eget egestas auctor, felis felis placerat odio, sit amet rutrum justo enim sit amet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent consectetur, ligula quis luctus laoreet, turpis velit sodales dui, quis consequat tortor ipsum quis est. Mauris euismod posuere magna sit amet lacinia. Nam sit amet vestibulum nulla. Proin dapibus mauris eu velit sagittis mollis. Praesent semper odio eu metus ullamcorper pulvinar. Mauris et odio in neque fermentum ornare eu quis tortor. Pellentesque tempor tempor orci, at dictum lorem aliquet iaculis. Suspendisse iaculis dapibus dignissim. In ornare consectetur metus lacinia placerat.</p>
-//                <p>Etiam sagittis commodo interdum. Sed et nulla ut eros pulvinar facilisis sit amet sit amet elit. Phasellus ac mauris sem. Sed lacus magna, volutpat eu blandit at, convallis dapibus justo. Nunc tempus hendrerit suscipit. Maecenas in turpis non orci malesuada vulputate eget et mi. Proin vel libero vitae erat lobortis dignissim sed vel metus. Donec risus velit, commodo quis mollis sed, gravida ut felis. Fusce tempor magna vel neque accumsan posuere. Mauris pharetra nibh nec neque bibendum sed varius risus auctor. Duis sed fermentum mi.</p>					
-//        </div>			
-//        <a href='#' id='load'>Load TinyMCE</a>
-//    </div>
-//</form>";
 
 /* * ******************************************************** *///End Javascript declaration
 
@@ -160,10 +121,7 @@ foreach ($allcourseids as $courseid) {
         $coursename_array[] = $coursename->fullname;
     }
 }
-//echo"COURSE NAMES WITH NOTE:</br>";
-//print_object($coursename_array);
-//echo"COURSE IDS WITH NOTES:</br>";
-//print_object($courseid_array);
+
 //Filters out the duplicate course ids and names and then reorders them
 $conditions_list = array(TRUE, FALSE, NULL);
 $unique_course_id = array_unique($courseid_array);
@@ -171,11 +129,6 @@ $ordered_course_id = reorderindex($unique_course_id, $conditions_list);
 //
 $unique_course_name = array_unique($coursename_array);
 $ordered_course_name = reorderindex($unique_course_name, $conditions_list);
-
-//echo"REINDEXED NAMES:</br>";
-//print_object($ordered_course_name);
-//echo"REINDEXED IDS:</br>";
-//print_object($ordered_course_id);
 
 $course_no_notes = array();
 $course_yes_notes = array();
@@ -196,10 +149,6 @@ if (sizeof($registered_courseids) > sizeof($ordered_course_id)) {
     $course_yes_notes = array_intersect($ordered_course_id, $registered_courseids);
     $course_yes_notes = reorderindex($course_yes_notes);
 }
-//echo"COURSE WITH NO NOTES:";
-//print_object($course_no_notes);
-//echo"COURSE WITH NOTES:";
-//print_object($course_yes_notes);
 
 $notes = $DB->get_records('notes', array('userid' => $USER->id, 'deleted' => 0));
 
@@ -237,7 +186,8 @@ for ($k = 0; $k < sizeof($ordered_course_id); $k++) {
                         if ($note->courseid == $ordered_course_id[$k]) {
                             if (strlen($note->name) < 18) {
                                 $trimmed_name = $note->name;
-                                echo"<a href='#url'>$a. $trimmed_name</a><br />";
+//                                echo"<a href='#url'>$a. $trimmed_name</a><br />";
+                                  echo"<div>$a. $trimmed_name</div><br />";
                             } else {
                                 $trimmed_name = substr($note->name, 0, 18);
                                 $trimmed_name .= '...';
@@ -274,7 +224,7 @@ echo"</div>"; //End topshelf div
 
 //Menu on the right to export notes, add bookmarks, change settings, and check recycle bin
 echo"<ul id='followTab'>
-    <li><button class='export'><img src='images/export.png' title='Export Notes'/></button></li>
+<li><button class='export'><img src='images/export.png' title='Export Notes'/></button></li>
 <li><button class='bookmark'><img src='images/bookmark_icon.png' title='Add Bookmark'/></button></li>
 <li><button class='settings'><img src='images/settings.png' title='Settings'/></button></li>
 <li><a class='recyclebin' href='recycle.php'><img src='images/recycle.png' title='Recycle Bin'/></a></li>
@@ -301,13 +251,18 @@ echo"<div style='display:none'>";
             </form>
         </fieldset>
         <div id='Show_option'></div>";
-    echo"</div>";
+    echo"</div>";//export
 
+    //Bookmarks
     echo"<div id='bookmark' title='Bookmark'></div>";
+    
+    //Settings
     echo"<div id='settings' title='Settings'></div>";
+    
+    //Recycle Bin
     echo"<div id='recyclebin' title='Recycle Bin'></div>";
 
-echo"</div>";
+echo"</div>";//End display:none div
 
 //// Finish the page
 echo $OUTPUT->footer();

@@ -29,9 +29,6 @@
 
 require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
 
-////echo"<script>console.log('NOT WORKED');</script>";
-//echo"<script>console.log($title);</script>";
-
 //Saves the note title
 if (isset($_POST['title']) && isset($_POST['courseid1']) && isset($_POST['note_id1'])){
     $title = $_POST['title'];
@@ -49,7 +46,7 @@ if (isset($_POST['title']) && isset($_POST['courseid1']) && isset($_POST['note_i
     echo "UPDATED Title!";
 }
 
-//Saves the note
+//Saves the note 
 if (isset($_POST['text']) && isset($_POST['courseid']) && isset($_POST['note_id'])){  
     $text = $_POST['text'];
     $courseid = $_POST['courseid'];
@@ -65,9 +62,4 @@ if (isset($_POST['text']) && isset($_POST['courseid']) && isset($_POST['note_id'
     $update = $DB->update_record('notes', $note);  
     echo "UPDATED Notes!";
 } 
-//else {
-//    ECHO"!SET";
-//    
-//}
-
 ?>

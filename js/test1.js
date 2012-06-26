@@ -1,7 +1,7 @@
 //$(editor.getBody()).html()
 //Grabs the html code
 
-var editor;
+//var editor;
 
 //Controls the tinyMCE toolbar in the iFrame to show and hide
 function initMCE() {
@@ -9,7 +9,7 @@ function initMCE() {
         if(!tinyMCE.get('areaText')) {
             initMCE();
         } else {
-
+            //Initialize tinyMCE variable to apply to specified text area
             var editor = tinyMCE.get('areaText');
 
    //Make the height and width dynamic since they change when on blur and focus
@@ -38,7 +38,7 @@ function initMCE() {
 
             $(editor.getBody()).blur();
 
-         //CSS for the lines to display
+         //CSS for the gradient lines to display for Chrome, Safari, Mozilla, IE, and Opera
             $(editor.getBody()).css({
                 'font': 'normal 12px/1.5 "Lucida Grande", arial, sans-serif',
                 'color': '#444',
@@ -162,9 +162,8 @@ function initMCE() {
         }
     }, 100);
 }
-        
-        
-//Save function object
+          
+//Saves the notes changed when user presses "ctrl + s"
 var save = function() {
     //Initialized object
     var editor = tinyMCE.get('areaText');
@@ -175,19 +174,29 @@ var save = function() {
         'courseid': $("#courseid").val(),
         'note_id': $("#note_id").val()
     });
-    //alert($('#courseid').val());
 }
-        
-//var save_title = function(){
-//    alert('Title saved');
-//    $_post('save_notes.php',{
-//        'title': $("#title").val(),
+
+//function savetest(){
+//Saves the notes changed when user presses "ctrl + s"
+//var savetest = function() {
+//        if(!tinyMCE.get('areaText')) {
+//            initMCE();
+//    } else {
+//    //Initialized object
+//    var editor = tinyMCE.get('areaText');
+//    alert('Saved');
+//    //Posts information from the tinyMCE to save
+//    $.post('save_notes.php', {
+//        'text': $(editor.getBody()).html(),
 //        'courseid': $("#courseid").val(),
 //        'note_id': $("#note_id").val()
 //    });
-    
+//}
+//    }
 //}
 
+
+//trims the whites spaces on the numbers
 function trim(s)
 {
 	var l=0; var r=s.length -1;
@@ -198,7 +207,8 @@ function trim(s)
 	return s.substring(l, r+1);
 }
     
-function test(){
+//Saves the title of each note when user chagnes it
+function save_title(){
     $(document).on('blur',".title", function(){
         var iteratorz = $(this).parent().parent().find("#iterator").val();
         console.log('TITLE blur');
@@ -223,7 +233,8 @@ function test(){
 
 $(document).ready(function(){
     initMCE();
-    test();
+    save_title();
+//    savetest();
     
     //Save shortcut
     $(document).bind('keydown', function(event) {
