@@ -114,7 +114,7 @@ transition-delay: 0s;
 }
 
 /*Opening the export menu*/
-#export, #bookmark, #settings{
+#export, #merge, #bookmark, #settings{
     position:relative;
     width:90%;
     height:100%;
@@ -125,7 +125,7 @@ transition-delay: 0s;
     overflow:auto;
 }
 
-.export, .bookmark, .settings, .recyclebin{
+.export, .merge, .bookmark, .settings, .recyclebin{
 background-color:transparent;
 border:none;
 cursor:pointer;cursor:hand;

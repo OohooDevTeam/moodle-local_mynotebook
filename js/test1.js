@@ -211,8 +211,8 @@ function trim(s)
 function save_title(){
     $(document).on('blur',".title", function(){
         var iteratorz = $(this).parent().parent().find("#iterator").val();
-        console.log('TITLE blur');
-        console.log(iteratorz);
+//        console.log('TITLE blur');
+//        console.log(iteratorz);
        
         var temp_course = "#courseid";
         var temp_note = "#note_id";

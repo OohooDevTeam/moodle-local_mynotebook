@@ -21,8 +21,8 @@
 
 //controls the notebook popup
 $(document).ready(function(){
-    //.live() is deprecated, use .on()
-    $('.ajaxtrigger').live('click',function(){
+      $(document).on('click', '.ajaxtrigger',function(){
+//    $('.ajaxtrigger').live('click',function(){
         $('#target').dialog('close');
         $(document).unbind("mousemove");
         $(document).unbind("mouseup");
@@ -103,6 +103,37 @@ $(document).ready(function(){
             $( "#export" ).dialog( "open" );
             return false;
         });
+    });
+});
+
+//controls the merge popup
+$(document).ready(function(){
+    $(document).on('click', '.merge', function(){
+//    $('.merge').live('click',function(){
+        $('#merge').dialog('destroy');
+        //Loads the page url and then opens it up in a popup window
+        $('#merge').load($(this).attr('href'), function() {
+            setTimeout(function(){
+                $( "#merge" ).dialog({
+                    resizable: true,
+                    modal:false,
+                    show: "explode",
+                    hide: "explode",
+                    //IE does not like the auto width
+                    width:"auto",
+                    height:"auto",
+                    position:"center"
+                });
+                return false;
+            }, 50);
+        });
+        return false;
+    });
+    //Closes the dialog when 'esc' key is pressed
+    $(document).keyup(function(e) {
+        if (e.keyCode == 27) {
+            $('#merge').dialog('close');
+        }
     });
 });
 
@@ -190,7 +221,8 @@ $(document).ready(function(){
 
 //controls the notebook popup
 $(document).ready(function(){
-    $('.recyclebin').live('click',function(){
+      $(document).on('click', '.recyclebin', function(){
+//    $('.recyclebin').live('click',function(){
         $('#recyclebin').dialog('destroy');
         
         //        $('#my_loading_div').dialog('open');

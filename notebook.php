@@ -71,10 +71,8 @@ echo"<script type='text/javascript' src='js/turn.js'></script>";
 echo"<script type='text/javascript' src='js/notebook.js'></script>";
 /* * ******************************************************** *///End Javascript declaration
 //$tinymce = new tinymce_texteditor();
-echo"<script type='text/javascript' src='tinymce/jscripts/tiny_mce/tiny_mce.js'></script>";
-//echo"<script type='text/javascript' language='javascript' src='$CFG->wwwroot/lib/editor/tinymce/tiny_mce/$tinymce->version/jquery.tinymce.js'></script>";
-//echo"<script type='text/javascript' language='avascript' src='$CFG->wwwroot/lib/editor/tinymce/tiny_mce/$tinymce->version/tiny_mce.js'></script>";
-echo"<script type='text/javascript' src='js/test1.js'></script>";
+//echo"<script type='text/javascript' src='tinymce/jscripts/tiny_mce/tiny_mce.js'></script>";
+//echo"<script type='text/javascript' src='js/test1.js'></script>";
 
 echo"</head><body>";
 
@@ -138,8 +136,11 @@ echo"</ul></span>"; // End nav
 //buttons on the right of the page
 echo"<span><ul id='options'>";
 echo"<li><a class='hsubs ' href='#'><img src='images/help_icon.gif'/></a></li>";
-//echo"<li><a class='hsubs ' href='#'><img src='images/save.png'/></a></li>";
-echo"<li><a class='hsubs ' onclick='javascript:save();'><img src='images/save.png'/></a></li>";
+echo"<li><a class='hsubs ' href='#'><img src='images/save.png'/></a></li>";
+//For the save button, can diabled button when "blur()" and enable button when "onfocus"
+//echo"<li><button class='hsubs ' onclick='javascript:save();'></button></li>";
+
+
 
 echo"<li><a class='hsubs '>
         <div id='controls'>
@@ -169,9 +170,9 @@ foreach ($notes as $note) {
 //        $trimmed  = urlencode($note->text);
         $section = $DB->get_record('course_modules', array('id' => $note->cmid, 'course' => $note->courseid));
         $format = $DB->get_record('course', array('id' => $note->courseid));
-        $var = json_encode($format);
+//        $var = json_encode($format);
 
-        echo"<script>console.log($var);</script>";
+//        echo"<script>console.log($var);</script>";
         //If the section var exists for a course activity
         if ($section) {
             $sql = "SELECT *

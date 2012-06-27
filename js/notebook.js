@@ -21,7 +21,8 @@ $(window).ready(function() {
         elevation:100,
         when: {
             turned: function(e, page) {
-                console.log('Current view: ', $(this).turn('view'));
+//                console.log('Current view: ', $(this).turn('view'));
+                
 //                 console.log('Current view: ', $(this).turn('pages'));
 //                     console.log('Current view: ', $(this).turn('page'));
 //                var range = $(this).turn('range', page);

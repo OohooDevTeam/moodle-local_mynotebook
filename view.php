@@ -225,6 +225,7 @@ echo"</div>"; //End topshelf div
 //Menu on the right to export notes, add bookmarks, change settings, and check recycle bin
 echo"<ul id='followTab'>
 <li><button class='export'><img src='images/export.png' title='Export Notes'/></button></li>
+<li><a class='merge' href='mergenotes.php'><img src='images/merge.png' title='Merge Notes'/></a></li>
 <li><button class='bookmark'><img src='images/bookmark_icon.png' title='Add Bookmark'/></button></li>
 <li><button class='settings'><img src='images/settings.png' title='Settings'/></button></li>
 <li><a class='recyclebin' href='recycle.php'><img src='images/recycle.png' title='Recycle Bin'/></a></li>
@@ -253,6 +254,9 @@ echo"<div style='display:none'>";
         <div id='Show_option'></div>";
     echo"</div>";//export
 
+    //Merge Notes
+    echo"<div id='merge' title='Merge Notes'></div>";
+    
     //Bookmarks
     echo"<div id='bookmark' title='Bookmark'></div>";
     

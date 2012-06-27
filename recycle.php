@@ -63,7 +63,7 @@ if (isset($_REQUEST['restore'])) {
 //'0' is false || '1' is true
 
 $recycle = $DB->get_records('notes', array('deleted' => 1, 'userid' => $USER->id));
-echo "<body>";
+//echo "<body>";
 
 
 echo "<form id='check' method='post' action='view.php'>";
