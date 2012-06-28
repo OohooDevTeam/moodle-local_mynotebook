@@ -60,9 +60,9 @@ echo"<link  rel='stylesheet' type='text/css' href='$CFG->wwwroot/local/mynoteboo
 echo"<script type='text/javascript' src='js/jquery-1.7.2.js'></script>";
 echo"<script type='text/javascript' src='js/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js'></script>";
 
-//echo"<script type='text/javascript'>
-//    var handle;
-//</script>";
+echo"<script type='text/javascript'>
+    var handle;
+</script>";
 //
 //<!--JS for page flip animation-->
 echo"<script type='text/javascript' src='js/turn.js'></script>";
@@ -106,7 +106,7 @@ $notes = $DB->get_records('notes', array('userid' => $USER->id, 'deleted' => 0))
 echo"<span ><ul id='nav'>";
 
 for ($j = 0; $j < sizeof($ordered_course_id); $j++) {
-    //Limits the text to 10 chars
+    //Limits the text to 10 chars for course names in the navbar
     $name = substr($ordered_course_name[$j], 0, 4);
     if (strlen($name) == 4) {
         $name = $name . "...";
@@ -228,6 +228,54 @@ foreach ($notes as $note) {
 }
 
 echo"</div>"; //end notebook
+
+
+
+echo '<div id="viewport">
+<header>
+	<nav>
+		<a href="#home" class="on">Home</a>
+		<a href="#usage">Usage</a>
+		<a href="#get">Get turn.js</a>
+		<a href="#reference">Reference</a>
+		<a href="#credits">Credits</a>
+	</nav>
+
+</header>';
+echo'<div id="controllers" style="display:none;">';
+	echo'<div class="pages shadows" id="magazine">';
+		echo'<!-- Home -->
+		<div turn-effect="flipboard">
+			<p>The awesome paper-like effect made for HTML5</p>
+		</div>
+		';
+		echo'<!-- Usage -->
+		<div> 
+			<div class="page-content">
+				<h1>turn.js</h1>
+			</div>
+		</div>
+                ';    
+		echo'<!-- Quick Reference -->
+		<div> 
+			<div class="page-content">
+			<h2>Getting Started</h2>
+			</div>
+		</div>
+		<!--   -->
+		<div> 
+			<div class="page-content">
+				<h2> Contact </h2>
+			</div>
+		</div>
+	</div>
+	<div id="next"> <i></i> </div>
+	<div id="previous"> <i></i> </div>
+	<div id="shadow-page"></div>
+</div>
+
+</div>';
+
 
 echo"</body></html>";
 ?>

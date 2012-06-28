@@ -1,8 +1,9 @@
 <?php
-	header("Content-type: application/vnd.ms-word");
+
+header("Content-type: application/vnd.ms-word");
 //	header("Content-type: application/pdf");
 
-	header("Content-Disposition: attachment; Filename=SaveAsWordDoc.doc");
+header("Content-Disposition: attachment; Filename=SaveAsWordDoc.doc");
 
 echo'
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -12,10 +13,42 @@ echo'
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Saves as a Word Doc</title>
 </head>
-    
-    
-    
-<body>
+    ';
+
+
+echo'
+<body>';
+
+
+
+require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
+
+$notes = $DB->get_records('notes', array('userid' => $USER->id, 'deleted' => 0));
+$note_name = array();
+$note_content = array();
+$courseid = array();
+$course_name = array();
+$date_created = array();
+
+foreach ($notes as $note) {
+
+    echo $note->text;
+    $note_name[] = $note->name;
+    $note_content[] = strip_tags($note->text);
+    $coursenames = $DB->get_records('course', array('id' => $note->courseid));
+    $courseid[] = $note->courseid;
+    $date_created[] = $note->time_modified;
+
+    foreach ($coursenames as $coursename) {
+        $course_name[] = $coursename->fullname;
+    }
+}
+
+
+
+
+
+echo'
 <h1>Header</h1>
   This text can be seen in word
 <ul>
@@ -35,7 +68,7 @@ echo'
 <p class="MsoNormal"><em><span style="color: red;">hrehreh</span></em></p>
 <p>;</p>
 <p>;</p>
-<table border="0">
+<table border="1">
 <tbody>
 <tr>
 <td>gdgdgdg</td>
