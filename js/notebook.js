@@ -47,11 +47,20 @@ $(window).ready(function() {
 
 $(window).bind('keydown', function(e){
 
-    if (e.keyCode==37)
+    if (e.keyCode==37){
         $('#notebook').turn('previous');
-    else if (e.keyCode==39)
+        console.log('arrow left');
+    }
+    else if (e.keyCode==39){
         $('#notebook').turn('next');
-
+        console.log('arrow right');
+    }
+    
+//    http://www.coderanch.com/t/479386/HTML-CSS-JavaScript/Capturing-window-keycode-not-working
+    var evt = e || window.event;  
+    if(evt.keyCode == 116){  
+        console.log("WORKED");
+    }
 });
 
 //$('#next').click(function(e) {

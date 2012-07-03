@@ -225,6 +225,7 @@ echo"</div>"; //End topshelf div
 //Menu on the right to export notes, add bookmarks, change settings, and check recycle bin
 echo"<ul id='followTab'>
 <li><button class='export'><img src='images/export.png' title='Export Notes'/></button></li>
+<li><a class='export1' href='html2word.php'><img src='images/export.png' title='Export1 Test'/></a></li>
 <li><a class='merge' href='mergenotes.php'><img src='images/merge.png' title='Merge Notes'/></a></li>
 <li><button class='bookmark'><img src='images/bookmark_icon.png' title='Add Bookmark'/></button></li>
 <li><button class='settings'><img src='images/settings.png' title='Settings'/></button></li>

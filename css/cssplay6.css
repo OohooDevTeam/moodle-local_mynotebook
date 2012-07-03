@@ -28,6 +28,9 @@ ul.topUL > li > a span {display:block; width:43px; white-space:nowrap; position:
 -moz-transform: rotate(-90deg);
 -o-transform: rotate(-90deg);
 transform: rotate(-90deg);
+/*Rotating text in IE*/
+/*http://snook.ca/archives/html_and_css/css-text-rotation*/
+filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
 ul.topUL > li.b1 > a {background:#562; border-color:#340;position:relative;
 background: -moz-linear-gradient(0, #562, #784 50%, #562 100%);  

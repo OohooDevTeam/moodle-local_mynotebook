@@ -32,11 +32,9 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
 
 require_once($CFG->dirroot . '/lib/editor/tinymce/lib.php');
 
-$courseid = required_param('courseid', PARAM_INT);
-//$n = required_param('n', PARAM_INT);
-$note_id = required_param('note_id', PARAM_INT);
-//$note_name = optional_param('note_name','', PARAM_TEXT);
-//$trim = optional_param('trimmed','', PARAM_TEXT);
+//$courseid = required_param('courseid', PARAM_INT);
+//$note_id = required_param('note_id', PARAM_INT);
+
 
 $system = get_context_instance(CONTEXT_SYSTEM);
 $PAGE->set_context($system);
@@ -52,32 +50,41 @@ echo $OUTPUT->header();
 echo"<script type='text/javascript' src='js/jquery-1.7.2.js'></script>";
 echo"<script type='text/javascript' src='js/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js'></script>";
 
-echo"<script type='text/javascript' src='js/test1.js'></script>";
-
-//echo "<textarea id='areaText' style='height:100%; width:100%;'></textarea>";
-
-//$notes = $DB->get_records('notes', array('userid' => $USER->id, 'deleted' => 0));
-$course = $DB->get_record('course', array('id' => $courseid));
-
-$trim = $DB->get_record('notes', array('userid'=>$USER->id, 'courseid'=>$courseid, 'id'=>$note_id));
-$note_name = $trim->name;
-$text = $trim->text;
-echo "<textarea id='areaText'>
-    \n $note_name 
-    \n
-    $text;
-</textarea>";
-
-//echo '<input id="courseid" type="hidden" value="' . $courseid . '"/>';
-echo "<input id='courseid' type='hidden' value=' $courseid '/>";
-echo "<input id='note_id' type='hidden' value=' $note_id '/>";
-//echo "<input id='title' type='hidden' value=' $note_id '/>";
+echo"<script type='text/javascript' src='js/save_notes.js'></script>";
 
 
+if ($_REQUEST['courseid'] && $_REQUEST['note_id']){
+    $courseid = $_REQUEST['courseid'];
+    $note_id = $_REQUEST['note_id'];
 
-//Applies tinyMCE to targetted text area
-$editor = new tinymce_texteditor();
-$editor->use_editor('areaText');
+    echo $courseid;
+    echo $note_id;
 
+    //echo "<textarea id='areaText' style='height:100%; width:100%;'></textarea>";
+
+    //$notes = $DB->get_records('notes', array('userid' => $USER->id, 'deleted' => 0));
+    $course = $DB->get_record('course', array('id' => $courseid));
+
+    $trim = $DB->get_record('notes', array('userid'=>$USER->id, 'courseid'=>$courseid, 'id'=>$note_id));
+    $note_name = $trim->name;
+    $text = $trim->text;
+    echo "<textarea id='areaText'>
+        \n $note_name 
+        \n
+        $text;
+    </textarea>";
+
+    //echo '<input id="courseid" type="hidden" value="' . $courseid . '"/>';
+    echo "<input id='courseid' type='hidden' value=' $courseid '/>";
+    echo "<input id='note_id' type='hidden' value=' $note_id '/>";
+    //echo "<input id='title' type='hidden' value=' $note_id '/>";
+
+    //Applies tinyMCE to targetted text area
+    $editor = new tinymce_texteditor();
+    $editor->use_editor('areaText', null, null);
+    
+} else {
+    print_error("Course Id or Note Id was not found");
+}
 echo $OUTPUT->footer();
 ?>

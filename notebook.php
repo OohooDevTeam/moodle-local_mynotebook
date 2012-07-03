@@ -31,6 +31,9 @@ require_once(dirname(__FILE__) . '/locallib.php');
 require_once(dirname(__FILE__) . '/lib.php');
 require_once(dirname(__FILE__) . '/mod_form.php');
 
+//require_once($CFG->dirroot . '/lib/editor/tinymce/lib.php');
+
+
 global $CFG, $DB, $USER, $PAGE;
 $courseid = required_param('courseid', PARAM_INT);
 
@@ -72,7 +75,7 @@ echo"<script type='text/javascript' src='js/notebook.js'></script>";
 /* * ******************************************************** *///End Javascript declaration
 //$tinymce = new tinymce_texteditor();
 //echo"<script type='text/javascript' src='tinymce/jscripts/tiny_mce/tiny_mce.js'></script>";
-//echo"<script type='text/javascript' src='js/test1.js'></script>";
+echo"<script type='text/javascript' src='js/save_title.js'></script>";
 
 echo"</head><body>";
 
@@ -189,37 +192,37 @@ foreach ($notes as $note) {
 //            echo "section=" . $course_section->section . "</br>";
             echo"<div>";
 
-            //Notes on a Course Module Page            
-            if ($n % 2 == 0) {
-                echo"<div >$course_section->name</div>";
-                echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
-                hidden_note_title_values($i, $note->courseid, $note->id);
+                //Notes on a Course Module Page            
+                if ($n % 2 == 0) {
+                    echo"<div >$course_section->name</div>";
+                    echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
+                    hidden_note_title_values($i, $note->courseid, $note->id);
 
-                echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
-            } else {
-                echo"<div >$course_section->name</div>";
-                echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
-                hidden_note_title_values($i, $note->courseid, $note->id);
+                    echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
+                } else {
+                    echo"<div >$course_section->name</div>";
+                    echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
+                    hidden_note_title_values($i, $note->courseid, $note->id);
 
-                echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
-            }
+                    echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
+                }
             echo"</div>";
         //Notes on a Course Main Page
         } else { 
             echo"<div >";
-            if ($n % 2 == 0) {
-                echo"<div >Course Page</div>";
-                echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
-                hidden_note_title_values($i, $note->courseid, $note->id);
+                if ($n % 2 == 0) {
+                    echo"<div >Course Page</div>";
+                    echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
+                    hidden_note_title_values($i, $note->courseid, $note->id);
 
-                echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
-            } else {
-                echo"<div >Course Page</div>";
-                echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
-                hidden_note_title_values($i, $note->courseid, $note->id);
+                    echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
+                } else {
+                    echo"<div >Course Page</div>";
+                    echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
+                    hidden_note_title_values($i, $note->courseid, $note->id);
 
-                echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
-            }
+                    echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
+                }
             echo"</div>";
         }
         $n++;
