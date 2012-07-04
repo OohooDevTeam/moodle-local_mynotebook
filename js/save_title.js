@@ -8,7 +8,9 @@ function save_title(){
         var temp_course = "#courseid";
         var temp_note = "#note_id";
         
-        var trimmed_iterator = iteratorz.trim();
+        //This way breaks in IE
+//        var trimmed_iterator = iteratorz.trim();
+        var trimmed_iterator = $.trim(iteratorz);
         
         var courseid = temp_course + trimmed_iterator;
         var noteid = temp_note + trimmed_iterator;

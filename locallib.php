@@ -129,7 +129,10 @@ function check_button_clicked() {
            var a = 'restore';
              break;
         }
-          window.location.href = '$CFG->wwwroot/local/makenote/recycle.php?test=' + a;
+    console.log(a);
+          window.location.href = '$CFG->wwwroot/local/mynotebook/recycle.php?' + a + '=' + a;
+//          window.location.href = '$CFG->wwwroot/local/mynotebook/recycle.php?test=' + a;
+
     }";
     echo "</script>";
 }
@@ -171,6 +174,7 @@ function check_all() {
 	for (var i = 0; i < document.getElementById('check').elements.length; i++) {
 	  document.getElementById('check').elements[i].checked = checked;
 	}
+        console.log('Grabbed All IDs')
       }
 ";
     echo "</script>";

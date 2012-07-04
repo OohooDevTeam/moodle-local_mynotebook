@@ -33,6 +33,7 @@ $date_created = array();
 foreach ($notes as $note) {
 
     echo $note->text;
+    echo "**********************************************************************";
     $note_name[] = $note->name;
     $note_content[] = strip_tags($note->text);
     $coursenames = $DB->get_records('course', array('id' => $note->courseid));

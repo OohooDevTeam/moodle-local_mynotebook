@@ -48,14 +48,23 @@ echo"<link rel='stylesheet' type='text/css' href='$CFG->wwwroot/local/mynotebook
 
 echo"</head><body>";
 
+    echo"<script> console.log('Started') </script>";
+    
 if (isset($_REQUEST['delete'])) {
-//echo "Test : ".$_REQUEST['delete']."<br>";
+    echo "Test del: ".$_REQUEST['delete']."<br>";
+    echo"<script> console.log('DEL') </script>";
     delete_notes();
 }
 
 if (isset($_REQUEST['restore'])) {
-//echo "Test : ".$_REQUEST['restore']."<br>";
+    echo "Test res: ".$_REQUEST['restore']."<br>";
+    echo"<script> console.log('RES') </script>";
     restore_notes();
+}
+
+if (isset($_REQUEST['test'])) {
+    echo "Test : ".$_REQUEST['test']."<br>";
+    echo"<script> console.log('YES') </script>";
 }
 
 //echo "<h1><center>Recycle Bin</center></h1>";
@@ -70,44 +79,54 @@ echo "<form id='check' method='post' action='view.php'>";
 //echo "<table class='deleted' id='table'>";
 //echo "<thead>";
 //echo "<tr>";
-check_all();
-echo"</br><input type='submit' name='checkall' id='checkall' value='Select All' onclick='checkedAll();return false;'>";
+    check_all();
+    echo"<br/><input type='submit' name='checkall' id='checkall' value='Select All' onclick='checkedAll();return false;'/>";
 
-check_button_clicked();
+    check_button_clicked();
 
-echo "  <input type='submit' name='delete' id='delete' value='Delete' onClick='if( confirm(\"Permanently delete selected notes?\")){ return checkData(this.id);}'>";
+    echo "  <input type='submit' name='delete' id='delete' value='Delete' onClick='if( confirm(\"Permanently delete selected notes?\")){ return checkData(this.id);}'/>";
 
-//Reloads parent window when you restore notes
-echo "  <input type='submit' name='restore' id='restore' value='Restore' onClick='if( confirm(\"Are you sure you want to restore these notes?\")){ opener.location.reload(); return checkData(this.id);}'>";
+    //Reloads parent window when you restore notes
+//    echo "  <input type='submit' name='restore' id='restore' value='Restore' onClick='if( confirm(\"Are you sure you want to restore these notes?\")){ opener.location.reload(); return checkData(this.id);}'/>";
+    echo "  <input type='submit' name='restore' id='restore' value='Restore' onClick='if( confirm(\"Are you sure you want to restore these notes?\"))
+                                                                                        {
+                                                                                            function reloadParentPage() {
+                                                                                                var selfUrl = unescape(parent.window.location.pathname);
+                                                                                                parent.location.reload(true);
+                                                                                                parent.window.location.replace(selfUrl);
+                                                                                                parent.window.location.href = selfUrl;
+                                                                                            } 
+                                                                                        return checkData(this.id);}'/>";
 
-$deleted_notes = $DB->get_records('notes', array('deleted' => 1, 'userid' => $USER->id));
-$count = $DB->count_records('notes', array('deleted' => 1, 'userid' => $USER->id));
+    $deleted_notes = $DB->get_records('notes', array('deleted' => 1, 'userid' => $USER->id));
+    $count = $DB->count_records('notes', array('deleted' => 1, 'userid' => $USER->id));
 
-for ($row = 1; $row < $count + 1; $row++) {
-    $get = array_pop($deleted_notes);
-    if (isset($get)) {
-        $name = text_limit($get->name);
-        echo"<ul class='recycle'>";
-            echo"<li>";
-                echo "<div align='left' id='$get->id'>";
-                    echo "</br>";
-                    echo "<input type='checkbox' name='checkbox[]' value='$get->id'>";
-                    echo "</br>";
+    for ($row = 1; $row < $count + 1; $row++) {
+        $get = array_pop($deleted_notes);
+        if (isset($get)) {
+            $name = text_limit($get->name);
+            echo"<ul class='recycle'>";
+                echo"<li>";
+                    echo "<div align='left' id='$get->id'>";
+                        echo "<br/>";
+                        echo "<input type='checkbox' name='checkbox[]' value='$get->id'/>";
+                        echo "</br>";
                     echo "</div>";
-                    echo"<a href='#' >";
-                    echo"<h2>$name</h2>";
-                    echo"<p>$get->text</p>";
+                    
+                    echo"<a href='#' >"; 
+                        echo"<h2>$name</h2>";
+                        echo"<p>$get->text</p>";
                     echo"</a>";
-                echo "</div>";
-            echo"</li>";
-        echo"</ul>";
+                echo"</li>";
+            echo"</ul>";
+        }
     }
-}
-echo "</br>";
-echo "</br>";
-echo "</br>";
-
+    echo "</br>";
+    echo "</br>";
+    echo "</br>";
 echo "</form>";
 
 echo"</body></html>";
+
 ?>
+

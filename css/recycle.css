@@ -202,7 +202,7 @@ a.button2 span {
 }
 
 a.button2:active {
-    background-position: botom right;
+    background-position: bottom right;
     color: #000;
     outline: none; /* hide dotted outline in Firefox */
 }
@@ -217,5 +217,9 @@ a.button2:active span {
 }
 
 #restore{
-    t
+
+}
+
+#checkall{
+    
 }
