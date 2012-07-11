@@ -233,14 +233,14 @@ echo"</div>"; //End book div
 echo"</div>"; //End topshelf div
 
 //Menu on the right to export notes, add bookmarks, change settings, and check recycle bin
-echo"<ul id='followTab'>
-<li><button class='export'><img src='images/export.png' title='Export Notes'/></button></li>
-<li><a class='export1' href='html2word.php'><img src='images/export.png' title='Export1 Test'/></a></li>
-<li><a class='merge' href='mergenotes.php'><img src='images/merge.png' title='Merge Notes'/></a></li>
-<li><button class='bookmark'><img src='images/bookmark_icon.png' title='Add Bookmark'/></button></li>
-<li><button class='settings'><img src='images/settings.png' title='Settings'/></button></li>
-<li><a class='recyclebin' href='recycle.php'><img src='images/recycle.png' title='Recycle Bin'/></a></li>
-</ul>";
+echo"<ul id='followTab'>";
+echo"<li><button class='export'><img src='images/export.png' title='Export Notes'/></button></li>";
+echo"<li><a class='export1' href='html2word.php'><img src='images/export.png' title='Export1 Test'/></a></li>";
+echo"<li><a class='merge' href='mergenotes.php'><img src='images/merge.png' title='Merge Notes'/></a></li>";
+echo"<li><button class='bookmark'><img src='images/bookmark_icon.png' title='Add Bookmark'/></button></li>";
+//echo"<li><button class='settings'><img src='images/settings.png' title='Settings'/></button></li>";
+echo"<li><a class='recyclebin' href='recycle.php'><img src='images/recycle.png' title='Recycle Bin'/></a></li>";
+echo"</ul>";
 
 //Calls the export function
 call_to_export();
@@ -278,7 +278,6 @@ echo"<div style='display:none'>";
     echo"<div id='recyclebin' title='Recycle Bin'></div>";
 
 echo"</div>";//End display:none div
-
 
 
 //$notes = $DB->get_records('notes', array('userid' => $USER->id, 'deleted' => 0));

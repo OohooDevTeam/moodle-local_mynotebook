@@ -96,7 +96,7 @@ $x_bt = true;
 $x_bf = false;
 
 // Load the template
-$TBS->LoadTemplate($template);
+$TBS->LoadTemplate($template, OPENTBS_ALREADY_UTF8);
 
 if ($debug==1) {
     // debug mode 1

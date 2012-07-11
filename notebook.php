@@ -138,8 +138,9 @@ echo"</ul></span>"; // End nav
 /* * ************************************************ */
 //buttons on the right of the page
 echo"<span><ul id='options'>";
-echo"<li><a class='hsubs ' href='#'><img src='images/help_icon.gif'/></a></li>";
-echo"<li><a class='hsubs ' href='#'><img src='images/save.png'/></a></li>";
+echo"<li><a class='hsubs ' href='#' title='Help'><img src='images/help_icon.gif'/></a></li>";
+//echo"<li><a class='hsubs ' href='#'><img src='images/save.png'/></a></li>";
+
 //For the save button, can diabled button when "blur()" and enable button when "onfocus"
 //echo"<li><button class='hsubs ' onclick='javascript:save();'></button></li>";
 
