@@ -1,6 +1,8 @@
 <?php
-
-if (isset($_GET['source'])) exit('<!DOCTYPE HTML><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>OpenTBS plug-in for TinyButStrong - demo source</title></head><body>'.highlight_file(__FILE__,true).'</body></html>');
+//header("Content-type: application/vnd.ms-word");
+//$TBS->Show(OPENTBS_HEADER);
+if (isset($_GET['source'])) 
+    exit('<!DOCTYPE HTML><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>OpenTBS plug-in for TinyButStrong - demo source</title></head><body>'.highlight_file(__FILE__,true).'</body></html>');
 global $CFG, $USER, $DB;
 
 require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
@@ -85,7 +87,7 @@ $x_bf = false;
 
 
 // Load the template
-$TBS->LoadTemplate($template);
+$TBS->LoadTemplate($template, OPENTBS_ALREADY_UTF8);
 
 if ($debug==1) {
     // debug mode 1

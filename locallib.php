@@ -193,7 +193,7 @@ function hidden_note_title_values($i, $courseid, $noteid) {
     echo "<input id='courseid$i' type='hidden' value=' $courseid '/>";
     echo "<input id='note_id$i' type='hidden' value=' $noteid '/>";
     //Debugging
-    echo $i . '</br>' . $courseid . '</br>' . $noteid;
+//    echo $i . '</br>' . $courseid . '</br>' . $noteid;
 }
 
 ?>

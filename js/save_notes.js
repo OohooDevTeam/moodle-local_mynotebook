@@ -5,12 +5,14 @@
 
 //Controls the tinyMCE toolbar in the iFrame to show and hide
 function initMCE() {
+    
     setTimeout(function() {
         if(!tinyMCE.get('areaText')) {
             initMCE();
         } else {
             //Initialize tinyMCE variable to apply to specified text area
             var editor = tinyMCE.get('areaText');
+
 
    //Make the height and width dynamic since they change when on blur and focus
             //When textarea is unactive
@@ -27,14 +29,14 @@ function initMCE() {
             //While the textarea is active    
             $(editor.getBody()).focus(
             function() 
-                {
-                    $(editor.getContainer()).find(".mceToolbar, .mceStatusbar").show()
-                      var width = 500;
-                        var height = 522;
-                        editor.theme.resizeTo(width, height);
-                        
-                        editor.addShortcut('ctrl+s', 'saveFunction', save);
-                });
+            {
+                $(editor.getContainer()).find(".mceToolbar, .mceStatusbar").show()
+                    var width = 500;
+                    var height = 522;
+                    editor.theme.resizeTo(width, height);
+
+                    editor.addShortcut('ctrl+s', 'saveFunction', save);
+            });
 
             $(editor.getBody()).blur();
 

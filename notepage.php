@@ -30,7 +30,7 @@ global $CFG, $DB, $USER, $PAGE;
 
 require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
 
-//require_once($CFG->dirroot . '/lib/editor/tinymce/lib.php');
+require_once($CFG->dirroot . '/lib/editor/tinymce/lib.php');
 
 //$courseid = required_param('courseid', PARAM_INT);
 //$note_id = required_param('note_id', PARAM_INT);
@@ -44,12 +44,15 @@ require_login();
 
 $PAGE->set_pagelayout('popup');
 //or embedded
+$PAGE->requires->js('/local/mynotebook/js/jquery-1.7.2.js', true);
+$PAGE->requires->js('/local/mynotebook/js/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js', true);
+$PAGE->requires->js('/local/mynotebook/js/save_notes.js', true);
+
 echo $OUTPUT->header();
 
 /* * ******************************************************** *///Javascript declaration
-echo"<script type='text/javascript' src='js/jquery-1.7.2.js'></script>";
-echo"<script type='text/javascript' src='js/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js'></script>";
-
+//echo"<script type='text/javascript' src='js/jquery-1.7.2.js'></script>";
+//echo"<script type='text/javascript' src='js/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js'></script>";
 //echo"<script type='text/javascript' src='js/save_notes.js'></script>";
 
 
@@ -57,8 +60,8 @@ if ($_REQUEST['courseid'] && $_REQUEST['note_id']){
     $courseid = $_REQUEST['courseid'];
     $note_id = $_REQUEST['note_id'];
 
-    echo $courseid;
-    echo $note_id;
+//    echo $courseid;
+//    echo $note_id;
 
     //echo "<textarea id='areaText' style='height:100%; width:100%;'></textarea>";
 

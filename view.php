@@ -38,7 +38,7 @@ $PAGE->requires->css('/local/mynotebook/js/jquery-ui-1.8.18.custom/css/ui-lightn
 $PAGE->requires->css('/local/mynotebook/css/view.css');
 $PAGE->requires->css('/local/mynotebook/css/cssplay6.css');
 $PAGE->requires->css('/local/mynotebook/css/target.css');
-//$PAGE->requires->css('/local/mynotebook/css/paper.css');
+$PAGE->requires->css('/local/mynotebook/css/paper.css');
 $PAGE->requires->css('/local/mynotebook/css/followtab.css');
 
 
@@ -63,31 +63,41 @@ $title = 'Notebook';
 $PAGE->set_title($title);
 $PAGE->set_heading($USER->firstname . '\'s ' . $title);
 // Output starts here
+
+$PAGE->requires->js('/local/mynotebook/js/jquery-1.7.2.js', true);
+$PAGE->requires->js('/local/mynotebook/js/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js', true);
+
+//echo"<script type='text/javascript'>
+//    var handle;
+//</script>";
+
+//var handle is now defined inside trigger.js
+$PAGE->requires->js('/local/mynotebook/js/trigger.js', true);
 echo $OUTPUT->header();
 
 /* * ******************************************************** *///Javascript declaration
-echo"<script type='text/javascript' src='js/jquery-1.7.2.js'></script>";
-echo"<script type='text/javascript' src='js/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js'></script>";
+//echo"<script type='text/javascript' src='js/jquery-1.7.2.js'></script>";
+//echo"<script type='text/javascript' src='js/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js'></script>";
 
 //Scripts needed for jquery popup dialog
-echo<<<SCRIPT
-	<script src="js/jquery-ui-1.8.18.custom/development-bundle/external/jquery.bgiframe-2.1.2.js"></script>
-	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.ui.core.js"></script>
-	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.ui.widget.js"></script>
-	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.ui.mouse.js"></script>
-	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.ui.draggable.js"></script>
-	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.ui.position.js"></script>
-	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.ui.resizable.js"></script>
-	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.ui.dialog.js"></script>
-	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.effects.core.js"></script>
-	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.effects.blind.js"></script>
-	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.effects.explode.js"></script>
-SCRIPT;
+//echo<<<SCRIPT
+//	<script src="js/jquery-ui-1.8.18.custom/development-bundle/external/jquery.bgiframe-2.1.2.js"></script>
+//	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.ui.core.js"></script>
+//	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.ui.widget.js"></script>
+//	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.ui.mouse.js"></script>
+//	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.ui.draggable.js"></script>
+//	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.ui.position.js"></script>
+//	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.ui.resizable.js"></script>
+//	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.ui.dialog.js"></script>
+//	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.effects.core.js"></script>
+//	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.effects.blind.js"></script>
+//	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.effects.explode.js"></script>
+//SCRIPT;
 //Global variables for trigger.js and turn.js, files which make page flipping work
-echo"<script type='text/javascript'>
-    var handle;
-</script>";
-echo"<script type='text/javascript' src='js/trigger.js'></script>";
+//echo"<script type='text/javascript'>
+//    var handle;
+//</script>";
+//echo"<script type='text/javascript' src='js/trigger.js'></script>";
 
 //<!--<script type='text/javascript' src='js/IE9.js'></script>
 //[if lt IE 9]>
@@ -268,6 +278,32 @@ echo"<div style='display:none'>";
     echo"<div id='recyclebin' title='Recycle Bin'></div>";
 
 echo"</div>";//End display:none div
+
+
+
+//$notes = $DB->get_records('notes', array('userid' => $USER->id, 'deleted' => 0));
+//$note_name = array();
+//$note_content = array();
+//$courseid = array();
+//$course_name = array();
+//$date_created = array();
+//
+//foreach ($notes as $note) {
+//
+//    echo $note->text;
+//    echo "**********************************************************************";
+//    $note_name[] = $note->name;
+//    $note_content[] = strip_tags($note->text);
+//    $coursenames = $DB->get_records('course', array('id' => 2));
+//    $courseid[] = $note->courseid;
+//    $date_created[] = $note->time_modified;
+//
+//    foreach ($coursenames as $coursename) {
+//        $course_name[] = $coursename->fullname;
+//    }
+//}
+
+
 
 //// Finish the page
 echo $OUTPUT->footer();

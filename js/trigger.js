@@ -17,7 +17,7 @@
 //        'autoOpen' : false
 //    });
 //});
-
+var handle;
 
 //controls the notebook popup
 $(document).ready(function(){

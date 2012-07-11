@@ -233,51 +233,51 @@ foreach ($notes as $note) {
 echo"</div>"; //end notebook
 
 
-
-echo '<div id="viewport">
-<header>
-	<nav>
-		<a href="#home" class="on">Home</a>
-		<a href="#usage">Usage</a>
-		<a href="#get">Get turn.js</a>
-		<a href="#reference">Reference</a>
-		<a href="#credits">Credits</a>
-	</nav>
-
-</header>';
-echo'<div id="controllers" style="display:none;">';
-	echo'<div class="pages shadows" id="magazine">';
-		echo'<!-- Home -->
-		<div turn-effect="flipboard">
-			<p>The awesome paper-like effect made for HTML5</p>
-		</div>
-		';
-		echo'<!-- Usage -->
-		<div> 
-			<div class="page-content">
-				<h1>turn.js</h1>
-			</div>
-		</div>
-                ';    
-		echo'<!-- Quick Reference -->
-		<div> 
-			<div class="page-content">
-			<h2>Getting Started</h2>
-			</div>
-		</div>
-		<!--   -->
-		<div> 
-			<div class="page-content">
-				<h2> Contact </h2>
-			</div>
-		</div>
-	</div>
-	<div id="next"> <i></i> </div>
-	<div id="previous"> <i></i> </div>
-	<div id="shadow-page"></div>
-</div>
-
-</div>';
+//
+//echo '<div id="viewport">
+//<header>
+//	<nav>
+//		<a href="#home" class="on">Home</a>
+//		<a href="#usage">Usage</a>
+//		<a href="#get">Get turn.js</a>
+//		<a href="#reference">Reference</a>
+//		<a href="#credits">Credits</a>
+//	</nav>
+//
+//</header>';
+//echo'<div id="controllers" style="display:none;">';
+//	echo'<div class="pages shadows" id="magazine">';
+//		echo'<!-- Home -->
+//		<div turn-effect="flipboard">
+//			<p>The awesome paper-like effect made for HTML5</p>
+//		</div>
+//		';
+//		echo'<!-- Usage -->
+//		<div> 
+//			<div class="page-content">
+//				<h1>turn.js</h1>
+//			</div>
+//		</div>
+//                ';    
+//		echo'<!-- Quick Reference -->
+//		<div> 
+//			<div class="page-content">
+//			<h2>Getting Started</h2>
+//			</div>
+//		</div>
+//		<!--   -->
+//		<div> 
+//			<div class="page-content">
+//				<h2> Contact </h2>
+//			</div>
+//		</div>
+//	</div>
+//	<div id="next"> <i></i> </div>
+//	<div id="previous"> <i></i> </div>
+//	<div id="shadow-page"></div>
+//</div>
+//
+//</div>';
 
 
 echo"</body></html>";
