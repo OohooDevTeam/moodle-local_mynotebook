@@ -233,7 +233,7 @@ transition: 0.25s;
 /*    clear:left; width:350px;*/
 /*    width:450px; 8 books*/
 clear:both; width:6050px; height:25px; 
-/*background-image:url('../background/shelf.jpg');*/
+/*background-image:url('../images/shelf.png');*/
 background:#620; 
 margin:0 auto; 
 background: -moz-linear-gradient(90deg, #620, #950 20%, #620 30%);  

@@ -31,8 +31,10 @@ $date_created = array();
 
 foreach ($notes as $note) {
 
-    echo $note->text;
     echo "**********************************************************************";
+    echo "**********************************************************************";
+    echo "**********************************************************************";
+    
     $note_name[] = $note->name;
     $note_content[] = strip_tags($note->text);
     $coursenames = $DB->get_records('course', array('id' => $note->courseid));
@@ -42,56 +44,40 @@ foreach ($notes as $note) {
     foreach ($coursenames as $coursename) {
         $course_name[] = $coursename->fullname;
     }
+    
+    
+//Table for representing each note in Word
+echo"
+<table class='MsoNormalTable' border='1' cellspacing='0' cellpadding='0' width='652' style='width:488.85pt;border-collapse:collapse;border:none'>
+    <tbody>
+        <tr style='height:51.0pt'>
+            <td width='125' style='width:93.45pt;border:solid windowtext 1.0pt;background:
+            silver;padding:0in 5.75pt 0in 5.75pt;height:51.0pt'>
+                <p class='MsoNormal' align='center' style='text-align:center'><b><span lang='FR' style='font-size:16.0pt;line-height:115%'>$note->name</span></b></p>
+            </td>
+            <td width='527' style='width:395.4pt;border:solid windowtext 1.0pt;border-left:
+            none;background:silver;padding:0in 5.75pt 0in 5.75pt;height:51.0pt'>
+                <p class='MsoNormal' align='center' style='text-align:center'><b><span lang='FR' style='font-size:16.0pt;line-height:115%'>Content</span></b></p>
+            </td>
+        </tr>
+        <tr style='height:559.4pt'>
+            <td width='125' valign='top' style='width:93.45pt;border:solid windowtext 1.0pt;
+            border-top:none;padding:0in 5.75pt 0in 5.75pt;height:559.4pt'>
+                <p class='MsoNormal' align='center' style='text-align:center'><span lang='FR'>&nbsp;</span></p>
+                <p class='MsoNormal' align='center' style='text-align:center'><span lang='FR'>&nbsp;</span></p>
+                <p class='MsoNormal' align='center' style='text-align:center'><span lang='FR'>&nbsp;</span></p>
+                <p class='MsoNormal' align='center' style='text-align:center'><span lang='FR'>$note->courseid</span></p>
+            </td>
+            <td width='527' valign='top' style='width:395.4pt;border-top:none;border-left:
+            none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+            padding:0in 5.75pt 0in 5.75pt;height:559.4pt'>
+            <p class='MsoNormal'><span lang='FR'>$note->text</span></p>
+            </td>
+        </tr>
+    </tbody>
+</table>";
+
 }
 
 
-
-
-
-echo'
-<h1>Header</h1>
-  This text can be seen in word
-<ul>
-<li><span style="background-color: red; color: yellow;"> List 1</span></li>
-<li>List 2</li>
-</ul>
-  
-  <p>WORD</p>
-<p>WORD</p>
-<p class="MsoNormal">Fgdsgdgdfg</p>
-<p class="MsoNormal"><span style="color: red;">Hdrjyjydtjdtj</span></p>
-<p class="MsoNormal" style="text-align: center;" align="center"><span style="color: red;">Gerggeargregreggregergegergege</span></p>
-<p class="MsoNormal" style="text-align: right;" align="right"><span style="color: &lt;br /&gt;red;">Gregreagrege</span></p>
-<p class="MsoNormal"><span style="text-decoration: underline;"><span style="color: red;">Herhehehhrehre</span></span></p>
-<p class="MsoNormal"><span style="text-decoration: underline;"><span style="color: red;">Hehre</span></span><strong><span style="color: red;">hrehrehe</span></strong></p>
-<p class="MsoNormal"><strong><em><span style="color: red;">Herhreherhe</span></em></strong><em></em></p>
-<p class="MsoNormal"><em><span style="color: red;">hrehreh</span></em></p>
-<p>;</p>
-<p>;</p>
-<table border="1">
-<tbody>
-<tr>
-<td>gdgdgdg</td>
-<td> </td>
-<td> </td>
-<td> </td>
-</tr>
-<tr>
-<td> </td>
-<td> </td>
-<td> </td>
-<td> </td>
-</tr>
-<tr>
-<td> </td>
-<td> </td>
-<td> </td>
-<td>dgdfgfffg</td>
-</tr>
-</tbody>
-</table>
-  
-</body>
-</html>
-';
 ?>
