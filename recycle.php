@@ -50,6 +50,7 @@ echo"</head><body>";
 
     echo"<script> console.log('Started') </script>";
     
+//Checks which vaariable is set as requested by the user to either delete or restore specified notes
 if (isset($_REQUEST['delete'])) {
     echo "Test del: ".$_REQUEST['delete']."<br>";
     echo"<script> console.log('DEL') </script>";
@@ -101,6 +102,7 @@ echo "<form id='check' method='post' action='view.php'>";
     $deleted_notes = $DB->get_records('notes', array('deleted' => 1, 'userid' => $USER->id));
     $count = $DB->count_records('notes', array('deleted' => 1, 'userid' => $USER->id));
 
+    //Creates an unordered list to display all the notes that have been sent to the recycle bin
     for ($row = 1; $row < $count + 1; $row++) {
         $get = array_pop($deleted_notes);
         if (isset($get)) {

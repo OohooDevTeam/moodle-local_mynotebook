@@ -50,42 +50,32 @@ $PAGE->requires->js('/local/mynotebook/js/save_notes.js', true);
 
 echo $OUTPUT->header();
 
-/* * ******************************************************** *///Javascript declaration
-//echo"<script type='text/javascript' src='js/jquery-1.7.2.js'></script>";
-//echo"<script type='text/javascript' src='js/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js'></script>";
-//echo"<script type='text/javascript' src='js/save_notes.js'></script>";
-
-
 if ($_REQUEST['courseid'] && $_REQUEST['note_id']){
     $courseid = $_REQUEST['courseid'];
     $note_id = $_REQUEST['note_id'];
 
-//    echo $courseid;
-//    echo $note_id;
-
-    //echo "<textarea id='areaText' style='height:100%; width:100%;'></textarea>";
-
-    //$notes = $DB->get_records('notes', array('userid' => $USER->id, 'deleted' => 0));
     $course = $DB->get_record('course', array('id' => $courseid));
 
+    //Grabs the note name and content
     $trim = $DB->get_record('notes', array('userid'=>$USER->id, 'courseid'=>$courseid, 'id'=>$note_id));
     $note_name = $trim->name;
+    //Creates a textarea initialized with the notes name and
     $text = $trim->text;
+    //Creates a textarea initialized with the notes name and content
     echo "<textarea id='areaText'>
-        \n $note_name 
+        \n $note_name
         \n
         $text;
     </textarea>";
 
-    //echo '<input id="courseid" type="hidden" value="' . $courseid . '"/>';
+    //Stores the notes id and courseid in hidden fields for access
     echo "<input id='courseid' type='hidden' value=' $courseid '/>";
     echo "<input id='note_id' type='hidden' value=' $note_id '/>";
-    //echo "<input id='title' type='hidden' value=' $note_id '/>";
 
     //Applies tinyMCE to targetted text area
     $editor = new tinymce_texteditor();
     $editor->use_editor('areaText', null, null);
-    
+
 } else {
     print_error("Course Id or Note Id was not found");
 }

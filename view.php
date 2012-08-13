@@ -13,10 +13,8 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
-
 /**
- * 
+ *
  * Prints a particular instance of mynotebook
  *
  * You can have a rather longer description of the file as well,
@@ -62,71 +60,30 @@ $title = 'Notebook';
 //Sets the page title
 $PAGE->set_title($title);
 $PAGE->set_heading($USER->firstname . '\'s ' . $title);
-// Output starts here
 
+//JS files
 $PAGE->requires->js('/local/mynotebook/js/jquery-1.7.2.js', true);
 $PAGE->requires->js('/local/mynotebook/js/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js', true);
-
-//echo"<script type='text/javascript'>
-//    var handle;
-//</script>";
-
-//var handle is now defined inside trigger.js
 $PAGE->requires->js('/local/mynotebook/js/trigger.js', true);
+
 echo $OUTPUT->header();
 
-/* * ******************************************************** *///Javascript declaration
-//echo"<script type='text/javascript' src='js/jquery-1.7.2.js'></script>";
-//echo"<script type='text/javascript' src='js/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js'></script>";
-
-//Scripts needed for jquery popup dialog
-//echo<<<SCRIPT
-//	<script src="js/jquery-ui-1.8.18.custom/development-bundle/external/jquery.bgiframe-2.1.2.js"></script>
-//	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.ui.core.js"></script>
-//	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.ui.widget.js"></script>
-//	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.ui.mouse.js"></script>
-//	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.ui.draggable.js"></script>
-//	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.ui.position.js"></script>
-//	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.ui.resizable.js"></script>
-//	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.ui.dialog.js"></script>
-//	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.effects.core.js"></script>
-//	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.effects.blind.js"></script>
-//	<script src="js/jquery-ui-1.8.18.custom/development-bundle/ui/jquery.effects.explode.js"></script>
-//SCRIPT;
-//Global variables for trigger.js and turn.js, files which make page flipping work
-//echo"<script type='text/javascript'>
-//    var handle;
-//</script>";
-//echo"<script type='text/javascript' src='js/trigger.js'></script>";
-
-//<!--<script type='text/javascript' src='js/IE9.js'></script>
-//[if lt IE 9]>
-//<script src='http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js'></script>
-//<![endif]-->
-
-/* * ******************************************************** *///End Javascript declaration
-
+//Grabs all courses of the user
 $courses = enrol_get_users_courses($USER->id);
 $registered_courseids = array();
 $registered_courseids = array_keys($courses);
-//echo"USER REGISTERED COURSES:</br>";
-//print_object($registered_courseids);
-//Extracts the courses and orders alphabetically
-//$sql = "SELECT *
-//                FROM {course} th
-//                WHERE th.category = '1' ORDER BY th.fullname";
-//$all_courses = $DB->get_records_sql($sql);
+
 //Grabs all the course ids that have notes
 $allcourseids = $DB->get_records('notes', array('userid' => $USER->id, 'deleted' => 0));
 $courseid_array = array();
 $coursename_array = array();
 $b = 0;
-foreach ($allcourseids as $courseid) {
-//    //Stores the coursename and course ids
 
+foreach ($allcourseids as $courseid) {
+    //Stores the coursename and course ids
     $coursenames = $DB->get_records('course', array('id' => $courseid->courseid));
     $courseid_array[] = $courseid->courseid;
-//
+
     foreach ($coursenames as $coursename) {
         $coursename_array[] = $coursename->fullname;
     }
@@ -136,13 +93,15 @@ foreach ($allcourseids as $courseid) {
 $conditions_list = array(TRUE, FALSE, NULL);
 $unique_course_id = array_unique($courseid_array);
 $ordered_course_id = reorderindex($unique_course_id, $conditions_list);
-//
+
 $unique_course_name = array_unique($coursename_array);
 $ordered_course_name = reorderindex($unique_course_name, $conditions_list);
 
 $course_no_notes = array();
 $course_yes_notes = array();
+
 //Finds the courses that the users have no notes in
+//This is done both ways to ensure all the courses are included
 if (sizeof($registered_courseids) > sizeof($ordered_course_id)) {
     $course_no_notes = array_diff($registered_courseids, $ordered_course_id);
     $course_no_notes = reorderindex($course_no_notes);
@@ -151,7 +110,8 @@ if (sizeof($registered_courseids) > sizeof($ordered_course_id)) {
     $course_no_notes = reorderindex($course_no_notes);
 }
 
-//Finds the courses that the users do have notes in
+//Finds the courses that the users have notes in
+//This is done both ways to ensure all the courses are included
 if (sizeof($registered_courseids) > sizeof($ordered_course_id)) {
     $course_yes_notes = array_intersect($registered_courseids, $ordered_course_id);
     $course_yes_notes = reorderindex($course_yes_notes);
@@ -179,7 +139,7 @@ for ($k = 0; $k < sizeof($ordered_course_id); $k++) {
     $name = substr($ordered_course_name[$k], 0, 18);
 //    //Displays notebook when clicked
     if (strlen($name < 18)) {
-        //Do nothing        
+        //Do nothing
     } else {
         $name = $name . "...";
     }
@@ -216,7 +176,7 @@ for ($k = 0; $k < sizeof($ordered_course_id); $k++) {
 //    echo"<ul class='topUL'>";
 for ($m = 0; $m < sizeof($course_no_notes); $m++) {
     $coursenames = $DB->get_record('course', array('id' => $course_no_notes[$m]));
-
+    //checks length of name and limits the displayed coursename on each book if 15 characters or more
     if (strlen($coursenames->fullname) < 15) {
         $no_notes = $coursenames->fullname;
     } else {
@@ -235,7 +195,8 @@ echo"</div>"; //End topshelf div
 //Menu on the right to export notes, add bookmarks, change settings, and check recycle bin
 echo"<ul id='followTab'>";
 echo"<li><button class='export'><img src='images/export.png' title='Export Notes'/></button></li>";
-echo"<li><a class='export1' href='html2word.php'><img src='images/export.png' title='Export1 Test'/></a></li>";
+//echo"<li><a class='export1' href='html2word.php'><img src='images/export.png' title='Export1 Test'/></a></li>";
+echo"<li><button class='export1'><img src='images/export.png' title='Export1 Test'/></button></li>";
 echo"<li><a class='merge' href='mergenotes.php'><img src='images/merge.png' title='Merge Notes'/></a></li>";
 echo"<li><button class='bookmark'><img src='images/bookmark_icon.png' title='Add Bookmark'/></button></li>";
 //echo"<li><button class='settings'><img src='images/settings.png' title='Settings'/></button></li>";
@@ -250,6 +211,8 @@ echo"<div style='display:none'>";
     //div where notebook will popup
     echo"<div id='target' ></div>";
 
+    //All the different side menu popups
+    //***************************************************
     //Popup for exporting notes
     echo"<div id='export' title='Export Notes'>";
         echo"<fieldset>";
@@ -265,105 +228,30 @@ echo"<div style='display:none'>";
         <div id='Show_option'></div>";
     echo"</div>";//export
 
+    //Testing export with headers
+    echo"<div id='export1' title='Export Notes'>";
+        echo "<textarea id='areaText'>
+        \n
+        \n
+
+        </textarea>";
+    echo"</div>";
+
+
     //Merge Notes
     echo"<div id='merge' title='Merge Notes'></div>";
-    
+
     //Bookmarks
     echo"<div id='bookmark' title='Bookmark'></div>";
-    
+
     //Settings
     echo"<div id='settings' title='Settings'></div>";
-    
+
     //Recycle Bin
     echo"<div id='recyclebin' title='Recycle Bin'></div>";
 
 echo"</div>";//End display:none div
 
-
-//$notes = $DB->get_records('notes', array('userid' => $USER->id, 'deleted' => 0));
-//$note_name = array();
-//$note_content = array();
-//$courseid = array();
-//$course_name = array();
-//$date_created = array();
-//
-//foreach ($notes as $note) {
-//
-//    echo $note->text;
-//    echo "**********************************************************************";
-//    $note_name[] = $note->name;
-//    $note_content[] = strip_tags($note->text);
-//    $coursenames = $DB->get_records('course', array('id' => 2));
-//    $courseid[] = $note->courseid;
-//    $date_created[] = $note->time_modified;
-//
-//    foreach ($coursenames as $coursename) {
-//        $course_name[] = $coursename->fullname;
-//    }
-//}
-
-
-
 //// Finish the page
 echo $OUTPUT->footer();
 ?>
-
-
-
-
-
-
-<!--JS for setting and getting textarea cursoe position
-http://blog.vishalon.net/index.php/javascript-getting-and-setting-caret-position-in-textarea/-->
-<!--<script>
-    function doGetCaretPosition (ctrl) {
-
-        var CaretPos = 0;
-        // IE Support
-        if (document.selection) {
-
-            ctrl.focus ();
-            var Sel = document.selection.createRange ();
-
-            Sel.moveStart ('character', -ctrl.value.length);
-
-            CaretPos = Sel.text.length;
-        }
-        // Firefox support
-        else if (ctrl.selectionStart || ctrl.selectionStart == '0')
-            CaretPos = ctrl.selectionStart;
-
-        return (CaretPos);
-
-    }
-
-    function setCaretPosition(ctrl, pos)
-    {
-
-        if(ctrl.setSelectionRange)
-        {
-            ctrl.focus();
-            ctrl.setSelectionRange(pos,pos);
-        }
-        else if (ctrl.createTextRange) {
-            var range = ctrl.createTextRange();
-            range.collapse(true);
-            range.moveEnd('character', pos);
-            range.moveStart('character', pos);
-            range.select();
-        }
-    }
-
-    function process()
-    {
-        var no = document.getElementById('no').value;
-        setCaretPosition(document.getElementById('get'),no);
-    }
-
-</script>
-<textarea id="get" name="get" rows="5" cols="31">Please write some integer in the textbox given below and press "Set Position" button. Press "Get Position" button to get the position of cursor.</textarea>
-<br>
-Enter Caret Position: <input type="text" id="no" size="1" /><input type="button" onclick="process();" value="Set Position">
-<BR>
-<input type="button" onclick="alert(doGetCaretPosition(document.getElementById('get')));"
-       value="Get Position">-->

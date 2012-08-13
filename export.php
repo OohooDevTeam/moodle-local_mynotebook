@@ -78,6 +78,7 @@ if ($q == 'All Notes') {
     echo "No option selected";
 }
 
+//Exports all usre notes
 function export_all() {
     echo"</br>";
     echo"<form id='export_all' name='export_all' method='post' action='word_template.php'>";
@@ -97,6 +98,7 @@ function export_all() {
     echo"</form>";
 }
 
+//Exports speicified user course notes
 function export_course($course_name, $count, $course_no_notes, $number_no_notes) {
     global $DB;
     echo"</br>";
@@ -111,6 +113,7 @@ function export_course($course_name, $count, $course_no_notes, $number_no_notes)
             </br></br>
             Course : ";
     echo "<select name='course_name' id='course_name'>";
+    //Creates a drop down menu with all the course
     for ($i = 0; $i < $count; $i++) {
         echo "<option> $course_name[$i]</option>";
     }
@@ -123,13 +126,14 @@ function export_course($course_name, $count, $course_no_notes, $number_no_notes)
             $no_notes = substr($coursenames->fullname, 0, 27);
             $no_notes = $no_notes . "...";
         }
+        //Displays courses with no notes as greyed out
         echo "<option disabled='disabled'>$no_notes</option>";
     }
     echo"</select>";
 
     echo"<div id='save_as_file' style='display:none;'>, save as file with suffix: ";
     echo"<input name='suffix' type='text' id='suffix' size='10' />(let empty for download),</div>";
-    echo "</br></br>";
+        echo "</br></br>";
     echo"<input type='image' name='btn_go' id='btn_go' value='export' src='images/submit.gif' />";
     echo"</form>";
 }

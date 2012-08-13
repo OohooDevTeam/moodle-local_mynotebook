@@ -8,7 +8,7 @@
 ////        show: "explode",
 ////        hide: "explode"
 ////    });
-//    
+//
 //    $('#my_loading_div').dialog({
 //        'width' : 'auto',
 //        'height' : 'auto',
@@ -27,7 +27,7 @@ $(document).ready(function(){
         $(document).unbind("mousemove");
         $(document).unbind("mouseup");
         clearInterval(handle);
-        
+
         //Grabs the course name and puts it into the header
         var heading = 'MyNotebook - ' + $(this).attr('coursename');
 
@@ -72,35 +72,76 @@ $(document).ready(function(){
             autoOpen: false,
             modal:false,
             resizable: false,
-            show: function() {     
-                var $this = $(this);    
-                $this
-                .dialog("widget")
-                .effect("transfer", {      
-                    to: "#export", 
-                    className: "ui-effects-transfer"  
-                }, 500, function() {         
-                    $this.remove(); 
-                });
-            },
-            hide: function() { 
+            show: function() {
                 var $this = $(this);
                 $this
                 .dialog("widget")
                 .effect("transfer", {
-                    to: "#export", 
+                    to: "#export",
                     className: "ui-effects-transfer"
                 }, 500, function() {
-                    $this.remove(); 
+                    $this.remove();
+                });
+            },
+            hide: function() {
+                var $this = $(this);
+                $this
+                .dialog("widget")
+                .effect("transfer", {
+                    to: "#export",
+                    className: "ui-effects-transfer"
+                }, 500, function() {
+                    $this.remove();
                 });
             }
-                        
+
         });
 
         $( ".export" ).click(function() {
             $('#bookmark').dialog('close');
             $('#settings').dialog('close');
             $( "#export" ).dialog( "open" );
+            return false;
+        });
+    });
+});
+
+//controls the export popup
+$(document).ready(function(){
+    $(function() {
+        $( "#export1" ).dialog({
+            autoOpen: false,
+            modal:false,
+            resizable: false,
+            show: function() {
+                var $this = $(this);
+                $this
+                .dialog("widget")
+                .effect("transfer", {
+                    to: "#export1",
+                    className: "ui-effects-transfer"
+                }, 500, function() {
+                    $this.remove();
+                });
+            },
+            hide: function() {
+                var $this = $(this);
+                $this
+                .dialog("widget")
+                .effect("transfer", {
+                    to: "#export1",
+                    className: "ui-effects-transfer"
+                }, 500, function() {
+                    $this.remove();
+                });
+            }
+
+        });
+
+        $( ".export1" ).click(function() {
+            $('#bookmark').dialog('close');
+            $('#settings').dialog('close');
+            $( "#export1" ).dialog( "open" );
             return false;
         });
     });
@@ -144,29 +185,29 @@ $(document).ready(function(){
             autoOpen: false,
             modal:false,
             resizable: false,
-            show: function() {     
-                var $this = $(this);    
-                $this
-                .dialog("widget")
-                .effect("transfer", {      
-                    to: "#bookmark", 
-                    className: "ui-effects-transfer"  
-                }, 500, function() {         
-                    $this.remove(); 
-                });
-            },
-            hide: function() { 
+            show: function() {
                 var $this = $(this);
                 $this
                 .dialog("widget")
                 .effect("transfer", {
-                    to: "#bookmark", 
+                    to: "#bookmark",
                     className: "ui-effects-transfer"
                 }, 500, function() {
-                    $this.remove(); 
+                    $this.remove();
+                });
+            },
+            hide: function() {
+                var $this = $(this);
+                $this
+                .dialog("widget")
+                .effect("transfer", {
+                    to: "#bookmark",
+                    className: "ui-effects-transfer"
+                }, 500, function() {
+                    $this.remove();
                 });
             }
-                        
+
         });
 
         $( ".bookmark" ).click(function() {
@@ -185,29 +226,29 @@ $(document).ready(function(){
             autoOpen: false,
             modal:false,
             resizable: false,
-            show: function() {     
-                var $this = $(this);    
-                $this
-                .dialog("widget")
-                .effect("transfer", {      
-                    to: "#settings", 
-                    className: "ui-effects-transfer"  
-                }, 500, function() {         
-                    $this.remove(); 
-                });
-            },
-            hide: function() { 
+            show: function() {
                 var $this = $(this);
                 $this
                 .dialog("widget")
                 .effect("transfer", {
-                    to: "#settings", 
+                    to: "#settings",
                     className: "ui-effects-transfer"
                 }, 500, function() {
-                    $this.remove(); 
+                    $this.remove();
+                });
+            },
+            hide: function() {
+                var $this = $(this);
+                $this
+                .dialog("widget")
+                .effect("transfer", {
+                    to: "#settings",
+                    className: "ui-effects-transfer"
+                }, 500, function() {
+                    $this.remove();
                 });
             }
-                        
+
         });
 
         $( ".settings" ).click(function() {
@@ -224,9 +265,9 @@ $(document).ready(function(){
       $(document).on('click', '.recyclebin', function(){
 //    $('.recyclebin').live('click',function(){
         $('#recyclebin').dialog('destroy');
-        
+
         //        $('#my_loading_div').dialog('open');
-        
+
         //Grabs the course name and puts it into the header
         //        var heading = 'MyNotebook - ' + $(this).attr('coursename');
 
@@ -263,7 +304,7 @@ $(document).ready(function(){
 ////Loads the notebook into a div
 //$.fx.speeds._default = 1000;
 //$(document).ready(function(){
-//    
+//
 //    $( "#target" ).dialog({
 //        'autoOpen': false,
 //        resizable: true,
@@ -272,17 +313,17 @@ $(document).ready(function(){
 //        width: "auto",
 //        height: "auto",
 //        title: "MyNoteBook"
-//                                        
+//
 //    });
-//    
+//
 //    console.log("Target Loaded");
-//    
+//
 //    $('.ajaxtrigger').click(function(){
 //        $("#target").dialog("close");
 //
 //        //        var url = $(this).attr('href');
 //        //    $('#target').load('view.php');
-//        //    
+//        //
 //        //        var url = this.href;
 //        //Splits the url and then checks for encoded spaces
 //        //        var split = url.split("=");
@@ -290,7 +331,7 @@ $(document).ready(function(){
 //        //            var name = split[2].split("%20");
 //        //            alert(sizeof(name));
 //        //            for(var i=0; i<sizeof(name);i++){
-//        //                
+//        //
 //        //            }
 //        //        }
 //
@@ -315,26 +356,26 @@ $(document).ready(function(){
 //        autoOpen: false,
 //        resizable: false,
 //        //hide: "explode"
-//        show: function() {     
-//            var $this = $(this);    
-//            $this
-//            .dialog("widget")
-//            .effect("transfer", {      
-//                to: "#opener", 
-//                className: "ui-effects-transfer"  
-//            }, 500, function() {         
-//                $this.remove(); 
-//            });
-//        },
-//        hide: function() { 
+//        show: function() {
 //            var $this = $(this);
 //            $this
 //            .dialog("widget")
 //            .effect("transfer", {
-//                to: "#opener", 
+//                to: "#opener",
 //                className: "ui-effects-transfer"
 //            }, 500, function() {
-//                $this.remove(); 
+//                $this.remove();
+//            });
+//        },
+//        hide: function() {
+//            var $this = $(this);
+//            $this
+//            .dialog("widget")
+//            .effect("transfer", {
+//                to: "#opener",
+//                className: "ui-effects-transfer"
+//            }, 500, function() {
+//                $this.remove();
 //            });
 //        }
 //    });

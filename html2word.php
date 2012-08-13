@@ -1,4 +1,29 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+/**
+ *
+ * Prints a particular instance of mynotebook
+ *
+ * You can have a rather longer description of the file as well,
+ * if you like, and it can span multiple lines.
+ *
+ * @package   mod_mynotebook
+ * @copyright 2012 ????
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 
 header("Content-type: application/vnd.ms-word");
 //	header("Content-type: application/pdf");
@@ -10,15 +35,11 @@ echo'
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Saves as a Word Doc</title>
-</head>
-    ';
+<title>MyNotes</title>
+</head>';
 
 
-echo'
-<body>';
-
-
+echo'<body>';
 
 require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
 
@@ -29,12 +50,13 @@ $courseid = array();
 $course_name = array();
 $date_created = array();
 
+//Retrieve all the necessary information about each note to be displayed
 foreach ($notes as $note) {
 
     echo "**********************************************************************";
     echo "**********************************************************************";
     echo "**********************************************************************";
-    
+
     $note_name[] = $note->name;
     $note_content[] = strip_tags($note->text);
     $coursenames = $DB->get_records('course', array('id' => $note->courseid));
@@ -44,10 +66,10 @@ foreach ($notes as $note) {
     foreach ($coursenames as $coursename) {
         $course_name[] = $coursename->fullname;
     }
-    
-    
-//Table for representing each note in Word
-echo"
+
+
+//Creates a table to display each note
+echo"<div align=center>
 <table class='MsoNormalTable' border='1' cellspacing='0' cellpadding='0' width='652' style='width:488.85pt;border-collapse:collapse;border:none'>
     <tbody>
         <tr style='height:51.0pt'>
@@ -75,9 +97,8 @@ echo"
             </td>
         </tr>
     </tbody>
-</table>";
+</table></div>";
 
-}
-
+}//end foreach
 
 ?>

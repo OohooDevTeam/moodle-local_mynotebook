@@ -73,8 +73,6 @@ echo"<script type='text/javascript' src='js/turn.js'></script>";
 //<!--JS for the view page-->
 echo"<script type='text/javascript' src='js/notebook.js'></script>";
 /* * ******************************************************** *///End Javascript declaration
-//$tinymce = new tinymce_texteditor();
-//echo"<script type='text/javascript' src='tinymce/jscripts/tiny_mce/tiny_mce.js'></script>";
 echo"<script type='text/javascript' src='js/save_title.js'></script>";
 
 echo"</head><body>";
@@ -143,8 +141,6 @@ echo"<li><a class='hsubs ' href='#' title='Help'><img src='images/help_icon.gif'
 
 //For the save button, can diabled button when "blur()" and enable button when "onfocus"
 //echo"<li><button class='hsubs ' onclick='javascript:save();'></button></li>";
-
-
 
 echo"<li><a class='hsubs '>
         <div id='controls'>

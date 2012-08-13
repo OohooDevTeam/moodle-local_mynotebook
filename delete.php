@@ -1,5 +1,7 @@
 <?php
 
+//might not need this file
+
 require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
 
 global $USER, $DB, $SESSION, $CFG, $PAGE;

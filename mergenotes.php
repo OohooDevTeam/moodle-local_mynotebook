@@ -54,7 +54,6 @@ foreach ($courseids as $courseid) {
     $array_courseid[] = $courseid->courseid;
 }
 
-
 $conditions_list = array(TRUE, FALSE, NULL);
 $arrid = array_unique($array_courseid);
 $reordered_courseid = reorderindex($arrid, $conditions_list);
@@ -79,39 +78,42 @@ if (sizeof($registered_courseids) > sizeof($reordered_courseid)) {
 $number_no_notes = sizeof($course_no_notes);
 $count = sizeof($course_name);
 
- echo "<select name='course_name_left' id='course_name_left' style='width:100px'>";
-    for ($i = 0; $i < $count; $i++) {
-        echo "<option> $course_name[$i]</option>";
-    }
+//echo "<select name='course_name_left' id='course_name_left' style='width:100px'>";
+////Displays courses with notes
+//for ($i = 0; $i < $count; $i++) {
+//    echo "<option> $course_name[$i]</option>";
+//}
+//
+////Courses with no notes as greyed out
+//for ($j = 0; $j < $number_no_notes; $j++) {
+//    $coursenames = $DB->get_record('course', array('id' => $course_no_notes[$j]));
+//    if (strlen($coursenames->fullname) < 28) {
+//        $no_notes = $coursenames->fullname;
+//    } else {
+//        $no_notes = substr($coursenames->fullname, 0, 27);
+//        $no_notes = $no_notes . "...";
+//    }
+//    echo "<option disabled='disabled'>$no_notes</option>";
+//}
+//echo"</select>";
+//echo "<select name='course_name_right' id='course_name_right' style='width:100px'>";
+////Displays courses with notes
+//for ($i = 0; $i < $count; $i++) {
+//    echo "<option> $course_name[$i]</option>";
+//}
+//
+////Displays courses with no notes greyed out
+//for ($j = 0; $j < $number_no_notes; $j++) {
+//    $coursenames = $DB->get_record('course', array('id' => $course_no_notes[$j]));
+//    if (strlen($coursenames->fullname) < 28) {
+//        $no_notes = $coursenames->fullname;
+//    } else {
+//        $no_notes = substr($coursenames->fullname, 0, 27);
+//        $no_notes = $no_notes . "...";
+//    }
+//    echo "<option disabled='disabled'>$no_notes</option>";
+//}
+//echo"</select>";
 
-    for ($j = 0; $j < $number_no_notes; $j++) {
-        $coursenames = $DB->get_record('course', array('id' => $course_no_notes[$j]));
-        if (strlen($coursenames->fullname) < 28) {
-            $no_notes = $coursenames->fullname;
-        } else {
-            $no_notes = substr($coursenames->fullname, 0, 27);
-            $no_notes = $no_notes . "...";
-        }
-        echo "<option disabled='disabled'>$no_notes</option>";
-    }
-    echo"</select>";
-    
-    echo "<select name='course_name_right' id='course_name_right' style='width:100px'>";
-    for ($i = 0; $i < $count; $i++) {
-        echo "<option> $course_name[$i]</option>";
-    }
-
-    for ($j = 0; $j < $number_no_notes; $j++) {
-        $coursenames = $DB->get_record('course', array('id' => $course_no_notes[$j]));
-        if (strlen($coursenames->fullname) < 28) {
-            $no_notes = $coursenames->fullname;
-        } else {
-            $no_notes = substr($coursenames->fullname, 0, 27);
-            $no_notes = $no_notes . "...";
-        }
-        echo "<option disabled='disabled'>$no_notes</option>";
-    }
-    echo"</select>";
-    
-    echo"</body></html>";
+echo"</body></html>";
 ?>

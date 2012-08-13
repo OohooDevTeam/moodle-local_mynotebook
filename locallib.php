@@ -34,6 +34,7 @@ defined('MOODLE_INTERNAL') || die();
  * @param array $things
  * @return object
  */
+
 //Reindex a single array
 function reorderindex(array $source, $conditions_list = array()) {
     $i = 0;
@@ -71,19 +72,7 @@ function reindex_this_array($anArray) {
     return $reindexed_array;
 }
 
-//Grabs the page url
-//function curPageURL() {
-//    $pageURL = 'http';
-//    //if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
-//    $pageURL .= "://";
-//    if ($_SERVER["SERVER_PORT"] != "80") {
-//        $pageURL .= $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . $_SERVER["REQUEST_URI"];
-//    } else {
-//        $pageURL .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
-//    }
-//    return $pageURL;
-//}
-//Calls the export function
+//Exports the user notes
 function call_to_export() {
 
     echo "<script type='text/javascript'>
@@ -116,7 +105,7 @@ xmlhttp.send();
     echo "</script>";
 }
 
-//Check whether the delete or restore button was clicked
+//Check whether the delete or restore button was clicked in the recycle bin
 function check_button_clicked() {
     global $CFG;
     echo "<script type='text/javascript'>
@@ -192,8 +181,6 @@ function hidden_note_title_values($i, $courseid, $noteid) {
     echo "<input id='iterator' type='hidden' value=' $i '/>";
     echo "<input id='courseid$i' type='hidden' value=' $courseid '/>";
     echo "<input id='note_id$i' type='hidden' value=' $noteid '/>";
-    //Debugging
-//    echo $i . '</br>' . $courseid . '</br>' . $noteid;
 }
 
 ?>
