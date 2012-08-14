@@ -25,10 +25,16 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+//Grabs the user input for the filename
+$filename = $_POST['filename'];
+echo $filename;
+$filename = $filename . '.doc';
+
 header("Content-type: application/vnd.ms-word");
 //	header("Content-type: application/pdf");
 
-header("Content-Disposition: attachment; Filename=SaveAsWordDoc.doc");
+header("Content-Disposition: attachment; Filename=$filename");
+
 
 echo'
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -38,12 +44,25 @@ echo'
 <title>MyNotes</title>
 </head>';
 
+require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
+
+//Takes user input to export wither all note or specific course notes
+$user_choice = optional_param('user_choice', NULL, PARAM_TEXT);
+
+if ($user_choice == 'all_notes'){
+    $notes = $DB->get_records('notes', array('userid' => $USER->id, 'deleted' => 0));
+
+} else if ($user_choice == 'course_notes'){
+    $course_name = $_POST['course_name'];
+    
+    $course_id = $DB->get_record('course', array('fullname'=>$course_name));
+    
+    $notes = $DB->get_records('notes', array('userid'=>$USER->id, 'deleted'=>0, 'courseid'=>$course_id->id));
+
+}
 
 echo'<body>';
 
-require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
-
-$notes = $DB->get_records('notes', array('userid' => $USER->id, 'deleted' => 0));
 $note_name = array();
 $note_content = array();
 $courseid = array();

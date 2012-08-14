@@ -39,7 +39,6 @@ $PAGE->requires->css('/local/mynotebook/css/target.css');
 $PAGE->requires->css('/local/mynotebook/css/paper.css');
 $PAGE->requires->css('/local/mynotebook/css/followtab.css');
 
-
 $context = get_context_instance(CONTEXT_SYSTEM);
 
 $PAGE->set_context($context);
@@ -196,8 +195,11 @@ echo"</div>"; //End topshelf div
 echo"<ul id='followTab'>";
 echo"<li><button class='export'><img src='images/export.png' title='Export Notes'/></button></li>";
 //echo"<li><a class='export1' href='html2word.php'><img src='images/export.png' title='Export1 Test'/></a></li>";
-echo"<li><button class='export1'><img src='images/export.png' title='Export1 Test'/></button></li>";
-echo"<li><a class='merge' href='mergenotes.php'><img src='images/merge.png' title='Merge Notes'/></a></li>";
+//echo"<li><button class='export1'><img src='images/export.png' title='Export1 Test'/></button></li>";
+
+//echo"<li><a class='merge' href='mergenotes.php'><img src='images/merge.png' title='Merge Notes'/></a></li>";
+echo"<li><button class='merge'><img src='images/merge.png' title='Merge Notes'/></button></li>";
+
 echo"<li><button class='bookmark'><img src='images/bookmark_icon.png' title='Add Bookmark'/></button></li>";
 //echo"<li><button class='settings'><img src='images/settings.png' title='Settings'/></button></li>";
 echo"<li><a class='recyclebin' href='recycle.php'><img src='images/recycle.png' title='Recycle Bin'/></a></li>";
@@ -229,23 +231,38 @@ echo"<div style='display:none'>";
     echo"</div>";//export
 
     //Testing export with headers
-    echo"<div id='export1' title='Export Notes'>";
-        echo "<textarea id='areaText'>
-        \n
-        \n
-
-        </textarea>";
-    echo"</div>";
+//    echo"<div id='export1' title='Export Notes'>";
+//        echo "<textarea id='areaText'>
+//        \n
+//        \n
+//
+//        </textarea>";
+//    echo"</div>";
 
 
     //Merge Notes
-    echo"<div id='merge' title='Merge Notes'></div>";
+//    echo"<div id='merge' title='Merge Notes'></div>";
+        echo"<div id='merge' title='Merge Notes'>";
+
+//              echo"<fieldset>";
+//            echo "<form>
+//                Merge:
+//                <select name='merge' onchange='merge_courses(this.value)'>
+//                <option value=''>None</option>
+//                <option value='All Notes'> All Notes </option>
+//                <option value='Course Notes'> Course Notes </option>
+//                </select>
+//            </form>
+//        </fieldset>
+//        <div id='Show_courses'></div>";
+        display_courses_2_merge();
+        echo"</div>";
 
     //Bookmarks
     echo"<div id='bookmark' title='Bookmark'></div>";
 
     //Settings
-    echo"<div id='settings' title='Settings'></div>";
+//    echo"<div id='settings' title='Settings'></div>";
 
     //Recycle Bin
     echo"<div id='recyclebin' title='Recycle Bin'></div>";

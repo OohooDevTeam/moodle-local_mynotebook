@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -82,7 +81,7 @@ if (str=='')
   {
   document.getElementById('Show_option').innerHTML='';
   return;
-  } 
+  }
 if (window.XMLHttpRequest)
   {// code for IE7+, Firefox, Chrome, Opera, Safari
   xmlhttp=new XMLHttpRequest();
@@ -98,7 +97,42 @@ xmlhttp.onreadystatechange=function()
     document.getElementById('Show_option').innerHTML=xmlhttp.responseText;
     }
   }
+  console.log(str);
 xmlhttp.open('GET','export.php?q='+str ,true);
+xmlhttp.send();
+}
+";
+    echo "</script>";
+}
+
+//Merge notes
+function merge() {
+
+echo "<script type='text/javascript'>
+function merge_notes(str)
+{
+if (str=='')
+  {
+  document.getElementById('Merge_option').innerHTML='';
+  return;
+  }
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject('Microsoft.XMLHTTP');
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById('Merge_option').innerHTML=xmlhttp.responseText;
+    }
+  }
+  console.log(str);
+xmlhttp.open('GET','mergenotes.php?q='+str ,true);
 xmlhttp.send();
 }
 ";
@@ -182,5 +216,106 @@ function hidden_note_title_values($i, $courseid, $noteid) {
     echo "<input id='courseid$i' type='hidden' value=' $courseid '/>";
     echo "<input id='note_id$i' type='hidden' value=' $noteid '/>";
 }
+
+
+function display_courses_2_merge(){
+    global $DB, $USER;
+    merge();
+
+    $courses = enrol_get_users_courses($USER->id);
+    $registered_courseids = array();
+    $registered_courseids = array_keys($courses);
+
+    $courseids = $DB->get_records('notes', array('userid' => $USER->id));
+
+
+    $array_courseid = array();
+    foreach ($courseids as $courseid) {
+        $array_courseid[] = $courseid->courseid;
+    }
+
+    $conditions_list = array(TRUE, FALSE, NULL);
+    $arrid = array_unique($array_courseid);
+    $reordered_courseid = reorderindex($arrid, $conditions_list);
+
+
+    $courses = array();
+    $course_name = array();
+
+    for ($i = 0; $i < sizeof($reordered_courseid); $i++) {
+        $courses = $DB->get_record('course', array('id' => $reordered_courseid[$i]));
+        $course_name[] = $courses->fullname;
+    }
+
+    $course_no_notes = array();
+    //Finds all courses with no notes, reorders them, and then stores it
+    if (sizeof($registered_courseids) > sizeof($reordered_courseid)) {
+        $course_no_notes = array_diff($registered_courseids, $reordered_courseid);
+        $course_no_notes = reorderindex($course_no_notes);
+    } else {
+        $course_no_notes = array_diff($reordered_courseid, $registered_courseids);
+        $course_no_notes = reorderindex($course_no_notes);
+    }
+    $number_no_notes = sizeof($course_no_notes);
+    $count = sizeof($course_name);
+
+    echo "<div id='merge' title='Merge Notes'>";
+    echo "<fieldset>";
+    echo"<form>";
+    //Course on left hand
+    echo "<select name='merge' id='merge' style='width:100px' onchange='merge_notes(this.value)'>";
+    echo"<option value=''>None</option>";
+    //Displays courses with notes
+    for ($i = 0; $i < $count; $i++) {
+        echo "<option value='$course_name[$i]'> $course_name[$i]</option>";
+    }
+
+    //Courses with no notes as greyed out
+    for ($j = 0; $j < $number_no_notes; $j++) {
+        $coursenames = $DB->get_record('course', array('id' => $course_no_notes[$j]));
+        if (strlen($coursenames->fullname) < 28) {
+            $no_notes = $coursenames->fullname;
+        } else {
+            $no_notes = substr($coursenames->fullname, 0, 27);
+            $no_notes = $no_notes . "...";
+        }
+        echo "<option disabled='disabled'>$no_notes</option>";
+    }
+    echo"</select>";
+    echo"</form>";
+    echo"</fieldset>";
+    echo"<div id='Merge_option'></div>";
+    echo"</div>";
+
+
+//    echo "<div id='merge_right' title='Right Course'>";
+//    echo "<fieldset>";
+//    echo"<form>";
+//    //Course on right hand
+//    echo "<select name='merge_right' id='merge_right' style='width:100px' onchange='merge_courses(this.value)'>";
+//    echo"<option value=''>None</option>";
+//    //Displays courses with notes
+//    for ($i = 0; $i < $count; $i++) {
+//        echo "<option> $course_name[$i]</option>";
+//    }
+//
+//    //Displays courses with no notes greyed out
+//    for ($j = 0; $j < $number_no_notes; $j++) {
+//        $coursenames = $DB->get_record('course', array('id' => $course_no_notes[$j]));
+//        if (strlen($coursenames->fullname) < 28) {
+//            $no_notes = $coursenames->fullname;
+//        } else {
+//            $no_notes = substr($coursenames->fullname, 0, 27);
+//            $no_notes = $no_notes . "...";
+//        }
+//        echo "<option disabled='disabled'>$no_notes</option>";
+//    }
+//    echo"</select>";
+//    echo"</form>";
+//    echo"</fieldset>";
+//    echo"<div id='Merge_option'></div>";
+//    echo"</div>";
+
+    }
 
 ?>

@@ -41,43 +41,59 @@ echo"<html><head>";
 
 echo"</head><body>";
 
+echo "MRGE";
+$q = $_GET["q"];
 
-$courses = enrol_get_users_courses($USER->id);
-$registered_courseids = array();
-$registered_courseids = array_keys($courses);
-
-$courseids = $DB->get_records('notes', array('userid' => $USER->id));
-
-
-$array_courseid = array();
-foreach ($courseids as $courseid) {
-    $array_courseid[] = $courseid->courseid;
+if ($q == 'Testing') {
+    echo $q;
+} else if ($q == 'New Course') {
+    echo $q;
 }
 
-$conditions_list = array(TRUE, FALSE, NULL);
-$arrid = array_unique($array_courseid);
-$reordered_courseid = reorderindex($arrid, $conditions_list);
 
 
-$courses = array();
-$course_name = array();
 
-for ($i = 0; $i < sizeof($reordered_courseid); $i++) {
-    $courses = $DB->get_record('course', array('id' => $reordered_courseid[$i]));
-    $course_name[] = $courses->fullname;
-}
 
-$course_no_notes = array();
-if (sizeof($registered_courseids) > sizeof($reordered_courseid)) {
-    $course_no_notes = array_diff($registered_courseids, $reordered_courseid);
-    $course_no_notes = reorderindex($course_no_notes);
-} else {
-    $course_no_notes = array_diff($reordered_courseid, $registered_courseids);
-    $course_no_notes = reorderindex($course_no_notes);
-}
-$number_no_notes = sizeof($course_no_notes);
-$count = sizeof($course_name);
 
+//Grab notes for both course to merge
+
+/**************Moved to locallib***********************/
+//$courses = enrol_get_users_courses($USER->id);
+//$registered_courseids = array();
+//$registered_courseids = array_keys($courses);
+//
+//$courseids = $DB->get_records('notes', array('userid' => $USER->id));
+//
+//
+//$array_courseid = array();
+//foreach ($courseids as $courseid) {
+//    $array_courseid[] = $courseid->courseid;
+//}
+//
+//$conditions_list = array(TRUE, FALSE, NULL);
+//$arrid = array_unique($array_courseid);
+//$reordered_courseid = reorderindex($arrid, $conditions_list);
+//
+//
+//$courses = array();
+//$course_name = array();
+//
+//for ($i = 0; $i < sizeof($reordered_courseid); $i++) {
+//    $courses = $DB->get_record('course', array('id' => $reordered_courseid[$i]));
+//    $course_name[] = $courses->fullname;
+//}
+//
+//$course_no_notes = array();
+//if (sizeof($registered_courseids) > sizeof($reordered_courseid)) {
+//    $course_no_notes = array_diff($registered_courseids, $reordered_courseid);
+//    $course_no_notes = reorderindex($course_no_notes);
+//} else {
+//    $course_no_notes = array_diff($reordered_courseid, $registered_courseids);
+//    $course_no_notes = reorderindex($course_no_notes);
+//}
+//$number_no_notes = sizeof($course_no_notes);
+//$count = sizeof($course_name);
+//
 //echo "<select name='course_name_left' id='course_name_left' style='width:100px'>";
 ////Displays courses with notes
 //for ($i = 0; $i < $count; $i++) {

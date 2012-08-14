@@ -106,10 +106,10 @@ $(document).ready(function(){
     });
 });
 
-//controls the export popup
+//Controls the merge window //new one
 $(document).ready(function(){
     $(function() {
-        $( "#export1" ).dialog({
+        $( "#merge" ).dialog({
             autoOpen: false,
             modal:false,
             resizable: false,
@@ -118,7 +118,7 @@ $(document).ready(function(){
                 $this
                 .dialog("widget")
                 .effect("transfer", {
-                    to: "#export1",
+                    to: "#merge",
                     className: "ui-effects-transfer"
                 }, 500, function() {
                     $this.remove();
@@ -129,7 +129,7 @@ $(document).ready(function(){
                 $this
                 .dialog("widget")
                 .effect("transfer", {
-                    to: "#export1",
+                    to: "#merge",
                     className: "ui-effects-transfer"
                 }, 500, function() {
                     $this.remove();
@@ -138,45 +138,45 @@ $(document).ready(function(){
 
         });
 
-        $( ".export1" ).click(function() {
+        $( ".merge" ).click(function() {
             $('#bookmark').dialog('close');
             $('#settings').dialog('close');
-            $( "#export1" ).dialog( "open" );
+            $( "#merge" ).dialog( "open" );
             return false;
         });
     });
 });
 
-//controls the merge popup
-$(document).ready(function(){
-    $(document).on('click', '.merge', function(){
-//    $('.merge').live('click',function(){
-        $('#merge').dialog('destroy');
-        //Loads the page url and then opens it up in a popup window
-        $('#merge').load($(this).attr('href'), function() {
-            setTimeout(function(){
-                $( "#merge" ).dialog({
-                    resizable: true,
-                    modal:false,
-                    show: "explode",
-                    hide: "explode",
-                    //IE does not like the auto width
-                    width:"auto",
-                    height:"auto",
-                    position:"center"
-                });
-                return false;
-            }, 50);
-        });
-        return false;
-    });
-    //Closes the dialog when 'esc' key is pressed
-    $(document).keyup(function(e) {
-        if (e.keyCode == 27) {
-            $('#merge').dialog('close');
-        }
-    });
-});
+//controls the merge popup //old method
+//$(document).ready(function(){
+//    $(document).on('click', '.merge', function(){
+////    $('.merge').live('click',function(){
+//        $('#merge').dialog('destroy');
+//        //Loads the page url and then opens it up in a popup window
+//        $('#merge').load($(this).attr('href'), function() {
+//            setTimeout(function(){
+//                $( "#merge" ).dialog({
+//                    resizable: true,
+//                    modal:false,
+//                    show: "explode",
+//                    hide: "explode",
+//                    //IE does not like the auto width
+//                    width:"auto",
+//                    height:"auto",
+//                    position:"center"
+//                });
+//                return false;
+//            }, 50);
+//        });
+//        return false;
+//    });
+//    //Closes the dialog when 'esc' key is pressed
+//    $(document).keyup(function(e) {
+//        if (e.keyCode == 27) {
+//            $('#merge').dialog('close');
+//        }
+//    });
+//});
 
 //controls the bookmark popup
 $(document).ready(function(){

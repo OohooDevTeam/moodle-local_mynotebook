@@ -78,37 +78,97 @@ if ($q == 'All Notes') {
     echo "No option selected";
 }
 
-//Exports all usre notes
+//Exports all user notes
+//function export_all() {
+//    echo"</br>";
+//    echo"<form id='export_all' name='export_all' method='post' action='word_template.php'>";
+//    echo"Name: ";
+//    echo"<input name='filename' type='text' id='filename' size='10' /></br></br>
+//
+//   extension:
+//   <select name='tpl' id='tpl'>
+//            <option value='ms_word.docx'> Ms Word Document (.docx)</option>
+//            </select>";
+//
+//    echo"<div id='save_as_file' style='display:none;'>, save as file with suffix: ";
+//    echo"<input name='suffix' type='text' id='suffix' size='10' />(let empty for download),</div>";
+//    echo "</br></br>";
+//    //Input type before was submit
+//    echo"<input type='image' name='btn_go' id='btn_go' value='export' src='images/submit.gif' />";
+//    echo"</form>";
+//}
+
+//Exports speicified user course notes
+//function export_course($course_name, $count, $course_no_notes, $number_no_notes) {
+//    global $DB;
+//    echo"</br>";
+//    echo"<form id='export_course' name='export_course' method='post' action='course_template.php' >";
+//    echo"Name: ";
+//    echo"<input name='filename' type='text' id='filename' size='10' /></br></br>
+//
+//                        extension:
+//            <select name='tpl' id='tpl'>
+//            <option value='ms_word.docx'> Ms Word Document (.docx)</option>
+//            </select>
+//            </br></br>
+//            Course : ";
+//    echo "<select name='course_name' id='course_name'>";
+//    //Creates a drop down menu with all the course
+//    for ($i = 0; $i < $count; $i++) {
+//        echo "<option> $course_name[$i]</option>";
+//    }
+//
+//    for ($j = 0; $j < $number_no_notes; $j++) {
+//        $coursenames = $DB->get_record('course', array('id' => $course_no_notes[$j]));
+//        if (strlen($coursenames->fullname) < 28) {
+//            $no_notes = $coursenames->fullname;
+//        } else {
+//            $no_notes = substr($coursenames->fullname, 0, 27);
+//            $no_notes = $no_notes . "...";
+//        }
+//        //Displays courses with no notes as greyed out
+//        echo "<option disabled='disabled'>$no_notes</option>";
+//    }
+//    echo"</select>";
+//
+//    echo"<div id='save_as_file' style='display:none;'>, save as file with suffix: ";
+//    echo"<input name='suffix' type='text' id='suffix' size='10' />(let empty for download),</div>";
+//        echo "</br></br>";
+//    echo"<input type='image' name='btn_go' id='btn_go' value='export' src='images/submit.gif' />";
+//    echo"</form>";
+//}
+
+//Exports all users notes
 function export_all() {
     echo"</br>";
-    echo"<form id='export_all' name='export_all' method='post' action='word_template.php'>";
+    echo"<form id='export_all' name='export_all' method='post' action='html2word.php?user_choice=all_notes'>";
     echo"Name: ";
-    echo"<input name='filename' type='text' id='filename' size='10' /></br></br> 
-            
+    echo"<input name='filename' type='text' id='filename' size='10' /></br></br>
+
    extension:
    <select name='tpl' id='tpl'>
-            <option value='ms_word.docx'> Ms Word Document (.docx)</option>
+            <option value='ms_word.doc'> Ms Word Document (.doc)</option>
             </select>";
 
-    echo"<div id='save_as_file' style='display:none;'>, save as file with suffix: ";
-    echo"<input name='suffix' type='text' id='suffix' size='10' />(let empty for download),</div>";
+//    echo"<div id='save_as_file' style='display:none;'>, save as file with suffix: ";
+//    echo"<input name='suffix' type='text' id='suffix' size='10' />(let empty for download),</div>";
     echo "</br></br>";
     //Input type before was submit
     echo"<input type='image' name='btn_go' id='btn_go' value='export' src='images/submit.gif' />";
     echo"</form>";
 }
 
-//Exports speicified user course notes
+//Exports specified user course notes
 function export_course($course_name, $count, $course_no_notes, $number_no_notes) {
     global $DB;
     echo"</br>";
-    echo"<form id='export_course' name='export_course' method='post' action='course_template.php' >";
+    echo"<form id='export_course' name='export_course' method='post' action='html2word.php?user_choice=course_notes' >";
     echo"Name: ";
-    echo"<input name='filename' type='text' id='filename' size='10' /></br></br> 
-            
-                        extension:   
+    echo"<input name='filename' type='text' id='filename' size='10' /></br></br>
+
+            extension:
             <select name='tpl' id='tpl'>
-            <option value='ms_word.docx'> Ms Word Document (.docx)</option>
+            <option value='ms_word.doc'> Ms Word Document (.doc)</option>
             </select>
             </br></br>
             Course : ";
@@ -117,11 +177,12 @@ function export_course($course_name, $count, $course_no_notes, $number_no_notes)
     for ($i = 0; $i < $count; $i++) {
         echo "<option> $course_name[$i]</option>";
     }
-
+    //Creates a dropdown menu of all courses without notes greyed out
     for ($j = 0; $j < $number_no_notes; $j++) {
         $coursenames = $DB->get_record('course', array('id' => $course_no_notes[$j]));
         if (strlen($coursenames->fullname) < 28) {
             $no_notes = $coursenames->fullname;
+        //Adds ellipses to names that are too long
         } else {
             $no_notes = substr($coursenames->fullname, 0, 27);
             $no_notes = $no_notes . "...";
@@ -131,11 +192,11 @@ function export_course($course_name, $count, $course_no_notes, $number_no_notes)
     }
     echo"</select>";
 
-    echo"<div id='save_as_file' style='display:none;'>, save as file with suffix: ";
-    echo"<input name='suffix' type='text' id='suffix' size='10' />(let empty for download),</div>";
+//    echo"<div id='save_as_file' style='display:none;'>, save as file with suffix: ";
+//    echo"<input name='suffix' type='text' id='suffix' size='10' />(let empty for download),</div>";
         echo "</br></br>";
     echo"<input type='image' name='btn_go' id='btn_go' value='export' src='images/submit.gif' />";
     echo"</form>";
 }
-            
+
 ?>
