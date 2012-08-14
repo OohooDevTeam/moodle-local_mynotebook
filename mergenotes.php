@@ -31,102 +31,46 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
 require_once(dirname(__FILE__) . '/locallib.php');
 global $DB, $USER;
 
-$system = get_context_instance(CONTEXT_SYSTEM);
-$PAGE->set_context($system);
-$PAGE->set_url('/local/mynotebook/mergenotes.php');
+//$system = get_context_instance(CONTEXT_SYSTEM);
+//$PAGE->set_context($system);
+//$PAGE->set_url('/local/mynotebook/mergenotes.php');
 
 require_login();
 
 echo"<html><head>";
 
 echo"</head><body>";
+//$test = $_GET["merge"];
+if (isset($_GET["merge"])){
 
-echo "MRGE";
-$q = $_GET["q"];
+    echo "FALSE";
 
-if ($q == 'TESTING') {
-    echo $q;
-} else if ($q == 'New Course') {
-    echo $q;
+
+} else {
+
+    print_object($_REQUEST);
+    $source = $_POST["source"];
+    $destination = $_POST["destination"];
+
+    echo 'source' . $source . '</br>';
+    echo 'destination' . $destination . '</br>';
+
+    //Get the source and destination of the notes being merged
+    $source_note = $DB->get_record('notes', array('userid'=>$USER->id, 'name'=>$source));
+    $destination_note = $DB->get_record('notes', array('userid'=>$USER->id, 'name'=>$destination));
+
+    echo $source_note->text;
+    echo "</br></br>";
+    echo $destination_note->text;
+
+    merge_button();
+    //echo "<button onclick='mergenotes()'>MAGIC!</button>";
+
+    
+
+    echo"<a class='merger' href='mergenotes.php?merge=merge'><img src='images/merge.png' title='Merge'/></a>";
 }
 
-
-
-//Grab notes for both course to merge
-
-/**************Moved to locallib***********************/
-//$courses = enrol_get_users_courses($USER->id);
-//$registered_courseids = array();
-//$registered_courseids = array_keys($courses);
-//
-//$courseids = $DB->get_records('notes', array('userid' => $USER->id));
-//
-//
-//$array_courseid = array();
-//foreach ($courseids as $courseid) {
-//    $array_courseid[] = $courseid->courseid;
-//}
-//
-//$conditions_list = array(TRUE, FALSE, NULL);
-//$arrid = array_unique($array_courseid);
-//$reordered_courseid = reorderindex($arrid, $conditions_list);
-//
-//
-//$courses = array();
-//$course_name = array();
-//
-//for ($i = 0; $i < sizeof($reordered_courseid); $i++) {
-//    $courses = $DB->get_record('course', array('id' => $reordered_courseid[$i]));
-//    $course_name[] = $courses->fullname;
-//}
-//
-//$course_no_notes = array();
-//if (sizeof($registered_courseids) > sizeof($reordered_courseid)) {
-//    $course_no_notes = array_diff($registered_courseids, $reordered_courseid);
-//    $course_no_notes = reorderindex($course_no_notes);
-//} else {
-//    $course_no_notes = array_diff($reordered_courseid, $registered_courseids);
-//    $course_no_notes = reorderindex($course_no_notes);
-//}
-//$number_no_notes = sizeof($course_no_notes);
-//$count = sizeof($course_name);
-//
-//echo "<select name='course_name_left' id='course_name_left' style='width:100px'>";
-////Displays courses with notes
-//for ($i = 0; $i < $count; $i++) {
-//    echo "<option> $course_name[$i]</option>";
-//}
-//
-////Courses with no notes as greyed out
-//for ($j = 0; $j < $number_no_notes; $j++) {
-//    $coursenames = $DB->get_record('course', array('id' => $course_no_notes[$j]));
-//    if (strlen($coursenames->fullname) < 28) {
-//        $no_notes = $coursenames->fullname;
-//    } else {
-//        $no_notes = substr($coursenames->fullname, 0, 27);
-//        $no_notes = $no_notes . "...";
-//    }
-//    echo "<option disabled='disabled'>$no_notes</option>";
-//}
-//echo"</select>";
-//echo "<select name='course_name_right' id='course_name_right' style='width:100px'>";
-////Displays courses with notes
-//for ($i = 0; $i < $count; $i++) {
-//    echo "<option> $course_name[$i]</option>";
-//}
-//
-////Displays courses with no notes greyed out
-//for ($j = 0; $j < $number_no_notes; $j++) {
-//    $coursenames = $DB->get_record('course', array('id' => $course_no_notes[$j]));
-//    if (strlen($coursenames->fullname) < 28) {
-//        $no_notes = $coursenames->fullname;
-//    } else {
-//        $no_notes = substr($coursenames->fullname, 0, 27);
-//        $no_notes = $no_notes . "...";
-//    }
-//    echo "<option disabled='disabled'>$no_notes</option>";
-//}
-//echo"</select>";
 
 echo"</body></html>";
 ?>

@@ -65,6 +65,9 @@ $PAGE->requires->js('/local/mynotebook/js/jquery-1.7.2.js', true);
 $PAGE->requires->js('/local/mynotebook/js/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js', true);
 $PAGE->requires->js('/local/mynotebook/js/trigger.js', true);
 
+//$PAGE->requires->js('/local/mynotebook/js/essential_functions.js', true);
+
+
 echo $OUTPUT->header();
 
 //Grabs all courses of the user
@@ -230,32 +233,10 @@ echo"<div style='display:none'>";
         <div id='Show_option'></div>";
     echo"</div>";//export
 
-    //Testing export with headers
-//    echo"<div id='export1' title='Export Notes'>";
-//        echo "<textarea id='areaText'>
-//        \n
-//        \n
-//
-//        </textarea>";
-//    echo"</div>";
-
-
     //Merge Notes
 //    echo"<div id='merge' title='Merge Notes'></div>";
         echo"<div id='merge' title='Merge Notes'>";
-
-//              echo"<fieldset>";
-//            echo "<form>
-//                Merge:
-//                <select name='merge' onchange='merge_courses(this.value)'>
-//                <option value=''>None</option>
-//                <option value='All Notes'> All Notes </option>
-//                <option value='Course Notes'> Course Notes </option>
-//                </select>
-//            </form>
-//        </fieldset>
-//        <div id='Show_courses'></div>";
-        display_courses_2_merge();
+            display_courses_2_merge();
         echo"</div>";
 
     //Bookmarks
