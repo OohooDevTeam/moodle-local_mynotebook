@@ -259,34 +259,66 @@ function display_courses_2_merge(){
     $number_no_notes = sizeof($course_no_notes);
     $count = sizeof($course_name);
 
+//    echo "<div id='merge' title='Merge Notes'>";
+//    echo "<fieldset>";
+//    echo"<form>";
+//    //Course on left hand
+//    echo "<select name='merge' id='merge' style='width:100px' onchange='merge_notes(this.value)'>";
+//        echo"<option value=''>None</option>";
+//        //Displays courses with notes
+//        for ($i = 0; $i < $count; $i++) {
+//            echo "<option value='$course_name[$i]'> $course_name[$i]</option>";
+//        }
+//
+//        //Courses with no notes as greyed out
+//        for ($j = 0; $j < $number_no_notes; $j++) {
+//            $coursenames = $DB->get_record('course', array('id' => $course_no_notes[$j]));
+//            if (strlen($coursenames->fullname) < 28) {
+//                $no_notes = $coursenames->fullname;
+//            } else {
+//                $no_notes = substr($coursenames->fullname, 0, 27);
+//                $no_notes = $no_notes . "...";
+//            }
+//            echo "<option disabled='disabled'>$no_notes</option>";
+//        }
+//    echo"</select>";
+//    echo"</form>";
+//    echo"</fieldset>";
+//    echo"<div id='Merge_option'></div>";
+//    echo"</div>";
+
     echo "<div id='merge' title='Merge Notes'>";
     echo "<fieldset>";
     echo"<form>";
     //Course on left hand
     echo "<select name='merge' id='merge' style='width:100px' onchange='merge_notes(this.value)'>";
-    echo"<option value=''>None</option>";
-    //Displays courses with notes
-    for ($i = 0; $i < $count; $i++) {
-        echo "<option value='$course_name[$i]'> $course_name[$i]</option>";
-    }
+        //Displays courses with notes
+        for ($i = 0; $i < $count; $i++) {
+            echo "<optgroup label='$course_name[$i]'</optgroup>";
+            $courseid = $DB->get_record('course', array('fullname'=>$course_name[$i]));
+            $course_notes = $DB->get_records('notes', array('userid'=>$USER->id, 'courseid'=>$courseid->id));
+            foreach ($course_notes as $notes){
+                echo "<option value='$notes->name'>$notes->name</option>";
+            }
 
-    //Courses with no notes as greyed out
-    for ($j = 0; $j < $number_no_notes; $j++) {
-        $coursenames = $DB->get_record('course', array('id' => $course_no_notes[$j]));
-        if (strlen($coursenames->fullname) < 28) {
-            $no_notes = $coursenames->fullname;
-        } else {
-            $no_notes = substr($coursenames->fullname, 0, 27);
-            $no_notes = $no_notes . "...";
         }
-        echo "<option disabled='disabled'>$no_notes</option>";
-    }
+
+        //Courses with no notes as greyed out
+        for ($j = 0; $j < $number_no_notes; $j++) {
+            $coursenames = $DB->get_record('course', array('id' => $course_no_notes[$j]));
+            if (strlen($coursenames->fullname) < 28) {
+                $no_notes = $coursenames->fullname;
+            } else {
+                $no_notes = substr($coursenames->fullname, 0, 27);
+                $no_notes = $no_notes . "...";
+            }
+            echo "<optgroup label='$no_notes' disabled='disabled'></optgroup>";
+        }
     echo"</select>";
     echo"</form>";
     echo"</fieldset>";
     echo"<div id='Merge_option'></div>";
     echo"</div>";
-
 
 //    echo "<div id='merge_right' title='Right Course'>";
 //    echo "<fieldset>";

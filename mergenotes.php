@@ -44,14 +44,11 @@ echo"</head><body>";
 echo "MRGE";
 $q = $_GET["q"];
 
-if ($q == 'Testing') {
+if ($q == 'TESTING') {
     echo $q;
 } else if ($q == 'New Course') {
     echo $q;
 }
-
-
-
 
 
 
