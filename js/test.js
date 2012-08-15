@@ -1,10 +1,11 @@
 	$(document).ready(function(){
-				
+
 		$('#load').click(function(){
-		
+
 			$('#dialog').remove();
-			$('body').append('<div id="dialog" \/>');
-			$('#dialog').dialog({	
+//			$('body').append('<div id="dialog" \/>');
+			$('body').append('<div id="dialog" />');
+			$('#dialog').dialog({
 				autoOpen: false,
 				bgiframe: true,
 				resizable: false,
@@ -19,9 +20,9 @@
 					tinyMCE.get('editor').remove();
 					$('#editor').remove();
 				}
-				
+
 			});
-		
+
 			$('#dialog').dialog('option', 'title', 'Edit');
 			$('#dialog').dialog('option', 'modal', true);
 			$('#dialog').dialog('option', 'buttons', {
@@ -34,8 +35,9 @@
 					$(this).dialog('close');
 				}
 			});
-		
-			$('#dialog').html('<textarea name="editor" id="editor"><\/textarea>');
+
+//			$('#dialog').html('<textarea name="editor" id="editor"><\/textarea>');
+			$('#dialog').html('<textarea name="editor" id="editor"></textarea>');
 			$('#dialog').dialog('open');
 			tinyMCE.init({
 				mode : "textareas",
@@ -51,15 +53,15 @@
 				extended_valid_elements: "style[*]",
 				width: "800",
 				height: "600",
-				
-				
+
+
 				setup : function(ed) {
 					ed.onInit.add(function(ed) {
 						//alert('Editor is done: ' + ed.id);
 						tinyMCE.get('editor').setContent($('#content').html());
 						tinyMCE.execCommand('mceRepaint');
 					});
-					
+
 					/*
 					ed.onPreInit.add(function(ed) {
 						alert("preinit");
@@ -72,20 +74,20 @@
 						alert('Editor contents was modified. Contents: ' + l.content);
 					});
 					*/
-					
+
 					/*
 					ed.onEvent.add(function(ed, e) {
 						console.debug('Editor event occured: ' + e.target.nodeName);
 					});
 					*/
 				}
-				 
-				
+
+
 		 	});
-			return false;	
-		
+			return false;
+
 	});
 
-		
-		
+
+
 	});

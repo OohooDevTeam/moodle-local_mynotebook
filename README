@@ -1,0 +1,12 @@
+Plugin:
+    local_mynotebook
+
+Description:
+    This plugin allows users to view all their notes. Each book represents a
+    course. Here, the user can edit, export, merge, delete, or restore their notes.
+
+Prerequisites:
+    Install the plugin 'mynotepad' before installing 'mynotebook'
+
+Installation:
+    Copy the folder 'mynotebook' into moodle/local

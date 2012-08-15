@@ -29,9 +29,9 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-//$plugin->version  = 2012071800;           // If version == 0 then module will not be installed
-$plugin->version  = 2012040901;           // If version == 0 then module will not be installed
+//$plugin->requires = 2010112400; //Moodle 2.0
+$plugin->requires = 2011070100; //Moodle 2.1
 
-//$module->version  = 2010032200;  // The current module version (Date: YYYYMMDDXX)
-//$module->requires = 2010031900;  // Requires this Moodle version
-$module->cron     = 0;           // Period for cron to check this module (secs)
+$plugin->maturity = MATURITY_ALPHA;
+$plugin->release = '0.5.0 (Build: 2012081500)';
+$plugin->component = 'local_mynotebook';

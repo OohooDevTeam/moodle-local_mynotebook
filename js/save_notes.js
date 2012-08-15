@@ -5,7 +5,7 @@
 
 //Controls the tinyMCE toolbar in the iFrame to show and hide
 function initMCE() {
-    
+
     setTimeout(function() {
         if(!tinyMCE.get('areaText')) {
             initMCE();
@@ -17,18 +17,18 @@ function initMCE() {
    //Make the height and width dynamic since they change when on blur and focus
             //When textarea is unactive
             $(editor.getBody()).blur(
-            function() 
+            function()
                 {
                     $(editor.getContainer()).find(".mceToolbar, .mceStatusbar").hide()
                         var width = 500;
                         var height = 620;
                         editor.theme.resizeTo(width, height);
-                        
+                        alert("BLURR");
                 });
-                
-            //While the textarea is active    
+
+            //While the textarea is active
             $(editor.getBody()).focus(
-            function() 
+            function()
             {
                 $(editor.getContainer()).find(".mceToolbar, .mceStatusbar").show()
                     var width = 500;
@@ -48,7 +48,7 @@ function initMCE() {
 
                 //'background': 'url(/moodle/local/mynotebook/images/theo.png)',
                 'background': '-webkit-gradient(linear, 0 0, 0 100%, from(#65faff), color-stop(4%, #fff)) 0 4px',
-                
+
 
                 '-webkit-background-size': '100% 20px',
                 '-moz-background-size': '100% 20px',
@@ -64,7 +64,7 @@ function initMCE() {
                 '-moz-box-shadow': '0 1px 2px rgba(0,0,0,0.07)',
                 'box-shadow': '0 1px 2px rgba(0,0,0,0.07)'
 
-            }) 
+            })
             .css({
                 'font': 'normal 12px/1.5 "Lucida Grande", arial, sans-serif',
                 'color': '#444',
@@ -164,7 +164,7 @@ function initMCE() {
         }
     }, 100);
 }
-          
+
 //Saves the notes changed when user presses "ctrl + s"
 var save = function() {
     //Initialized object
@@ -208,34 +208,9 @@ function trim(s)
 	{	r-=1;	}
 	return s.substring(l, r+1);
 }
-    
-//Saves the title of each note when user changes it
-//function save_title(){
-//    $(document).on('blur',".title", function(){
-//        var iteratorz = $(this).parent().parent().find("#iterator").val();
-////        console.log('TITLE blur');
-////        console.log(iteratorz);
-//       
-//        var temp_course = "#courseid";
-//        var temp_note = "#note_id";
-//        
-//        var trimmed_iterator = iteratorz.trim();
-//        
-//        var courseid = temp_course + trimmed_iterator;
-//        var noteid = temp_note + trimmed_iterator;
-//        
-//        $.post('save_notes.php',{
-//            'title': $(this).val(),
-//            'courseid1': $(courseid).val(),
-//            'note_id1': $(noteid).val()
-//        });
-//    });
-//}
-
 
 $(document).ready(function(){
     initMCE();
-//    save_title();
 
     //Save shortcut
     $(document).bind('keydown', function(event) {
@@ -245,7 +220,7 @@ $(document).ready(function(){
             event.preventDefault();
             event.stopPropagation();
             return false;
-        } 
+        }
     });
 });
 

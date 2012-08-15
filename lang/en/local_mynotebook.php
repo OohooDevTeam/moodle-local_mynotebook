@@ -29,6 +29,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+//$string['local_mynotebook:addinstance'] = 'Add a new local_mynotebook';
+
 $string['modulename'] = 'mynotebook';
 $string['modulenameplural'] = 'mynotebooks';
 $string['mynotebookfieldset'] = 'Custom example fieldset';

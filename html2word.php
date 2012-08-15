@@ -54,9 +54,9 @@ if ($user_choice == 'all_notes'){
 
 } else if ($user_choice == 'course_notes'){
     $course_name = $_POST['course_name'];
-    
+
     $course_id = $DB->get_record('course', array('fullname'=>$course_name));
-    
+
     $notes = $DB->get_records('notes', array('userid'=>$USER->id, 'deleted'=>0, 'courseid'=>$course_id->id));
 
 }
@@ -107,7 +107,7 @@ echo"<div align=center>
                 <p class='MsoNormal' align='center' style='text-align:center'><span lang='FR'>&nbsp;</span></p>
                 <p class='MsoNormal' align='center' style='text-align:center'><span lang='FR'>&nbsp;</span></p>
                 <p class='MsoNormal' align='center' style='text-align:center'><span lang='FR'>&nbsp;</span></p>
-                <p class='MsoNormal' align='center' style='text-align:center'><span lang='FR'>$note->courseid</span></p>
+                <p class='MsoNormal' align='center' style='text-align:center'><span lang='FR'>$note->name</span></p>
             </td>
             <td width='527' valign='top' style='width:395.4pt;border-top:none;border-left:
             none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;

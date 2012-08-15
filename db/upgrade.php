@@ -68,7 +68,7 @@ function xmldb_mynotebook_upgrade($oldversion) {
 ///   http://docs.moodle.org/en/Development:XMLDB_Documentation
 /// and to play with the XMLDB Editor (in the admin menu) and its
 /// PHP generation posibilities.
-    
+
   if ($oldversion < 2012040901) {
 
         // Define table mynotebook to be created
@@ -97,6 +97,11 @@ function xmldb_mynotebook_upgrade($oldversion) {
         // mynotebook savepoint reached
         upgrade_mod_savepoint(true, 2012040901, 'mynotebook');
     }
+
+    if ($oldversion < 2012081500) {
+    }
+
+
 /// And that's all. Please, examine and understand the 3 example blocks above. Also
 /// it's interesting to look how other modules are using this script. Remember that
 /// the basic idea is to have "blocks" of code (each one being executed only once,

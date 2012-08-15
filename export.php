@@ -83,7 +83,7 @@ function export_all() {
     echo"</br>";
     echo"<form id='export_all' name='export_all' method='post' action='html2word.php?user_choice=all_notes'>";
     echo"Name: ";
-    echo"<input name='filename' type='text' id='filename' size='10' /></br></br>
+    echo"<input name='filename' type='text' id='filename' size='10' required='required'/></br></br>
 
    extension:
    <select name='tpl' id='tpl'>
@@ -104,7 +104,7 @@ function export_course($course_name, $count, $course_no_notes, $number_no_notes)
     echo"</br>";
     echo"<form id='export_course' name='export_course' method='post' action='html2word.php?user_choice=course_notes' >";
     echo"Name: ";
-    echo"<input name='filename' type='text' id='filename' size='10' /></br></br>
+    echo"<input name='filename' type='text' id='filename' size='10' required='required'/></br></br>
 
             extension:
             <select name='tpl' id='tpl'>

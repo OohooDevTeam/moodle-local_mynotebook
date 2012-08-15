@@ -51,7 +51,8 @@ defined('MOODLE_INTERNAL') || die();
 $capabilities = array(
 
 /***************************** remove these comment marks and modify the code as needed
-    'mod/mynotebook:view' => array(
+
+   'mod/mynotebook:view' => array(
         'captype' => 'read',
         'contextlevel' => CONTEXT_MODULE,
         'legacy' => array(

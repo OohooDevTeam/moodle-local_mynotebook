@@ -48,24 +48,35 @@ echo"</head><body>";
     echo 'source' . $source . '</br>';
     echo 'destination' . $destination . '</br>';
 
-    //Get the source and destination of the notes being merged
-    $source_note = $DB->get_record('notes', array('userid'=>$USER->id, 'name'=>$source, 'deleted'=>0));
-    $destination_note = $DB->get_record('notes', array('userid'=>$USER->id, 'name'=>$destination, 'deleted'=>0));
+    //Cannot have the same source and destination. Probability of basically deleting the note itself
+    if ($source == $destination){
+        echo "<script type=text/javascript>";
+        echo "alert('Can not have the same source and destination.')";
+        echo "</script>";
+    } else {
 
-    echo $source_note->text;
-    echo "</br></br>";
-    echo $destination_note->text;
+        //Get the source and destination of the notes being merged
+        $source_note = $DB->get_record('notes', array('userid'=>$USER->id, 'name'=>$source, 'deleted'=>0));
+        $destination_note = $DB->get_record('notes', array('userid'=>$USER->id, 'name'=>$destination, 'deleted'=>0));
 
-    //update record
-    $merged_content = $destination_note->text . $source_note->text;
-    echo $merged_content;
-//    exit();
-    $destination_note->text = $merged_content;
-    $DB->update_record('notes', $destination_note);
-    
-    //delete old record
-    $delete_note = $DB->delete_records('notes', array('userid'=>$USER->id, 'name'=>$source, 'deleted'=>0));
+        echo $source_note->text;
+        echo "</br></br>";
+        echo $destination_note->text;
 
-    
+        //update record
+        $merged_content = $destination_note->text . $source_note->text;
+        echo $merged_content;
+    //    exit();
+        $destination_note->text = $merged_content;
+        $DB->update_record('notes', $destination_note);
+
+        //delete old record
+        $delete_note = $DB->delete_records('notes', array('userid'=>$USER->id, 'name'=>$source, 'deleted'=>0));
+
+        //Alerts user note merging is completed
+        echo "<script type=text/javascript>";
+        echo "alert('Merging Completed')";
+        echo "</script>";
+    }
 echo"</body></html>";
 ?>
