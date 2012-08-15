@@ -1,4 +1,7 @@
-	$(document).ready(function(){
+//Test file, delete
+
+
+$(document).ready(function(){
 
 		$('#load').click(function(){
 

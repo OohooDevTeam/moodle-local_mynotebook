@@ -119,9 +119,10 @@ function check_button_clicked() {
              break;
         }
     console.log(a);
-          window.location.href = '$CFG->wwwroot/local/mynotebook/recycle.php?' + a + '=' + a;
+          window.location.href = '$CFG->wwwroot/local/mynotebook/recycle.php?a=' + a;
     }";
-    //          window.location.href = '$CFG->wwwroot/local/mynotebook/recycle.php?test=' + a;
+
+//              window.location.href = '$CFG->wwwroot/local/mynotebook/recycle.php?' + a + '=' + a;
     echo "</script>";
 }
 
@@ -156,9 +157,12 @@ function check_all() {
       function checkedAll () {
         if (checked == false){
         checked = true
+            console.log(checked)
         } else {
         checked = false
+            console.log(checked)
         }
+
 	for (var i = 0; i < document.getElementById('check').elements.length; i++) {
 	  document.getElementById('check').elements[i].checked = checked;
 	}

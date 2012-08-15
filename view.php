@@ -207,7 +207,7 @@ echo"<li><button class='export'><img src='images/export.png' title='Export Notes
 //echo"<li><a class='merge' href='mergenotes.php'><img src='images/merge.png' title='Merge Notes'/></a></li>";
 echo"<li><button class='merge'><img src='images/merge.png' title='Merge Notes'/></button></li>";
 
-echo"<li><button class='bookmark'><img src='images/bookmark_icon.png' title='Add Bookmark'/></button></li>";
+//echo"<li><button class='bookmark'><img src='images/bookmark_icon.png' title='Add Bookmark'/></button></li>";
 //echo"<li><button class='settings'><img src='images/settings.png' title='Settings'/></button></li>";
 echo"<li><a class='recyclebin' href='recycle.php'><img src='images/recycle.png' title='Recycle Bin'/></a></li>";
 echo"</ul>";
@@ -241,14 +241,14 @@ echo"<div style='display:none'>";
 //    echo"<div id='merge' title='Merge Notes'></div>";
         echo"<div id='merge' title='Merge Notes'>";
         display_courses_2_merge();
-            
+
         merge();
         echo "<button onclick='merge_notes()'><img src='images/merge.png' title='Merge'/>MAGIC!</button>";
 
         echo"</div>";
 
     //Bookmarks
-    echo"<div id='bookmark' title='Bookmark'></div>";
+//    echo"<div id='bookmark' title='Bookmark'></div>";
 
     //Settings
 //    echo"<div id='settings' title='Settings'></div>";
