@@ -326,5 +326,6 @@ function display_courses_2_merge(){
 ";
     echo "</script>";
     }
+    //ghg
 
 ?>
