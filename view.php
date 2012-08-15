@@ -39,6 +39,8 @@ $PAGE->requires->css('/local/mynotebook/css/target.css');
 $PAGE->requires->css('/local/mynotebook/css/paper.css');
 $PAGE->requires->css('/local/mynotebook/css/followtab.css');
 
+//$PAGE->requires->css('/local/mynotebook/demo/jquery-ajax/css/tutorial.css');
+
 $context = get_context_instance(CONTEXT_SYSTEM);
 
 $PAGE->set_context($context);
@@ -65,10 +67,12 @@ $PAGE->requires->js('/local/mynotebook/js/jquery-1.7.2.js', true);
 $PAGE->requires->js('/local/mynotebook/js/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js', true);
 $PAGE->requires->js('/local/mynotebook/js/trigger.js', true);
 
+//$PAGE->requires->js('/local/mynotebook/demo/jquery-ajax/js/tutorial.js');
 //$PAGE->requires->js('/local/mynotebook/js/essential_functions.js', true);
 
 
 echo $OUTPUT->header();
+
 
 //Grabs all courses of the user
 $courses = enrol_get_users_courses($USER->id);
@@ -236,7 +240,11 @@ echo"<div style='display:none'>";
     //Merge Notes
 //    echo"<div id='merge' title='Merge Notes'></div>";
         echo"<div id='merge' title='Merge Notes'>";
-            display_courses_2_merge();
+        display_courses_2_merge();
+            
+        merge();
+        echo "<button onclick='merge_notes()'><img src='images/merge.png' title='Merge'/>MAGIC!</button>";
+
         echo"</div>";
 
     //Bookmarks

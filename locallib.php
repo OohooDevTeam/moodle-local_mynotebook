@@ -105,27 +105,6 @@ xmlhttp.send();
     echo "</script>";
 }
 
-//Retrieves the notes that the user wants to merge together
-function merge() {
-
-echo "<script type='text/javascript'>
-function merge_notes_left()
-{
-
-    var source = $('select#merge_left').val();
-    console.log(source);
-        console.log($('select#merge_left'));
-
-    var destination = $('select#merge_right').val();
-    console.log(destination);
-        console.log($('select#merge_right'));
-
-    $('#Merge_result').load('mergenotes.php', {'source': source, 'destination': destination});
-
-}";
-    echo "</script>";
-}
-
 //Check whether the delete or restore button was clicked in the recycle bin
 function check_button_clicked() {
     global $CFG;
@@ -250,12 +229,14 @@ function display_courses_2_merge(){
     echo"<form>";
     //Course on left hand
     echo "Source:</br>";
-    echo "<select style='width:200px' name='merge_left' id='merge_left' onchange='merge_notes_left()'>";
+    echo "<select style='width:200px' name='merge_left' id='merge_left'>";
+
+//    echo "<select style='width:200px' name='merge_left' id='merge_left' onchange='merge_notes_left()'>";
         //Displays courses with notes
         for ($i = 0; $i < $count; $i++) {
             echo "<optgroup label='$course_name[$i]'</optgroup>";
             $courseid = $DB->get_record('course', array('fullname'=>$course_name[$i]));
-            $course_notes = $DB->get_records('notes', array('userid'=>$USER->id, 'courseid'=>$courseid->id));
+            $course_notes = $DB->get_records('notes', array('userid'=>$USER->id, 'courseid'=>$courseid->id, 'deleted'=>0));
             foreach ($course_notes as $notes){
                 echo "<option value='$notes->name'>$notes->name</option>";
             }
@@ -284,12 +265,14 @@ function display_courses_2_merge(){
     echo"<form>";
     //Course on right hand
     echo "Destination:</br>";
-    echo "<select style='width:200px' name='merge_right' id='merge_right' onchange='merge_notes_left()'>";
+    echo "<select style='width:200px' name='merge_right' id='merge_right'>";
+
+//    echo "<select style='width:200px' name='merge_right' id='merge_right' onchange='merge_notes_left()'>";
         //Displays courses with notes
         for ($i = 0; $i < $count; $i++) {
             echo "<optgroup label='$course_name[$i]'</optgroup>";
             $courseid = $DB->get_record('course', array('fullname'=>$course_name[$i]));
-            $course_notes = $DB->get_records('notes', array('userid'=>$USER->id, 'courseid'=>$courseid->id));
+            $course_notes = $DB->get_records('notes', array('userid'=>$USER->id, 'courseid'=>$courseid->id, 'deleted'=>0));
             foreach ($course_notes as $notes){
                 echo "<option value='$notes->name'>$notes->name</option>";
             }
@@ -317,15 +300,50 @@ function display_courses_2_merge(){
 
     }
 
-    function merge_button(){
-            echo "<script language='JavaScript'>
+    //Onclick merges notes and deletes the source
+//    function merge_button(){
+//            echo "<script language='JavaScript'>
+//
+//      function mergenotes () {
+//
+//    var source = $('select#merge_left').val();
+//    console.log(source);
+//    var destination = $('select#merge_right').val();
+//    console.log(destination);
+//
+//        console.log('HELLO');
+//        $.post('mergenotes.php', {merge: 'merge', source: 'source', destination: 'destination'},
+//        function(data, textStatus)
+//        {
+//                alert('Response from server: ' + data);
+//        });
+//           console.log('BYO');
+//      }
+//";
+//    echo "</script>";
+//    }
 
-      function mergenotes () {
-        console.log('HELLO');
-      }
-";
+    //Retrieves the notes that the user wants to merge together
+function merge() {
+
+echo "<script type='text/javascript'>
+function merge_notes()
+{
+
+    var source = $('select#merge_left').val();
+    console.log(source);
+        console.log($('select#merge_left'));
+
+    var destination = $('select#merge_right').val();
+    console.log(destination);
+        console.log($('select#merge_right'));
+
+    $('#Merge_result').load('mergenotes.php', {'source': source, 'destination': destination});
+
+}";
     echo "</script>";
-    }
-    //ghg
+}
+
+//lol
 
 ?>

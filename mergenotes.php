@@ -40,15 +40,8 @@ require_login();
 echo"<html><head>";
 
 echo"</head><body>";
-//$test = $_GET["merge"];
-if (isset($_GET["merge"])){
 
-    echo "FALSE";
-
-
-} else {
-
-    print_object($_REQUEST);
+//    print_object($_REQUEST);
     $source = $_POST["source"];
     $destination = $_POST["destination"];
 
@@ -56,21 +49,23 @@ if (isset($_GET["merge"])){
     echo 'destination' . $destination . '</br>';
 
     //Get the source and destination of the notes being merged
-    $source_note = $DB->get_record('notes', array('userid'=>$USER->id, 'name'=>$source));
-    $destination_note = $DB->get_record('notes', array('userid'=>$USER->id, 'name'=>$destination));
+    $source_note = $DB->get_record('notes', array('userid'=>$USER->id, 'name'=>$source, 'deleted'=>0));
+    $destination_note = $DB->get_record('notes', array('userid'=>$USER->id, 'name'=>$destination, 'deleted'=>0));
 
     echo $source_note->text;
     echo "</br></br>";
     echo $destination_note->text;
 
-    merge_button();
-    //echo "<button onclick='mergenotes()'>MAGIC!</button>";
+    //update record
+    $merged_content = $destination_note->text . $source_note->text;
+    echo $merged_content;
+//    exit();
+    $destination_note->text = $merged_content;
+    $DB->update_record('notes', $destination_note);
+    
+    //delete old record
+    $delete_note = $DB->delete_records('notes', array('userid'=>$USER->id, 'name'=>$source, 'deleted'=>0));
 
     
-
-    echo"<a class='merger' href='mergenotes.php?merge=merge'><img src='images/merge.png' title='Merge'/></a>";
-}
-
-
 echo"</body></html>";
 ?>
