@@ -260,46 +260,107 @@ $(document).ready(function(){
     });
 });
 
-//controls the notebook popup
 $(document).ready(function(){
-      $(document).on('click', '.recyclebin', function(){
-//    $('.recyclebin').live('click',function(){
-        $('#recyclebin').dialog('destroy');
+    $(function() {
+        $( "#recyclebin" ).dialog({
+            autoOpen: false,
+            modal:false,
+            resizable: false,
+            width:"550px",
+            height:"auto",
+            position:"center",
 
-        //        $('#my_loading_div').dialog('open');
-
-        //Grabs the course name and puts it into the header
-        //        var heading = 'MyNotebook - ' + $(this).attr('coursename');
-
-        //        var array = $.parseJSON($(this).attr('array'));
-        //        for (i = 0; i < array.length; i++) {
-        //            console.log(array[i]);
-        //        }
-
-        //Loads the page url and then opens it up in a popup window
-        $('#recyclebin').load($(this).attr('href'), function() {
-            setTimeout(function(){
-                $( "#recyclebin" ).dialog({
-                    resizable: true,
-                    modal:false,
-                    show: "explode",
-                    hide: "explode",
-                    width:"550px",
-                    height:"auto",
-                    position:"center"
+            show: function() {
+                var $this = $(this);
+                $this
+                .dialog("widget")
+                .effect("transfer", {
+                    to: "#recyclebin",
+                    className: "ui-effects-transfer"
+                }, 500, function() {
+                    $this.remove();
                 });
-                return false;
-            }, 50);
+            },
+            hide: function() {
+                var $this = $(this);
+                $this
+                .dialog("widget")
+                .effect("transfer", {
+                    to: "#recyclebin",
+                    className: "ui-effects-transfer"
+                }, 500, function() {
+                    $this.remove();
+                });
+            }
+
         });
-        return false;
-    });
-    //Closes the dialog when 'esc' key is pressed
-    $(document).keyup(function(e) {
-        if (e.keyCode == 27) {
-            $('#recyclebin').dialog('close');
-        }
+
+        $( ".recyclebin" ).click(function() {
+            $('#bookmark').dialog('close');
+            $('#settings').dialog('close');
+            $( "#recyclebin" ).dialog( "open" );
+            return false;
+        });
     });
 });
+
+//controls the notebook popup
+//$(document).ready(function(){
+//      $(document).on('click', '.recyclebin', function(){
+////    $('.recyclebin').live('click',function(){
+//        $('#recyclebin').dialog('destroy');
+//
+//        //        $('#my_loading_div').dialog('open');
+//
+//        //Grabs the course name and puts it into the header
+//        //        var heading = 'MyNotebook - ' + $(this).attr('coursename');
+//
+//        //        var array = $.parseJSON($(this).attr('array'));
+//        //        for (i = 0; i < array.length; i++) {
+//        //            console.log(array[i]);
+//        //        }
+//
+//        //Loads the page url and then opens it up in a popup window
+//        $('#recyclebin').load($(this).attr('href'), function() {
+//            setTimeout(function(){
+//                $( "#recyclebin" ).dialog({
+//                    resizable: true,
+//                    modal:false,
+//                    show: "explode",
+//                    hide: "explode",
+//                    width:"550px",
+//                    height:"auto",
+//                    position:"center"
+//                });
+//                return false;
+//            }, 50);
+//        });
+//        return false;
+//    });
+//    //Closes the dialog when 'esc' key is pressed
+//    $(document).keyup(function(e) {
+//        if (e.keyCode == 27) {
+//            $('#recyclebin').dialog('close');
+//        }
+//    });
+//});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ////Loads the notebook into a div
 //$.fx.speeds._default = 1000;

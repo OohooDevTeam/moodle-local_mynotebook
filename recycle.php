@@ -37,96 +37,94 @@ $PAGE->set_url('/local/mynotebook/recycle.php');
 ////require_login($course, true, $cm);
 require_login();
 
-echo"<html><head>";
-
-global $CFG, $USER, $DB;
-
-echo'<link  href="http://fonts.googleapis.com/css?family=Reenie+Beanie:regular" rel="stylesheet" type="text/css"> ';
-
-echo"<link rel='stylesheet' type='text/css' href='$CFG->wwwroot/local/mynotebook/css/recycle.css'/>";
-echo"<link rel='stylesheet' type='text/css' href='$CFG->wwwroot/local/mynotebook/css/form.css'/>";
-
-echo"</head><body>";
+//echo"<html><head>";
+//
+//global $CFG, $USER, $DB;
+//
+//echo'<link  href="http://fonts.googleapis.com/css?family=Reenie+Beanie:regular" rel="stylesheet" type="text/css"> ';
+//
+//echo"<link rel='stylesheet' type='text/css' href='$CFG->wwwroot/local/mynotebook/css/recycle.css'/>";
+//echo"<link rel='stylesheet' type='text/css' href='$CFG->wwwroot/local/mynotebook/css/form.css'/>";
+//
+//echo"</head><body>";
 
     echo"<script> console.log('Started') </script>";
 
 //Checks which vaariable is set as requested by the user to either delete or restore specified notes
 if (isset($_REQUEST['delete'])) {
     echo "Test del: ".$_REQUEST['delete']."<br>";
-    echo"<script> console.log('DEL') </script>";
+    echo"<script> console.log('DEL')
+        alert('DELETE');
+    </script>";
     delete_notes();
 }
 
 if (isset($_REQUEST['restore'])) {
     echo "Test res: ".$_REQUEST['restore']."<br>";
-    echo"<script> console.log('RES') </script>";
+    echo"<script> console.log('RES')
+        alert('RESTORE');
+    </script>";
     restore_notes();
 }
 
-if (isset($_REQUEST['test'])) {
-    echo "Test : ".$_REQUEST['test']."<br>";
-    echo"<script> console.log('YES') </script>";
-}
+//if (isset($_REQUEST['test'])) {
+//    echo "Test : ".$_REQUEST['test']."<br>";
+//    echo"<script> console.log('YES') </script>";
+//}
 
-if (isset($_REQUEST['a'])){
+echo "Blank data";
+//
+////echo "<h1><center>Recycle Bin</center></h1>";
+////Display all the notes that are sent to the recycle bin
+////'0' is false || '1' is true
+//$recycle = $DB->get_records('notes', array('deleted' => 1, 'userid' => $USER->id));
+////echo "<body>";
+//
+//
+//echo "<form id='check' method='post' action='view.php'>";
+////echo "<table class='deleted' id='table'>";
+////echo "<thead>";
+////echo "<tr>";
+//    check_all();
+//    echo"<br/><input type='submit' name='checkall' id='checkall' value='Select All' onclick='checkedAll();return false;'/>";
+//
+//    check_button_clicked();
+//    echo "  <input type='submit' name='delete' id='delete' value='Delete' onclick='if( confirm(\"Permanently delete selected notes?\")){ return checkData(this.id);}'/>";
+//
+//    //Reloads parent window when you restore notes
+////    echo "  <input type='submit' name='restore' id='restore' value='Restore' onClick='if( confirm(\"Are you sure you want to restore these notes?\")){ opener.location.reload(); return checkData(this.id);}'/>";
+//    echo "  <input type='submit' name='restore' id='restore' value='Restore' onclick='if( confirm(\"Are you sure you want to restore these notes?\")){ return checkData(this.id);}'/>";
+//
+//    $deleted_notes = $DB->get_records('notes', array('deleted' => 1, 'userid' => $USER->id));
+//    $count = $DB->count_records('notes', array('deleted' => 1, 'userid' => $USER->id));
+//
+//    //Creates an unordered list to display all the notes that have been sent to the recycle bin
+//    for ($row = 1; $row < $count + 1; $row++) {
+//        $get = array_pop($deleted_notes);
+//        if (isset($get)) {
+//            $name = text_limit($get->name);
+//            echo"<ul class='recycle'>";
+//                echo"<li>";
+//                    echo "<div align='left' id='$get->id'>";
+//                        echo "<br/>";
+//                        echo "<input type='checkbox' name='checkbox[]' value='$get->id'/>";
+//                        echo "</br>";
+//                    echo "</div>";
+//
+//                    echo"<a href='#' >";
+//                        echo"<h2>$name</h2>";
+//                        echo"<p>$get->text</p>";
+//                    echo"</a>";
+//                echo"</li>";
+//            echo"</ul>";
+//        }
+//    }
+//    echo "</br>";
+//    echo "</br>";
+//    echo "</br>";
+//echo "</form>";
 
-    $a = $_REQUEST['a'];
-    echo "A = " . $a;
-
-}
-
-//echo "<h1><center>Recycle Bin</center></h1>";
-//Display all the notes that are sent to the recycle bin
-//'0' is false || '1' is true
-$recycle = $DB->get_records('notes', array('deleted' => 1, 'userid' => $USER->id));
-//echo "<body>";
-
-
-echo "<form id='check' method='post' action='view.php'>";
-//echo "<table class='deleted' id='table'>";
-//echo "<thead>";
-//echo "<tr>";
-    check_all();
-    echo"<br/><input type='submit' name='checkall' id='checkall' value='Select All' onclick='checkedAll();return false;'/>";
-
-    check_button_clicked();
-
-    echo "  <input type='submit' name='delete' id='delete' value='Delete' onclick='if( confirm(\"Permanently delete selected notes?\")){ return checkData(this.id);}'/>";
-
-    //Reloads parent window when you restore notes
-//    echo "  <input type='submit' name='restore' id='restore' value='Restore' onClick='if( confirm(\"Are you sure you want to restore these notes?\")){ opener.location.reload(); return checkData(this.id);}'/>";
-    echo "  <input type='submit' name='restore' id='restore' value='Restore' onclick='if( confirm(\"Are you sure you want to restore these notes?\")){ return checkData(this.id);}'/>";
-
-    $deleted_notes = $DB->get_records('notes', array('deleted' => 1, 'userid' => $USER->id));
-    $count = $DB->count_records('notes', array('deleted' => 1, 'userid' => $USER->id));
-
-    //Creates an unordered list to display all the notes that have been sent to the recycle bin
-    for ($row = 1; $row < $count + 1; $row++) {
-        $get = array_pop($deleted_notes);
-        if (isset($get)) {
-            $name = text_limit($get->name);
-            echo"<ul class='recycle'>";
-                echo"<li>";
-                    echo "<div align='left' id='$get->id'>";
-                        echo "<br/>";
-                        echo "<input type='checkbox' name='checkbox[]' value='$get->id'/>";
-                        echo "</br>";
-                    echo "</div>";
-
-                    echo"<a href='#' >";
-                        echo"<h2>$name</h2>";
-                        echo"<p>$get->text</p>";
-                    echo"</a>";
-                echo"</li>";
-            echo"</ul>";
-        }
-    }
-    echo "</br>";
-    echo "</br>";
-    echo "</br>";
-echo "</form>";
-
-echo"</body></html>";
+//echo"</body></html>";
 
 ?>
 

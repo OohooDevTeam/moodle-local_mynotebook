@@ -36,8 +36,13 @@ $PAGE->requires->css('/local/mynotebook/js/jquery-ui-1.8.18.custom/css/ui-lightn
 $PAGE->requires->css('/local/mynotebook/css/view.css');
 $PAGE->requires->css('/local/mynotebook/css/cssplay6.css');
 $PAGE->requires->css('/local/mynotebook/css/target.css');
-$PAGE->requires->css('/local/mynotebook/css/paper.css');
+$PAGE->requires->css('/local/mynotebook/css/recycle.css');
 $PAGE->requires->css('/local/mynotebook/css/followtab.css');
+
+//CSS for recycle bin
+$PAGE->requires->css('/local/mynotebook/css/paper.css');
+$PAGE->requires->css('/local/mynotebook/css/form.css');
+echo'<link  href="http://fonts.googleapis.com/css?family=Reenie+Beanie:regular" rel="stylesheet" type="text/css"> ';
 
 //$PAGE->requires->css('/local/mynotebook/demo/jquery-ajax/css/tutorial.css');
 
@@ -209,7 +214,10 @@ echo"<li><button class='merge'><img src='images/merge.png' title='Merge Notes'/>
 
 //echo"<li><button class='bookmark'><img src='images/bookmark_icon.png' title='Add Bookmark'/></button></li>";
 //echo"<li><button class='settings'><img src='images/settings.png' title='Settings'/></button></li>";
-echo"<li><a class='recyclebin' href='recycle.php'><img src='images/recycle.png' title='Recycle Bin'/></a></li>";
+//echo"<li><a class='recyclebin' href='recycle.php'><img src='images/recycle.png' title='Recycle Bin'/></a></li>";
+echo"<li><button class='recyclebin'><img src='images/recycle.png' title='Recycle Bin'/></button></li>";
+
+
 echo"</ul>";
 
 //Calls the export function
@@ -245,6 +253,21 @@ echo"<div style='display:none'>";
         merge();
         echo "<button onclick='merge_notes()'><img src='images/merge.png' title='Merge'/>MAGIC!</button>";
 
+        if ($_REQUEST['delete'] != NULL) {
+    echo "Test del: ".$_REQUEST['delete']."<br>";
+    echo"<script> console.log('DEL')
+        alert('DELETE');
+    </script>";
+    delete_notes();
+}
+
+if ($_REQUEST['restore'] != NULL) {
+    echo "Test res: ".$_REQUEST['restore']."<br>";
+    echo"<script> console.log('RES')
+        alert('RESTORE');
+    </script>";
+    restore_notes();
+}
         echo"</div>";
 
     //Bookmarks
@@ -254,7 +277,11 @@ echo"<div style='display:none'>";
 //    echo"<div id='settings' title='Settings'></div>";
 
     //Recycle Bin
-    echo"<div id='recyclebin' title='Recycle Bin'></div>";
+    echo"<div id='recyclebin' title='Recycle Bin'>";
+        //Function to display notes that have been moved to the recyclebin for permanent deletion or restoration
+        restore_delete();
+
+    echo"</div>";
 
 echo"</div>";//End display:none div
 

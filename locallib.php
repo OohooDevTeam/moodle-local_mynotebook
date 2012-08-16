@@ -105,73 +105,6 @@ xmlhttp.send();
     echo "</script>";
 }
 
-//Check whether the delete or restore button was clicked in the recycle bin
-function check_button_clicked() {
-    global $CFG;
-    echo "<script type='text/javascript'>
-    function checkData(id) {
-       switch(id) {
-          case 'delete':
-           var a = 'delete';
-             break;
-          case 'restore':
-           var a = 'restore';
-             break;
-        }
-    console.log(a);
-          window.location.href = '$CFG->wwwroot/local/mynotebook/recycle.php?a=' + a;
-    }";
-
-//              window.location.href = '$CFG->wwwroot/local/mynotebook/recycle.php?' + a + '=' + a;
-    echo "</script>";
-}
-
-//Permeantly delete the notes
-function delete_notes() {
-    global $DB, $USER;
-    if (!empty($_POST['checkbox'])) {
-        for ($i = 0; $i < count($_POST['checkbox']); $i++) {
-            $DB->delete_records('notes', array('id' => $_POST['checkbox'][$i], 'userid' => $USER->id));
-        }
-    }
-}
-
-//Restores the notes
-function restore_notes() {
-    global $DB, $USER;
-    if (!empty($_POST['checkbox'])) {
-        for ($i = 0; $i < count($_POST['checkbox']); $i++) {
-            $update2 = $DB->get_record('notes', array('id' => $_POST['checkbox'][$i], 'userid' => $USER->id));
-            $update2->deleted = 0;
-            $DB->update_record('notes', $update2);
-        }
-    }
-}
-
-//Select all the boxes
-function check_all() {
-
-    echo "<script language='JavaScript'>
-
-      checked = false;
-      function checkedAll () {
-        if (checked == false){
-        checked = true
-            console.log(checked)
-        } else {
-        checked = false
-            console.log(checked)
-        }
-
-	for (var i = 0; i < document.getElementById('check').elements.length; i++) {
-	  document.getElementById('check').elements[i].checked = checked;
-	}
-        console.log('Grabbed All IDs')
-      }
-";
-    echo "</script>";
-}
-
 //Limits the number of charater a text can have
 function text_limit($text) {
     $chars = 13;
@@ -348,6 +281,143 @@ function merge_notes()
     echo "</script>";
 }
 
-//lol
+
+
+//Check whether the delete or restore button was clicked in the recycle bin
+function check_button_clicked() {
+    global $CFG;
+//    echo "<script type='text/javascript'>
+//    function checkData(id) {
+//       switch(id) {
+//          case 'delete':
+//           var a = 'delete';
+//             break;
+//          case 'restore':
+//           var a = 'restore';
+//             break;
+//        }
+//    console.log(a);
+//          window.location.href = '$CFG->wwwroot/local/mynotebook/recycle.php?a=' + a;
+//            console.log('$CFG->wwwroot/local/mynotebook/recycle.php?a=' + a);
+//    }";
+
+        echo "<script type='text/javascript'>
+    function checkData(id) {
+       switch(id) {
+          case 'delete':
+            window.location.href = '$CFG->wwwroot/local/mynotebook/view.php?delete=' + id;
+            console.log('id' + id)
+            break;
+          case 'restore':
+            window.location.href = '$CFG->wwwroot/local/mynotebook/view.php?restore=' + id;
+            console.log('id' + id)
+            break;
+        }
+
+               var x = $('.recycle').val();
+                console.log(x);
+    }";
+    echo "</script>";
+}
+
+//Permeantly delete the notes
+function delete_notes() {
+    global $DB, $USER;
+    if (!empty($_POST['checkbox'])) {
+        for ($i = 0; $i < count($_POST['checkbox']); $i++) {
+            $DB->delete_records('notes', array('id' => $_POST['checkbox'][$i], 'userid' => $USER->id));
+        }
+        echo "Delete Completed";
+    }
+}
+
+//Restores the notes
+function restore_notes() {
+    global $DB, $USER;
+    echo $_POST['checkbox'];
+    if (!empty($_POST['checkbox'])) {
+        for ($i = 0; $i < count($_POST['checkbox']); $i++) {
+            $update2 = $DB->get_record('notes', array('id' => $_POST['checkbox'][$i], 'userid' => $USER->id));
+            $update2->deleted = 0;
+            $DB->update_record('notes', $update2);
+        }
+        echo "Restore Completed";
+    }
+}
+
+//Select all the boxes
+function check_all() {
+
+    echo "<script language='JavaScript'>
+
+      checked = false;
+      function checkedAll () {
+        if (checked == false){
+        checked = true
+            console.log(checked)
+        } else {
+        checked = false
+            console.log(checked)
+        }
+
+	for (var i = 0; i < document.getElementById('check').elements.length; i++) {
+	  document.getElementById('check').elements[i].checked = checked;
+	}
+        console.log('Grabbed All IDs')
+      }
+";
+    echo "</script>";
+}
+
+
+function restore_delete(){
+    global $DB, $USER;
+
+    //Display all the notes that are sent to the recycle bin
+//'0' is false || '1' is true
+    $recycle = $DB->get_records('notes', array('deleted' => 1, 'userid' => $USER->id));
+
+    echo "<form id='check' method='post' action='view.php'>";
+//    echo "<form id='check' method='post' action='recycle.php'>";
+
+
+    check_all();
+    echo"<br/><input type='submit' name='checkall' id='checkall' value='Select All' onclick='checkedAll();return false;'/>";
+
+    check_button_clicked();
+    echo "  <input type='submit' name='delete' id='delete' value='Delete' onclick='if( confirm(\"Permanently delete selected notes?\")){ return checkData(this.id);}'/>";
+
+    //Reloads parent window when you restore notes
+    echo "  <input type='submit' name='restore' id='restore' value='Restore' onclick='if( confirm(\"Are you sure you want to restore these notes?\")){ return checkData(this.id);}'/>";
+
+    $deleted_notes = $DB->get_records('notes', array('deleted' => 1, 'userid' => $USER->id));
+    $count = $DB->count_records('notes', array('deleted' => 1, 'userid' => $USER->id));
+
+    //Creates an unordered list to display all the notes that have been sent to the recycle bin
+    for ($row = 1; $row < $count + 1; $row++) {
+        $get = array_pop($deleted_notes);
+        if (isset($get)) {
+            $name = text_limit($get->name);
+            echo"<ul class='recycle'>";
+                echo"<li>";
+                    echo "<div align='left' id='$get->id'>";
+                        echo "<br/>";
+                        echo "<input type='checkbox' name='checkbox[]' value='$get->id'/>";
+                        echo "</br>";
+                    echo "</div>";
+
+                    echo"<a href='#' >";
+                        echo"<h2>$name</h2>";
+                        echo"<p>$get->text</p>";
+                    echo"</a>";
+                echo"</li>";
+            echo"</ul>";
+        }
+    }
+    echo "</br>";
+    echo "</br>";
+    echo "</br>";
+echo "</form>";
+}
 
 ?>
