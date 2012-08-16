@@ -42,7 +42,7 @@ $PAGE->requires->css('/local/mynotebook/css/followtab.css');
 //CSS for recycle bin
 $PAGE->requires->css('/local/mynotebook/css/paper.css');
 $PAGE->requires->css('/local/mynotebook/css/form.css');
-echo'<link  href="http://fonts.googleapis.com/css?family=Reenie+Beanie:regular" rel="stylesheet" type="text/css"> ';
+//echo'<link  href="http://fonts.googleapis.com/css?family=Reenie+Beanie:regular" rel="stylesheet" type="text/css"> ';
 
 //$PAGE->requires->css('/local/mynotebook/demo/jquery-ajax/css/tutorial.css');
 
@@ -253,21 +253,6 @@ echo"<div style='display:none'>";
         merge();
         echo "<button onclick='merge_notes()'><img src='images/merge.png' title='Merge'/>MAGIC!</button>";
 
-        if ($_REQUEST['delete'] != NULL) {
-    echo "Test del: ".$_REQUEST['delete']."<br>";
-    echo"<script> console.log('DEL')
-        alert('DELETE');
-    </script>";
-    delete_notes();
-}
-
-if ($_REQUEST['restore'] != NULL) {
-    echo "Test res: ".$_REQUEST['restore']."<br>";
-    echo"<script> console.log('RES')
-        alert('RESTORE');
-    </script>";
-    restore_notes();
-}
         echo"</div>";
 
     //Bookmarks
@@ -275,6 +260,22 @@ if ($_REQUEST['restore'] != NULL) {
 
     //Settings
 //    echo"<div id='settings' title='Settings'></div>";
+
+           if ($_REQUEST['delete'] != NULL) {
+        echo "Test del: ".$_REQUEST['delete']."<br>";
+        echo"<script> console.log('DEL')
+            alert('DELETE');
+        </script>";
+        delete_notes();
+    }
+
+    if ($_REQUEST['restore'] != NULL) {
+        echo "Test res: ".$_REQUEST['restore']."<br>";
+        echo"<script> console.log('RES')
+            alert('RESTORE');
+        </script>";
+        restore_notes();
+    }
 
     //Recycle Bin
     echo"<div id='recyclebin' title='Recycle Bin'>";

@@ -58,7 +58,6 @@ if ($user_choice == 'all_notes'){
     $course_id = $DB->get_record('course', array('fullname'=>$course_name));
 
     $notes = $DB->get_records('notes', array('userid'=>$USER->id, 'deleted'=>0, 'courseid'=>$course_id->id));
-
 }
 
 echo'<body>';
@@ -78,13 +77,15 @@ foreach ($notes as $note) {
 
     $note_name[] = $note->name;
     $note_content[] = strip_tags($note->text);
-    $coursenames = $DB->get_records('course', array('id' => $note->courseid));
+//    $coursenames = $DB->get_records('course', array('id' => $note->courseid));
     $courseid[] = $note->courseid;
     $date_created[] = $note->time_modified;
 
-    foreach ($coursenames as $coursename) {
-        $course_name[] = $coursename->fullname;
-    }
+//    foreach ($coursenames as $coursename) {
+//        $course_name[] = $coursename->fullname;
+//    }
+
+    $coursename = $DB->get_record('course', array('id'=> $note->courseid));
 
 
 //Creates a table to display each note
@@ -94,7 +95,7 @@ echo"<div align=center>
         <tr style='height:51.0pt'>
             <td width='125' style='width:93.45pt;border:solid windowtext 1.0pt;background:
             silver;padding:0in 5.75pt 0in 5.75pt;height:51.0pt'>
-                <p class='MsoNormal' align='center' style='text-align:center'><b><span lang='FR' style='font-size:16.0pt;line-height:115%'>$note->name</span></b></p>
+                <p class='MsoNormal' align='center' style='text-align:center'><b><span lang='FR' style='font-size:16.0pt;line-height:115%'>$coursename->fullname</span></b></p>
             </td>
             <td width='527' style='width:395.4pt;border:solid windowtext 1.0pt;border-left:
             none;background:silver;padding:0in 5.75pt 0in 5.75pt;height:51.0pt'>
