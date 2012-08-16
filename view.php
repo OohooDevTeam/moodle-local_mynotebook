@@ -250,6 +250,8 @@ echo"<div style='display:none'>";
         echo"<div id='merge' title='Merge Notes'>";
         display_courses_2_merge();
 
+        echo "</br>";
+
         merge();
         echo "<button onclick='merge_notes()'><img src='images/merge.png' title='Merge'/>MAGIC!</button>";
 
@@ -261,7 +263,8 @@ echo"<div style='display:none'>";
     //Settings
 //    echo"<div id='settings' title='Settings'></div>";
 
-           if ($_REQUEST['delete'] != NULL) {
+   //deletes selected notes
+   if ($_REQUEST['delete'] != NULL) {
         echo "Test del: ".$_REQUEST['delete']."<br>";
         echo"<script> console.log('DEL')
             alert('DELETE');
@@ -269,6 +272,7 @@ echo"<div style='display:none'>";
         delete_notes();
     }
 
+    //restore selected notes
     if ($_REQUEST['restore'] != NULL) {
         echo "Test res: ".$_REQUEST['restore']."<br>";
         echo"<script> console.log('RES')

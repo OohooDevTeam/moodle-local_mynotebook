@@ -45,13 +45,13 @@ echo"</head><body>";
     $source = $_POST["source"];
     $destination = $_POST["destination"];
 
-    echo 'source' . $source . '</br>';
-    echo 'destination' . $destination . '</br>';
+//    echo 'source' . $source . '</br>';
+//    echo 'destination' . $destination . '</br>';
 
     //Cannot have the same source and destination. Probability of basically deleting the note itself
     if ($source == $destination){
         echo "<script type=text/javascript>";
-        echo "alert('Can not have the same source and destination.')";
+        echo "alert('Source and destination must be different.')";
         echo "</script>";
     } else {
 
@@ -59,15 +59,18 @@ echo"</head><body>";
         $source_note = $DB->get_record('notes', array('userid'=>$USER->id, 'name'=>$source, 'deleted'=>0));
         $destination_note = $DB->get_record('notes', array('userid'=>$USER->id, 'name'=>$destination, 'deleted'=>0));
 
-        echo $source_note->text;
-        echo "</br></br>";
-        echo $destination_note->text;
+//        echo $source_note->text;
+//        echo "</br></br>";
+//        echo $destination_note->text;
 
-        //update record
+        //Append the source content to the destination content
         $merged_content = $destination_note->text . $source_note->text;
-        echo $merged_content;
-    //    exit();
+//        echo $merged_content;
+
+        //Assign the new merged content to the destination text field
         $destination_note->text = $merged_content;
+
+        //Update the record with new merged contents
         $DB->update_record('notes', $destination_note);
 
         //delete old record
@@ -75,8 +78,11 @@ echo"</head><body>";
 
         //Alerts user note merging is completed
         echo "<script type=text/javascript>";
-        echo "alert('Merging Completed')";
+            echo "var index = $('select#merge_left').get(0).selectedIndex;
+                $('select#merge_left option:eq(' + index + ')').remove();";
+            echo "alert('Merging Completed')";
         echo "</script>";
     }
+
 echo"</body></html>";
 ?>

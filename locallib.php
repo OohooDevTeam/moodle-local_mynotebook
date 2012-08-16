@@ -200,6 +200,9 @@ function display_courses_2_merge(){
     echo "<div id='merge_right' title='Merge Notes'>";
     echo "<fieldset>";
     echo"<form>";
+
+    echo "</br>";
+
     //Course on right hand
     echo "Destination:</br>";
     echo "<select style='width:200px' name='merge_right' id='merge_right'>";
@@ -260,12 +263,13 @@ function display_courses_2_merge(){
 //    echo "</script>";
 //    }
 
-    //Retrieves the notes that the user wants to merge together
+//Retrieves the notes that the user wants to merge together
 function merge() {
 
 echo "<script type='text/javascript'>
 function merge_notes()
 {
+
 
     var source = $('select#merge_left').val();
     console.log(source);
@@ -277,6 +281,7 @@ function merge_notes()
 
     $('#Merge_result').load('mergenotes.php', {'source': source, 'destination': destination});
 
+    $('#merge').dialog('isOpen');
 }";
     echo "</script>";
 }
@@ -320,7 +325,7 @@ function check_button_clicked() {
     echo "</script>";
 }
 
-//Permeantly delete the notes
+//Permeantly delete the selected notes
 function delete_notes() {
     global $DB, $USER;
     if (!empty($_POST['checkbox'])) {
@@ -331,7 +336,7 @@ function delete_notes() {
     }
 }
 
-//Restores the notes
+//Restores the selected notes
 function restore_notes() {
     global $DB, $USER;
     echo $_POST['checkbox'];

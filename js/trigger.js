@@ -135,8 +135,14 @@ $(document).ready(function(){
                     $this.remove();
                 });
             }
-
-        });
+//            buttons: { "Ok" :
+//                function() { $(this).dialog("close"); } }
+            //When user closes the dialog, page refreshes
+            }).parent().find(".ui-dialog-titlebar-close").click(
+                function() {
+//                    alert("Closed by title bar X, clear the other form here");
+                    location.reload();
+                });
 
         $( ".merge" ).click(function() {
             $('#bookmark').dialog('close');
