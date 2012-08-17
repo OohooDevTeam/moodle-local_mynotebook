@@ -34,5 +34,5 @@ $plugin->version = 2012081700;
 $plugin->requires = 2011070100; //Moodle 2.1
 
 $plugin->maturity = MATURITY_ALPHA;
-$plugin->release = '0.5.0 (Build: 2012081500)';
+$plugin->release = '0.5.0 (Build: 2012081700)';
 $plugin->component = 'local_mynotebook';

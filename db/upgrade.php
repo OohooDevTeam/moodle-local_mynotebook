@@ -39,7 +39,7 @@ defined('MOODLE_INTERNAL') || die();
  * @param int $oldversion
  * @return bool
  */
-function xmldb_mynotebook_upgrade($oldversion) {
+function xmldb_local_mynotebook_upgrade($oldversion) {
 
     global $DB;
 
@@ -98,7 +98,7 @@ function xmldb_mynotebook_upgrade($oldversion) {
         upgrade_mod_savepoint(true, 2012040901, 'mynotebook');
     }
 
-    if ($oldversion < 2012081500) {
+    if ($oldversion < 2012081700) {
     }
 
 
