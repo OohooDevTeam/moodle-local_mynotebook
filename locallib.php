@@ -269,8 +269,6 @@ function merge() {
 echo "<script type='text/javascript'>
 function merge_notes()
 {
-
-
     var source = $('select#merge_left').val();
     console.log(source);
         console.log($('select#merge_left'));
