@@ -1,40 +1,24 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
-//
-// Moodle is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 /**
- *
- * Prints a particular instance of mynotebook
- *
- * You can have a rather longer description of the file as well,
- * if you like, and it can span multiple lines.
- *
- * @package   mod_mynotebook
- * @copyright 2012 ????
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
+**************************************************************************
+**                              mynotebook                              **
+**************************************************************************
+* @package     local                                                    **
+* @subpackage  mynotebook                                               **
+* @name        mynotebook                                               **
+* @copyright   oohoo.biz                                                **
+* @link        http://oohoo.biz                                         **
+* @author      Theodore Pham                                            **
+* @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later **
+**************************************************************************
+**************************************************************************/
 
-//Grabs the user input for the filename
+//Grabs the user input for the filename and adds a file type
 $filename = $_POST['filename'];
-echo $filename;
 $filename = $filename . '.doc';
 
 header("Content-type: application/vnd.ms-word");
-//	header("Content-type: application/pdf");
-
 header("Content-Disposition: attachment; Filename=$filename");
-
 
 echo'
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -46,7 +30,7 @@ echo'
 
 require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
 
-//Takes user input to export wither all note or specific course notes
+//Takes user input to export whether all notes or course notes
 $user_choice = optional_param('user_choice', NULL, PARAM_TEXT);
 
 if ($user_choice == 'all_notes'){
@@ -54,39 +38,21 @@ if ($user_choice == 'all_notes'){
 
 } else if ($user_choice == 'course_notes'){
     $course_name = $_POST['course_name'];
-
     $course_id = $DB->get_record('course', array('fullname'=>$course_name));
-
     $notes = $DB->get_records('notes', array('userid'=>$USER->id, 'deleted'=>0, 'courseid'=>$course_id->id));
 }
 
 echo'<body>';
 
-$note_name = array();
-$note_content = array();
-$courseid = array();
-$course_name = array();
-$date_created = array();
-
 //Retrieve all the necessary information about each note to be displayed
 foreach ($notes as $note) {
 
+    //Lines to separate each note in Word
     echo "**********************************************************************";
     echo "**********************************************************************";
     echo "**********************************************************************";
-
-    $note_name[] = $note->name;
-    $note_content[] = strip_tags($note->text);
-//    $coursenames = $DB->get_records('course', array('id' => $note->courseid));
-    $courseid[] = $note->courseid;
-    $date_created[] = $note->time_modified;
-
-//    foreach ($coursenames as $coursename) {
-//        $course_name[] = $coursename->fullname;
-//    }
 
     $coursename = $DB->get_record('course', array('id'=> $note->courseid));
-
 
 //Creates a table to display each note
 echo"<div align=center>
@@ -99,7 +65,8 @@ echo"<div align=center>
             </td>
             <td width='527' style='width:395.4pt;border:solid windowtext 1.0pt;border-left:
             none;background:silver;padding:0in 5.75pt 0in 5.75pt;height:51.0pt'>
-                <p class='MsoNormal' align='center' style='text-align:center'><b><span lang='FR' style='font-size:16.0pt;line-height:115%'>Content</span></b></p>
+                <p class='MsoNormal' align='right' style='text-align:right'><b><sup><span style='font-size:16.0pt;line-height:115%'>$note->time_modified</span></sup></b></p>
+                <p class='MsoNormal' align='center' style='text-align:center'><b><span lang='FR' style='font-size:16.0pt;line-height:115%'>Content</span><span lang='FR' style='font-size:16.0pt;line-height:115%'>Content</span></b></p>
             </td>
         </tr>
         <tr style='height:559.4pt'>

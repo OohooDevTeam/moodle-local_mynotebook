@@ -1,47 +1,19 @@
 <?php
-
-// This file is part of Moodle - http://moodle.org/
-//
-// Moodle is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
-
 /**
- * Library of interface functions and constants for module mynotebook
- *
- * All the core Moodle functions, neeeded to allow the module to work
- * integrated in Moodle should be placed here.
- * All the mynotebook specific functions, needed to implement all the module
- * logic, should go to locallib.php. This will help to save some memory when
- * Moodle is performing actions across all modules.
- *
- * @package   mod_mynotebook
- * @copyright 2010 Your Name
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
+**************************************************************************
+**                              mynotebook                              **
+**************************************************************************
+* @package     local                                                    **
+* @subpackage  mynotebook                                               **
+* @name        mynotebook                                               **
+* @copyright   oohoo.biz                                                **
+* @link        http://oohoo.biz                                         **
+* @author      Theodore Pham                                            **
+* @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later **
+**************************************************************************
+**************************************************************************/
 
 defined('MOODLE_INTERNAL') || die();
-
-/** example constant */
-//define('mynotebook_ULTIMATE_ANSWER', 42);
-
-/**
- * If you for some reason need to use global variables instead of constants, do not forget to make them
- * global as this file can be included inside a function scope. However, using the global variables
- * at the module level is not a recommended.
- */
-//global $mynotebook_GLOBAL_VARIABLE;
-//$mynotebook_QUESTION_OF = array('Life', 'Universe', 'Everything');
 
 /**
  * Given an object containing all the necessary data,
@@ -56,7 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 function mynotebook_extends_navigation(global_navigation $navigation) {
 
 require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
-    
+
 global $CFG;
 
 $url = new moodle_url($CFG->wwwroot.'/local/mynotebook/view.php');
@@ -64,32 +36,9 @@ $url = new moodle_url($CFG->wwwroot.'/local/mynotebook/view.php');
 //Adds the makenote plugin under "Navigation" block
 $node = $navigation->add('MyNotebook', $url);
 
-//$nodeone = $node->add("Notes Gallery", $url);
-
 //Force node to open on display
 $node->forceopen = false;
 
-
-////get the "Home" node
-// $nodeHome = $navigation->children->get('1')->parent;
-// 
-////Rename it
-// $node->title= 'Foo';
-// $node->key='Foo';
-// $node->text = 'Foo';
-
-//
-////Create a child node
-//$nodeAwesome = $navigation->add("10 Reasons We're Awesome");
-//
-////Add children to nodeAwesome. Pretend we have a list "$myList" of links to add.
-//$myList = array(0=>'www.google.com', 1=>'www.yahoo.com');
-//
-//for ($i = 0; $i <= count($myList); $i++)
-//    $nodeAwesome->add($myList[$i], new moodle_url('/path/to/file/'.$myList[$i]), null, null, $myList[$i]);
-//
-////force the node open
-//$nodeAwesome->forceopen = true;
 }
 
 function mynotebook_add_instance($mynotebook) {

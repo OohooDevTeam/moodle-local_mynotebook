@@ -1,38 +1,22 @@
 <?php
-
-// This file is part of Moodle - http://moodle.org/
-//
-// Moodle is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
-
 /**
- * Prints a particular instance of mynotebook
- *
- * You can have a rather longer description of the file as well,
- * if you like, and it can span multiple lines.
- *
- * @package   mod_mynotebook
- * @copyright 2010 Your Name
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
+**************************************************************************
+**                              mynotebook                              **
+**************************************************************************
+* @package     local                                                    **
+* @subpackage  mynotebook                                               **
+* @name        mynotebook                                               **
+* @copyright   oohoo.biz                                                **
+* @link        http://oohoo.biz                                         **
+* @author      Theodore Pham                                            **
+* @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later **
+**************************************************************************
+**************************************************************************/
+
 require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
 require_once(dirname(__FILE__) . '/locallib.php');
 require_once(dirname(__FILE__) . '/lib.php');
 require_once(dirname(__FILE__) . '/mod_form.php');
-
-//require_once($CFG->dirroot . '/lib/editor/tinymce/lib.php');
-
 
 global $CFG, $DB, $USER, $PAGE;
 $courseid = required_param('courseid', PARAM_INT);
@@ -41,7 +25,6 @@ $courseid = required_param('courseid', PARAM_INT);
 $system = get_context_instance(CONTEXT_SYSTEM);
 $PAGE->set_context($system);
 $PAGE->set_url('/local/mynotebook/notebook.php');
-////require_login($course, true, $cm);
 require_login();
 
 /* Should use output header for pages that are used in popups and dialogs since they
@@ -50,11 +33,9 @@ echo"<html><head>";
 
 global $CFG, $USER, $DB;
 
-
-//echo"<link rel='stylesheet' type='text/css' href='$CFG->wwwroot/local/mynotebook/js/jquery-ui-1.8.18.custom/css/ui-lightness/jquery-ui-1.8.18.custom.css'/>";
 echo"<link rel='stylesheet' type='text/css' href='$CFG->wwwroot/local/mynotebook/css/notebook.css'/>";
 echo"<link rel='stylesheet' type='text/css' href='$CFG->wwwroot/local/mynotebook/css/paper.css'/>";
-echo"<link  rel='stylesheet' type='text/css' href='$CFG->wwwroot/local/mynotebook/development/source/example249/css/menu.css'/>";
+echo"<link  rel='stylesheet' type='text/css' href='$CFG->wwwroot/local/mynotebook/css/menu.css'/>";
 
 /* * ******************************************************** *///Javascript declaration
 //Do not need to include again since this modal uses the jquery from the main page
@@ -66,10 +47,9 @@ echo"<script type='text/javascript' src='js/jquery-ui-1.8.18.custom/js/jquery-ui
 echo"<script type='text/javascript'>
     var handle;
 </script>";
-//
+
 //<!--JS for page flip animation-->
 echo"<script type='text/javascript' src='js/turn.js'></script>";
-
 //<!--JS for the view page-->
 echo"<script type='text/javascript' src='js/notebook.js'></script>";
 /* * ******************************************************** *///End Javascript declaration
@@ -115,6 +95,7 @@ for ($j = 0; $j < sizeof($ordered_course_id); $j++) {
     //ajaxtrigger is what loads the page into a div == dialog
     echo"<li><a class='hsubs ajaxtrigger' coursename='$name' href='notebook.php?courseid=$ordered_course_id[$j]'>$name</a>";
     echo"<ul class='subs'>";
+
     //Displays all the notes for specified course
     foreach ($notes as $note) {
         if ($note->courseid == $ordered_course_id[$j]) {
@@ -134,13 +115,9 @@ echo"<div id='lavalamp'></div>";
 echo"</ul></span>"; // End nav
 
 /* * ************************************************ */
-//buttons on the right of the page
+//Buttons on the right of the page
 echo"<span><ul id='options'>";
 echo"<li><a class='hsubs ' href='#' title='Help'><img src='images/help_icon.gif'/></a></li>";
-//echo"<li><a class='hsubs ' href='#'><img src='images/save.png'/></a></li>";
-
-//For the save button, can diabled button when "blur()" and enable button when "onfocus"
-//echo"<li><button class='hsubs ' onclick='javascript:save();'></button></li>";
 
 echo"<li><a class='hsubs '>
         <div id='controls'>
@@ -153,26 +130,19 @@ echo"</ul></span>"; // End options
 
 $course = $DB->get_record('course', array('id' => $courseid));
 
-
 echo"<div id='notebook'>";
 echo"<div id='cover'>";
 echo"<div id='notetitleleft'>$course->fullname</div>";
 echo"</div>"; //end cover
-
 
 $n = 0;
 $i = 0;
 foreach ($notes as $note) {
     //Check if the courseids match up
     if ($courseid == $note->courseid) {
-//        //Strip all html tags
-////        $trimmed = strip_tags($note->text);
-//        $trimmed  = urlencode($note->text);
         $section = $DB->get_record('course_modules', array('id' => $note->cmid, 'course' => $note->courseid));
         $format = $DB->get_record('course', array('id' => $note->courseid));
-//        $var = json_encode($format);
 
-//        echo"<script>console.log($var);</script>";
         //If the section var exists for a course activity
         if ($section) {
             $sql = "SELECT *
@@ -182,30 +152,29 @@ foreach ($notes as $note) {
 
             if ($course_section->name == NULL) {
                 $course_section->name = 'Section name not specified, but section# is:' . $course_section->section;
+
             }
-            //debugging
-//            echo "section=" . $section->section . "</br>";
-//            echo "sectionid=" . $section->id . "</br>";
-//            echo "section=" . $course_section->section . "</br>";
             echo"<div>";
 
-                //Notes on a Course Module Page            
+                //Notes on a Course Module Page
                 if ($n % 2 == 0) {
                     echo"<div >$course_section->name</div>";
                     echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
                     hidden_note_title_values($i, $note->courseid, $note->id);
 
                     echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
+
                 } else {
                     echo"<div >$course_section->name</div>";
                     echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
                     hidden_note_title_values($i, $note->courseid, $note->id);
 
                     echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
+
                 }
             echo"</div>";
         //Notes on a Course Main Page
-        } else { 
+        } else {
             echo"<div >";
                 if ($n % 2 == 0) {
                     echo"<div >Course Page</div>";
@@ -228,55 +197,6 @@ foreach ($notes as $note) {
 }
 
 echo"</div>"; //end notebook
-
-
-//
-//echo '<div id="viewport">
-//<header>
-//	<nav>
-//		<a href="#home" class="on">Home</a>
-//		<a href="#usage">Usage</a>
-//		<a href="#get">Get turn.js</a>
-//		<a href="#reference">Reference</a>
-//		<a href="#credits">Credits</a>
-//	</nav>
-//
-//</header>';
-//echo'<div id="controllers" style="display:none;">';
-//	echo'<div class="pages shadows" id="magazine">';
-//		echo'<!-- Home -->
-//		<div turn-effect="flipboard">
-//			<p>The awesome paper-like effect made for HTML5</p>
-//		</div>
-//		';
-//		echo'<!-- Usage -->
-//		<div> 
-//			<div class="page-content">
-//				<h1>turn.js</h1>
-//			</div>
-//		</div>
-//                ';    
-//		echo'<!-- Quick Reference -->
-//		<div> 
-//			<div class="page-content">
-//			<h2>Getting Started</h2>
-//			</div>
-//		</div>
-//		<!--   -->
-//		<div> 
-//			<div class="page-content">
-//				<h2> Contact </h2>
-//			</div>
-//		</div>
-//	</div>
-//	<div id="next"> <i></i> </div>
-//	<div id="previous"> <i></i> </div>
-//	<div id="shadow-page"></div>
-//</div>
-//
-//</div>';
-
-
 echo"</body></html>";
 ?>
 

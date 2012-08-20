@@ -23,7 +23,6 @@ function initMCE() {
                         var width = 500;
                         var height = 620;
                         editor.theme.resizeTo(width, height);
-                        alert("BLURR");
                 });
 
             //While the textarea is active
@@ -177,26 +176,6 @@ var save = function() {
         'note_id': $("#note_id").val()
     });
 }
-
-//function savetest(){
-//Saves the notes changed when user presses "ctrl + s"
-//var savetest = function() {
-//        if(!tinyMCE.get('areaText')) {
-//            initMCE();
-//    } else {
-//    //Initialized object
-//    var editor = tinyMCE.get('areaText');
-//    alert('Saved');
-//    //Posts information from the tinyMCE to save
-//    $.post('save_notes.php', {
-//        'text': $(editor.getBody()).html(),
-//        'courseid': $("#courseid").val(),
-//        'note_id': $("#note_id").val()
-//    });
-//}
-//    }
-//}
-
 
 //trims the whites spaces on the numbers
 function trim(s)

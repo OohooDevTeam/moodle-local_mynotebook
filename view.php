@@ -1,35 +1,24 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
-//
-// Moodle is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 /**
- *
- * Prints a particular instance of mynotebook
- *
- * You can have a rather longer description of the file as well,
- * if you like, and it can span multiple lines.
- *
- * @package   mod_mynotebook
- * @copyright 2012 ????
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
+**************************************************************************
+**                              mynotebook                              **
+**************************************************************************
+* @package     local                                                    **
+* @subpackage  mynotebook                                               **
+* @name        mynotebook                                               **
+* @copyright   oohoo.biz                                                **
+* @link        http://oohoo.biz                                         **
+* @author      Theodore Pham                                            **
+* @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later **
+**************************************************************************
+**************************************************************************/
+
 require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
 require_once(dirname(__FILE__) . '/locallib.php');
 require_once(dirname(__FILE__) . '/lib.php');
 require_once(dirname(__FILE__) . '/mod_form.php');
 
-global $CFG, $DB, $USER, $PAGE;
+global $DB, $USER, $PAGE;
 
 //CSS files
 $PAGE->requires->css('/local/mynotebook/js/jquery-ui-1.8.18.custom/css/ui-lightness/jquery-ui-1.8.18.custom.css');
@@ -72,7 +61,6 @@ $PAGE->requires->js('/local/mynotebook/js/jquery-1.7.2.js', true);
 $PAGE->requires->js('/local/mynotebook/js/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js', true);
 $PAGE->requires->js('/local/mynotebook/js/trigger.js', true);
 
-//$PAGE->requires->js('/local/mynotebook/demo/jquery-ajax/js/tutorial.js');
 //$PAGE->requires->js('/local/mynotebook/js/essential_functions.js', true);
 
 
@@ -88,7 +76,6 @@ $registered_courseids = array_keys($courses);
 $allcourseids = $DB->get_records('notes', array('userid' => $USER->id, 'deleted' => 0));
 $courseid_array = array();
 $coursename_array = array();
-$b = 0;
 
 foreach ($allcourseids as $courseid) {
     //Stores the coursename and course ids
@@ -111,8 +98,8 @@ $ordered_course_name = reorderindex($unique_course_name, $conditions_list);
 $course_no_notes = array();
 $course_yes_notes = array();
 
-//Finds the courses that the users have no notes in
-//This is done both ways to ensure all the courses are included
+/*Finds the courses that the users have no notes in
+This is done both ways to ensure all the courses are included*/
 if (sizeof($registered_courseids) > sizeof($ordered_course_id)) {
     $course_no_notes = array_diff($registered_courseids, $ordered_course_id);
     $course_no_notes = reorderindex($course_no_notes);
@@ -121,8 +108,8 @@ if (sizeof($registered_courseids) > sizeof($ordered_course_id)) {
     $course_no_notes = reorderindex($course_no_notes);
 }
 
-//Finds the courses that the users have notes in
-//This is done both ways to ensure all the courses are included
+/*Finds the courses that the users have notes in
+This is done both ways to ensure all the courses are included*/
 if (sizeof($registered_courseids) > sizeof($ordered_course_id)) {
     $course_yes_notes = array_intersect($registered_courseids, $ordered_course_id);
     $course_yes_notes = reorderindex($course_yes_notes);
@@ -136,8 +123,8 @@ $notes = $DB->get_records('notes', array('userid' => $USER->id, 'deleted' => 0))
 //Deleting this div will break the side bar
 echo"<div id='topshelf'>";
 /* * ******************************************************************************* */
-//Creates the book on the shelf and passes the courseid as well
-//The course name will have a text limit of 20
+/*Creates the book on the shelf and passes the courseid as well
+The course name will have a text limit of 20*/
 echo"<div id='book'>";
 $a = 0;
 
@@ -146,9 +133,9 @@ $a = 0;
 echo"<ul class='topUL'>";
 for ($k = 0; $k < sizeof($ordered_course_id); $k++) {
     $p = $k + 1;
-//    //Limits the length of the course name
+    //Limits the length of the course name
     $name = substr($ordered_course_name[$k], 0, 18);
-//    //Displays notebook when clicked
+    //Displays notebook when clicked
     if (strlen($name < 18)) {
         //Do nothing
     } else {
@@ -167,7 +154,6 @@ for ($k = 0; $k < sizeof($ordered_course_id); $k++) {
                         if ($note->courseid == $ordered_course_id[$k]) {
                             if (strlen($note->name) < 18) {
                                 $trimmed_name = $note->name;
-//                                echo"<a href='#url'>$a. $trimmed_name</a><br />";
                                   echo"<div>$a. $trimmed_name</div><br />";
                             } else {
                                 $trimmed_name = substr($note->name, 0, 18);
@@ -184,7 +170,6 @@ for ($k = 0; $k < sizeof($ordered_course_id); $k++) {
 }
 
 //Displays the books with no notes in grey dotted lines
-//    echo"<ul class='topUL'>";
 for ($m = 0; $m < sizeof($course_no_notes); $m++) {
     $coursenames = $DB->get_record('course', array('id' => $course_no_notes[$m]));
     //checks length of name and limits the displayed coursename on each book if 15 characters or more
@@ -205,19 +190,9 @@ echo"</div>"; //End topshelf div
 
 //Menu on the right to export notes, add bookmarks, change settings, and check recycle bin
 echo"<ul id='followTab'>";
-echo"<li><button class='export'><img src='images/export.png' title='Export Notes'/></button></li>";
-//echo"<li><a class='export1' href='html2word.php'><img src='images/export.png' title='Export1 Test'/></a></li>";
-//echo"<li><button class='export1'><img src='images/export.png' title='Export1 Test'/></button></li>";
-
-//echo"<li><a class='merge' href='mergenotes.php'><img src='images/merge.png' title='Merge Notes'/></a></li>";
-echo"<li><button class='merge'><img src='images/merge.png' title='Merge Notes'/></button></li>";
-
-//echo"<li><button class='bookmark'><img src='images/bookmark_icon.png' title='Add Bookmark'/></button></li>";
-//echo"<li><button class='settings'><img src='images/settings.png' title='Settings'/></button></li>";
-//echo"<li><a class='recyclebin' href='recycle.php'><img src='images/recycle.png' title='Recycle Bin'/></a></li>";
-echo"<li><button class='recyclebin'><img src='images/recycle.png' title='Recycle Bin'/></button></li>";
-
-
+echo    "<li><button class='export'><img src='images/export.png' title='Export Notes'/></button></li>";
+echo    "<li><button class='merge'><img src='images/merge.png' title='Merge Notes'/></button></li>";
+echo    "<li><button class='recyclebin'><img src='images/recycle.png' title='Recycle Bin'/></button></li>";
 echo"</ul>";
 
 //Calls the export function
@@ -231,22 +206,21 @@ echo"<div style='display:none'>";
     //All the different side menu popups
     //***************************************************
     //Popup for exporting notes
-    echo"<div id='export' title='Export Notes'>";
-        echo"<fieldset>";
-            echo "<form>
-                Export:
-                <select name='export' onchange='export_option(this.value)'>
-                <option value=''>None</option>
-                <option value='All Notes'> All Notes </option>
-                <option value='Course Notes'> Course Notes </option>
-                </select>
-            </form>
-        </fieldset>
-        <div id='Show_option'></div>";
-    echo"</div>";//export
+echo    "<div id='export' title='Export Notes'>";
+echo        "<fieldset>";
+echo            "<form>";
+echo            "Export:";
+echo                "<select name='export' onchange='export_option(this.value)'>";
+echo                    "<option value=''>None</option>";
+echo                    "<option value='All Notes'> All Notes </option>";
+echo                    "<option value='Course Notes'> Course Notes </option>";
+echo                "</select>";
+echo            "</form>";
+echo        "</fieldset>";
+echo        "<div id='Show_option'></div>";
+echo    "</div>";//export
 
     //Merge Notes
-//    echo"<div id='merge' title='Merge Notes'></div>";
         echo"<div id='merge' title='Merge Notes'>";
         display_courses_2_merge();
 
@@ -256,12 +230,6 @@ echo"<div style='display:none'>";
         echo "<button onclick='merge_notes()'><img src='images/merge.png' title='Merge'/>MAGIC!</button>";
 
         echo"</div>";
-
-    //Bookmarks
-//    echo"<div id='bookmark' title='Bookmark'></div>";
-
-    //Settings
-//    echo"<div id='settings' title='Settings'></div>";
 
    //deletes selected notes
    if ($_REQUEST['delete'] != NULL) {

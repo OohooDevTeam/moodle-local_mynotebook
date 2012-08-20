@@ -1,38 +1,19 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
-//
-// Moodle is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
-
 /**
- * Internal library of functions for module mynotebook
- *
- * All the mynotebook specific functions, needed to implement the module
- * logic, should go here. Never include this file from your lib.php!
- *
- * @package   mod_mynotebook
- * @copyright 2010 Your Name
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
+**************************************************************************
+**                              mynotebook                              **
+**************************************************************************
+* @package     local                                                    **
+* @subpackage  mynotebook                                               **
+* @name        mynotebook                                               **
+* @copyright   oohoo.biz                                                **
+* @link        http://oohoo.biz                                         **
+* @author      Theodore Pham                                            **
+* @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later **
+**************************************************************************
+**************************************************************************/
+
 defined('MOODLE_INTERNAL') || die();
-
-/**
- * Does something really useful with the passed things
- *
- * @param array $things
- * @return object
- */
 
 //Reindex a single array
 function reorderindex(array $source, $conditions_list = array()) {
@@ -240,29 +221,6 @@ function display_courses_2_merge(){
 
     }
 
-    //Onclick merges notes and deletes the source
-//    function merge_button(){
-//            echo "<script language='JavaScript'>
-//
-//      function mergenotes () {
-//
-//    var source = $('select#merge_left').val();
-//    console.log(source);
-//    var destination = $('select#merge_right').val();
-//    console.log(destination);
-//
-//        console.log('HELLO');
-//        $.post('mergenotes.php', {merge: 'merge', source: 'source', destination: 'destination'},
-//        function(data, textStatus)
-//        {
-//                alert('Response from server: ' + data);
-//        });
-//           console.log('BYO');
-//      }
-//";
-//    echo "</script>";
-//    }
-
 //Retrieves the notes that the user wants to merge together
 function merge() {
 
@@ -289,21 +247,6 @@ function merge_notes()
 //Check whether the delete or restore button was clicked in the recycle bin
 function check_button_clicked() {
     global $CFG;
-//    echo "<script type='text/javascript'>
-//    function checkData(id) {
-//       switch(id) {
-//          case 'delete':
-//           var a = 'delete';
-//             break;
-//          case 'restore':
-//           var a = 'restore';
-//             break;
-//        }
-//    console.log(a);
-//          window.location.href = '$CFG->wwwroot/local/mynotebook/recycle.php?a=' + a;
-//            console.log('$CFG->wwwroot/local/mynotebook/recycle.php?a=' + a);
-//    }";
-
         echo "<script type='text/javascript'>
     function checkData(id) {
        switch(id) {
@@ -316,9 +259,6 @@ function check_button_clicked() {
             console.log('id' + id)
             break;
         }
-
-               var x = $('.recycle').val();
-                console.log(x);
     }";
     echo "</script>";
 }
@@ -377,12 +317,10 @@ function restore_delete(){
     global $DB, $USER;
 
     //Display all the notes that are sent to the recycle bin
-//'0' is false || '1' is true
+    //'0' is false || '1' is true
     $recycle = $DB->get_records('notes', array('deleted' => 1, 'userid' => $USER->id));
 
     echo "<form id='check' method='post' action='view.php'>";
-//    echo "<form id='check' method='post' action='recycle.php'>";
-
 
     check_all();
     echo"<br/><input type='submit' name='checkall' id='checkall' value='Select All' onclick='checkedAll();return false;'/>";
