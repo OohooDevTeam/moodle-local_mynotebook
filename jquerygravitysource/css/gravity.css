@@ -1,0 +1,36 @@
+.blockz {
+	padding: 20px;
+	background-color: black;
+	color: white;
+	width: 100px;
+	text-align: center;
+}
+
+.handle {
+	width: 4px;
+	height: 50px;
+	background-color: red;
+	cursor: pointer;
+	margin-left: 68px;
+}
+
+.handle_wrap {
+	height: 50px;	
+}
+
+#air {
+	height: 500px;
+	padding-top: 20px;
+	background-color: #B4D7F4;
+}
+
+.blockz_container {
+	float: left;
+	width: 140px;
+}
+
+#ground {
+	padding: 20px;
+	background-color: #5F3800;
+	color: white;
+}

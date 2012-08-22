@@ -30,6 +30,7 @@ $PAGE->requires->js('/local/mynotebook/js/jquery-1.7.2.js', true);
 $PAGE->requires->js('/local/mynotebook/js/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js', true);
 $PAGE->requires->js('/local/mynotebook/js/save_notes.js', true);
 
+//This is what causes the errors to appear in IE9
 echo $OUTPUT->header();
 
 if ($_REQUEST['courseid'] && $_REQUEST['note_id']){

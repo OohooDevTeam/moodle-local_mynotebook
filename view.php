@@ -63,9 +63,7 @@ $PAGE->requires->js('/local/mynotebook/js/trigger.js', true);
 
 //$PAGE->requires->js('/local/mynotebook/js/essential_functions.js', true);
 
-
 echo $OUTPUT->header();
-
 
 //Grabs all courses of the user
 $courses = enrol_get_users_courses($USER->id);
@@ -158,7 +156,7 @@ for ($k = 0; $k < sizeof($ordered_course_id); $k++) {
                             } else {
                                 $trimmed_name = substr($note->name, 0, 18);
                                 $trimmed_name .= '...';
-                                echo"<a href='#url' title='$note->name'>$a. $trimmed_name</a><br />";
+                                echo"<a href='#' title='$note->name'>$a. $trimmed_name</a><br />";
                             }
                             $a++;
                         }

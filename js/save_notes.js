@@ -26,18 +26,18 @@ function initMCE() {
                 });
 
             //While the textarea is active
-            $(editor.getBody()).focus(
-            function()
-            {
-                $(editor.getContainer()).find(".mceToolbar, .mceStatusbar").show()
-                    var width = 500;
-                    var height = 522;
-                    editor.theme.resizeTo(width, height);
+//            $(editor.getBody()).focus(
+//            function()
+//            {
+//                $(editor.getContainer()).find(".mceToolbar, .mceStatusbar").show()
+//                    var width = 500;
+//                    var height = 522;
+//                    editor.theme.resizeTo(width, height);
+//
+//                    editor.addShortcut('ctrl+s', 'saveFunction', save);
+//            });
 
-                    editor.addShortcut('ctrl+s', 'saveFunction', save);
-            });
-
-            $(editor.getBody()).blur();
+//            $(editor.getBody()).blur();
 
          //CSS for the gradient lines to display for Chrome, Safari, Mozilla, IE, and Opera
             $(editor.getBody()).css({
@@ -45,9 +45,7 @@ function initMCE() {
                 'color': '#444',
                 'line-height': '20px',
 
-                //'background': 'url(/moodle/local/mynotebook/images/theo.png)',
                 'background': '-webkit-gradient(linear, 0 0, 0 100%, from(#65faff), color-stop(4%, #fff)) 0 4px',
-
 
                 '-webkit-background-size': '100% 20px',
                 '-moz-background-size': '100% 20px',
@@ -187,6 +185,7 @@ function trim(s)
 	{	r-=1;	}
 	return s.substring(l, r+1);
 }
+
 
 $(document).ready(function(){
     initMCE();
