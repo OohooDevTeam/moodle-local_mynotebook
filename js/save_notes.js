@@ -1,20 +1,31 @@
-//$(editor.getBody()).html()
-//Grabs the html code
+/**
+**************************************************************************
+**                              mynotebook                              **
+**************************************************************************
+* @package     local                                                    **
+* @subpackage  mynotebook                                               **
+* @name        mynotebook                                               **
+* @copyright   oohoo.biz                                                **
+* @link        http://oohoo.biz                                         **
+* @author      Theodore Pham                                            **
+* @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later **
+**************************************************************************
+**************************************************************************/
 
-//var editor;
-
-//Controls the tinyMCE toolbar in the iFrame to show and hide
+/**
+ * Controls the tinyMCE toolbar in the iFrame to show and hide
+ */
 function initMCE() {
 
     setTimeout(function() {
         if(!tinyMCE.get('areaText')) {
+            //Recursively call to initialize tinyMCE
             initMCE();
         } else {
             //Initialize tinyMCE variable to apply to specified text area
             var editor = tinyMCE.get('areaText');
 
-
-   //Make the height and width dynamic since they change when on blur and focus
+            //Make the height and width dynamic since they change when on blur and focus
             //When textarea is unactive
             $(editor.getBody()).blur(
             function()
@@ -25,21 +36,21 @@ function initMCE() {
                         editor.theme.resizeTo(width, height);
                 });
 
-            //While the textarea is active
-//            $(editor.getBody()).focus(
-//            function()
-//            {
-//                $(editor.getContainer()).find(".mceToolbar, .mceStatusbar").show()
-//                    var width = 500;
-//                    var height = 522;
-//                    editor.theme.resizeTo(width, height);
-//
-//                    editor.addShortcut('ctrl+s', 'saveFunction', save);
-//            });
+            //When the textarea is active
+            $(editor.getBody()).focus(
+            function()
+            {
+                $(editor.getContainer()).find(".mceToolbar, .mceStatusbar").show()
+                    var width = 500;
+                    var height = 522;
+                    editor.theme.resizeTo(width, height);
+
+                    editor.addShortcut('ctrl+s', 'saveFunction', save);
+            });
 
 //            $(editor.getBody()).blur();
 
-         //CSS for the gradient lines to display for Chrome, Safari, Mozilla, IE, and Opera
+            //CSS for the gradient lines to display for Chrome, Safari, Mozilla, IE, and Opera
             $(editor.getBody()).css({
                 'font': 'normal 12px/1.5 "Lucida Grande", arial, sans-serif',
                 'color': '#444',
@@ -162,7 +173,10 @@ function initMCE() {
     }, 100);
 }
 
-//Saves the notes changed when user presses "ctrl + s"
+
+/**
+ * Saves the changes done when user presses "ctrl + s"
+ */
 var save = function() {
     //Initialized object
     var editor = tinyMCE.get('areaText');
@@ -175,7 +189,9 @@ var save = function() {
     });
 }
 
-//trims the whites spaces on the numbers
+/**
+ * Trims the whites spaces on the numbers
+ */
 function trim(s)
 {
 	var l=0; var r=s.length -1;

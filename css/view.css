@@ -1,12 +1,23 @@
+/**
+**************************************************************************
+**                              mynotebook                              **
+**************************************************************************
+* @package     local                                                    **
+* @subpackage  mynotebook                                               **
+* @name        mynotebook                                               **
+* @copyright   oohoo.biz                                                **
+* @link        http://oohoo.biz                                         **
+* @author      Theodore Pham                                            **
+* @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later **
+**************************************************************************
+**************************************************************************/
 
-
-/*body{background-image:url("../random/white_stage.jpg");}*/
 /*Books on the shelf*/
 #book{
 
-    width: 570px; 
-    height: 350px; 
-    position: relative; 
+    width: 570px;
+    height: 350px;
+    position: relative;
 
     float:right;
 }
@@ -15,8 +26,4 @@
     position:relative;
     width:100%;
     height:500px;
-
-    /*background-size:100% 100%;*/
-    /*        background-image:url('background/ruled.jpg');*/
-    /*background-color:#FF8C00;*/
 }

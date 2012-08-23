@@ -1,9 +1,24 @@
+/**
+**************************************************************************
+**                              mynotebook                              **
+**************************************************************************
+* @package     local                                                    **
+* @subpackage  mynotebook                                               **
+* @name        mynotebook                                               **
+* @copyright   oohoo.biz                                                **
+* @link        http://oohoo.biz                                         **
+* @author      Theodore Pham                                            **
+* @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later **
+**************************************************************************
+**************************************************************************/
+
 var handle;
 
-//controls the notebook popup
+/**
+ * Opens up the notebook dialog when user clicks it
+ */
 $(document).ready(function(){
       $(document).on('click', '.ajaxtrigger',function(){
-//    $('.ajaxtrigger').live('click',function(){
         $('#target').dialog('close');
         $(document).unbind("mousemove");
         $(document).unbind("mouseup");
@@ -12,12 +27,8 @@ $(document).ready(function(){
         //Grabs the course name and puts it into the header
         var heading = 'MyNotebook - ' + $(this).attr('coursename');
 
-        //        var array = $.parseJSON($(this).attr('array'));
-        //        for (i = 0; i < array.length; i++) {
-        //            console.log(array[i]);
-        //        }
-
         //Loads the page url and then opens it up in a popup window
+        //Specifies the options for the dialog
         $('#target').load(this.href, function() {
             setTimeout(function(){
                 $( '#target' ).dialog({
@@ -42,17 +53,19 @@ $(document).ready(function(){
             $('#target').dialog('close');
         }
     });
-//    $(document).bind("mousemove");
-//        $(document).bind("mouseup");
 });
 
-//controls the export popup
+/**
+ * Opens the export popup menu
+ */
 $(document).ready(function(){
     $(function() {
+        //Specifies the options for the dialog
         $( "#export" ).dialog({
             autoOpen: false,
             modal:false,
             resizable: false,
+            //Specifies the options for the dialog on show
             show: function() {
                 var $this = $(this);
                 $this
@@ -64,6 +77,7 @@ $(document).ready(function(){
                     $this.remove();
                 });
             },
+            //Specifies the options for the dialog on hide
             hide: function() {
                 var $this = $(this);
                 $this
@@ -75,25 +89,26 @@ $(document).ready(function(){
                     $this.remove();
                 });
             }
-
         });
 
         $( ".export" ).click(function() {
-            $('#bookmark').dialog('close');
-            $('#settings').dialog('close');
             $( "#export" ).dialog( "open" );
             return false;
         });
     });
 });
 
-//Controls the merge window //new one
+/**
+ * Opens the merge window
+ */
 $(document).ready(function(){
     $(function() {
+        //Specifies the options for the dialog
         $( "#merge" ).dialog({
             autoOpen: false,
             modal:false,
             resizable: false,
+            //Specifies the options for the dialog on show
             show: function() {
                 var $this = $(this);
                 $this
@@ -105,6 +120,7 @@ $(document).ready(function(){
                     $this.remove();
                 });
             },
+            //Specifies the options for the dialog on hide
             hide: function() {
                 var $this = $(this);
                 $this
@@ -116,26 +132,25 @@ $(document).ready(function(){
                     $this.remove();
                 });
             }
-//            buttons: { "Ok" :
-//                function() { $(this).dialog("close"); } }
             //When user closes the dialog, page refreshes
             }).parent().find(".ui-dialog-titlebar-close").click(
                 function() {
-//                    alert("Closed by title bar X, clear the other form here");
                     location.reload();
                 });
 
         $( ".merge" ).click(function() {
-            $('#bookmark').dialog('close');
-            $('#settings').dialog('close');
             $( "#merge" ).dialog( "open" );
             return false;
         });
     });
 });
 
+/**
+ * Opens up the recycle bin
+ */
 $(document).ready(function(){
     $(function() {
+        //Specifies the options for the dialog
         $( "#recyclebin" ).dialog({
             autoOpen: false,
             modal:false,
@@ -143,7 +158,7 @@ $(document).ready(function(){
             width:"550px",
             height:"auto",
             position:"center",
-
+            //Specifies the options for the dialog on show
             show: function() {
                 var $this = $(this);
                 $this
@@ -155,6 +170,7 @@ $(document).ready(function(){
                     $this.remove();
                 });
             },
+            //Specifies the options for the dialog on hide
             hide: function() {
                 var $this = $(this);
                 $this
@@ -166,12 +182,9 @@ $(document).ready(function(){
                     $this.remove();
                 });
             }
-
         });
 
         $( ".recyclebin" ).click(function() {
-            $('#bookmark').dialog('close');
-            $('#settings').dialog('close');
             $( "#recyclebin" ).dialog( "open" );
             return false;
         });

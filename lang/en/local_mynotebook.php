@@ -18,6 +18,31 @@ defined('MOODLE_INTERNAL') || die();
 $string['modulename'] = 'Mynotebook';
 $string['modulenameplural'] = 'Mynotebooks';
 
+//Hover over a book
+$string['hover'] = 'Hover to open';
+$string['content'] = 'Content';
+
+//No notes
+$string['nonotes'] = ' (No Notes)';
+
+//Export
+$string['export_title'] = 'Export Notes';
+$string['export'] = 'Export:';
+$string['none'] = 'None';
+$string['allnotes'] = 'All Notes';
+$string['coursenotes'] = 'Course Notes';
+
+//Merge
+$string['merge_title'] = 'Merge Notes';
+$string['merge'] = 'Merge';
+$string['source'] = "Source:";
+$string['destination'] = "Destination:";
+
+//Recyclebin
+$string['recycle_title'] = 'Recycle Bin';
+$string['delete_msg'] = "Permanently delete selected notes?";
+$string['restore_msg'] = "Restore selected notes?";
+
 
 $string['mynotebookfieldset'] = 'Custom example fieldset';
 $string['mynotebookname'] = 'mynotebook name';

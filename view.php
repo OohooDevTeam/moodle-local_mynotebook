@@ -28,8 +28,9 @@ $PAGE->requires->css('/local/mynotebook/css/target.css');
 $PAGE->requires->css('/local/mynotebook/css/recycle.css');
 $PAGE->requires->css('/local/mynotebook/css/followtab.css');
 
-//CSS for recycle bin
 $PAGE->requires->css('/local/mynotebook/css/paper.css');
+
+//CSS for recycle bin
 $PAGE->requires->css('/local/mynotebook/css/form.css');
 //echo'<link  href="http://fonts.googleapis.com/css?family=Reenie+Beanie:regular" rel="stylesheet" type="text/css"> ';
 
@@ -144,9 +145,14 @@ for ($k = 0; $k < sizeof($ordered_course_id); $k++) {
         //Creates the books on the shelf
         echo"<li class='b$p'><a array='$test' coursename='$name' href='notebook.php?courseid=$ordered_course_id[$k]' class='p1 ajaxtrigger' ><span>$name</span></a>";
             echo"<ul class='sub'>";
-                echo"<li class='cover'>$name<br /><em>Hover to open ...</em></li>";
+                echo"<li class='cover'>$name<br /><em>";
+                    echo get_string('hover', 'local_mynotebook');
+                echo"</em></li>";
                 echo"<li class='content'>";
-                    echo"<b>Content</b><br />";
+                    echo"<b>";
+                        echo get_string('content', 'local_mynotebook');
+                    echo"</b><br />";
+
                     //Displays the content when you hover over the book
                     foreach ($notes as $note) {
                         if ($note->courseid == $ordered_course_id[$k]) {
@@ -177,7 +183,9 @@ for ($m = 0; $m < sizeof($course_no_notes); $m++) {
         $no_notes = substr($coursenames->fullname, 0, 14);
         $no_notes .= "...";
     }
-    echo"<li class='faded'><a class='fadedbook'><span>$no_notes (No Notes)</span></a></li>";
+    echo "<li class='faded'><a class='fadedbook'><span>$no_notes";
+    echo get_string('nonotes', 'local_mynotebook');
+    echo "</span></a></li>";
 }
 echo"</ul>"; // End topUL
 
@@ -188,9 +196,9 @@ echo"</div>"; //End topshelf div
 
 //Menu on the right to export notes, add bookmarks, change settings, and check recycle bin
 echo"<ul id='followTab'>";
-echo    "<li><button class='export'><img src='images/export.png' title='Export Notes'/></button></li>";
-echo    "<li><button class='merge'><img src='images/merge.png' title='Merge Notes'/></button></li>";
-echo    "<li><button class='recyclebin'><img src='images/recycle.png' title='Recycle Bin'/></button></li>";
+echo    "<li><button class='export'><img src='images/export.png' title='" . get_string('export_title', 'local_mynotebook'). "'/></button></li>";
+echo    "<li><button class='merge'><img src='images/merge.png' title='" . get_string('merge_title', 'local_mynotebook'). "'/></button></li>";
+echo    "<li><button class='recyclebin'><img src='images/recycle.png' title='" . get_string('recycle_title', 'local_mynotebook'). "'/></button></li>";
 echo"</ul>";
 
 //Calls the export function
@@ -204,14 +212,14 @@ echo"<div style='display:none'>";
     //All the different side menu popups
     //***************************************************
     //Popup for exporting notes
-echo    "<div id='export' title='Export Notes'>";
+echo    "<div id='export' title='" . get_string('export_title', 'local_mynotebook'). "'>";
 echo        "<fieldset>";
 echo            "<form>";
-echo            "Export:";
+echo            get_string('export', 'local_mynotebook');
 echo                "<select name='export' onchange='export_option(this.value)'>";
-echo                    "<option value=''>None</option>";
-echo                    "<option value='All Notes'> All Notes </option>";
-echo                    "<option value='Course Notes'> Course Notes </option>";
+echo                    "<option value=''>" . get_string('none', 'local_mynotebook'). "</option>";
+echo                    "<option value='" . get_string('allnotes', 'local_mynotebook'). "'> " . get_string('allnotes', 'local_mynotebook'). " </option>";
+echo                    "<option value='" . get_string('coursenotes', 'local_mynotebook'). "'> " . get_string('coursenotes', 'local_mynotebook'). " </option>";
 echo                "</select>";
 echo            "</form>";
 echo        "</fieldset>";
@@ -219,38 +227,30 @@ echo        "<div id='Show_option'></div>";
 echo    "</div>";//export
 
     //Merge Notes
-        echo"<div id='merge' title='Merge Notes'>";
+        echo"<div id='merge' title='" . get_string('merge_title', 'local_mynotebook'). "'>";
         display_courses_2_merge();
 
         echo "</br>";
 
         merge();
-        echo "<button onclick='merge_notes()'><img src='images/merge.png' title='Merge'/>MAGIC!</button>";
+        echo "<button onclick='merge_notes()'><img src='images/merge.png' title='" . get_string('merge', 'local_mynotebook'). "'/></button>";
 
         echo"</div>";
 
-   //deletes selected notes
+   //Deletes selected notes
    if ($_REQUEST['delete'] != NULL) {
-        echo "Test del: ".$_REQUEST['delete']."<br>";
-        echo"<script> console.log('DEL')
-            alert('DELETE');
-        </script>";
         delete_notes();
     }
 
-    //restore selected notes
+    //Restore selected notes
     if ($_REQUEST['restore'] != NULL) {
-        echo "Test res: ".$_REQUEST['restore']."<br>";
-        echo"<script> console.log('RES')
-            alert('RESTORE');
-        </script>";
         restore_notes();
     }
 
     //Recycle Bin
-    echo"<div id='recyclebin' title='Recycle Bin'>";
+    echo"<div id='recyclebin' title='" . get_string('recycle_title', 'local_mynotebook'). "'>";
         //Function to display notes that have been moved to the recyclebin for permanent deletion or restoration
-        restore_delete();
+        display_recyclebin();
 
     echo"</div>";
 

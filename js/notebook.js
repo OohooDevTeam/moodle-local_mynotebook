@@ -1,17 +1,29 @@
+/**
+**************************************************************************
+**                              mynotebook                              **
+**************************************************************************
+* @package     local                                                    **
+* @subpackage  mynotebook                                               **
+* @name        mynotebook                                               **
+* @copyright   oohoo.biz                                                **
+* @link        http://oohoo.biz                                         **
+* @author      Theodore Pham                                            **
+* @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later **
+**************************************************************************
+**************************************************************************/
+
 $(window).ready(function() {
     $('#notebook').turn({
         display: 'double',
         acceleration: true,
-        //        gradients: !$.isTouch,
         elevation:100,
         when: {
             turned: function(e, page) {
 
             $('#page-number').val(page);
-//            console.log($('#page-number').val(page));
-//            console.log($('#page-number').turn('page'));
+
             //Determines the number of pages in the book - each note is a page
-            var numberOfPages = $(this).turn('pages'); 
+            var numberOfPages = $(this).turn('pages');
             $('#number-pages').html(numberOfPages);
             }
         }
@@ -24,21 +36,7 @@ function turn2page(pagenum){
 
 function bookmarkpage(){
         $('#notebook').turn('page');
-        console.log($('#notebook').turn('page'));
-        alert($('#notebook').turn('page'));
 }
-
-//function grabpage(){
-//    
-//    $('#notebook').turn('page');
-//    console.log($('#notebook').turn('page'));
-//    alert($('#notebook').turn('page'));
-//
-//    $('#notebook').turn('pages');
-//    console.log($('#notebook').turn('pages'));
-//    alert($('#notebook').turn('pages'));
-//}
-
 
 //Binds the arrow keys for page turning
 //arrowleft:37; arrowright:39
@@ -52,10 +50,10 @@ $(window).bind('keydown', function(e){
     else if (e.keyCode==39){
         $('#notebook').turn('next');
     }
-    
+
 //    http://www.coderanch.com/t/479386/HTML-CSS-JavaScript/Capturing-window-keycode-not-working
-    var evt = e || window.event;  
-    if(evt.keyCode == 116){  
+    var evt = e || window.event;
+    if(evt.keyCode == 116){
     }
 });
 
@@ -64,11 +62,11 @@ $(window).bind('keydown', function(e){
 $(function(){
     $("#page-number").keypress(function(event) {
         if ( event.which == 13 ) {
-            event.preventDefault();              
-            page = $("#page-number").val();  
+            event.preventDefault();
+            page = $("#page-number").val();
             $('#notebook').turn('page', page);
         }
-    });    
+    });
 });
 
 

@@ -1,21 +1,18 @@
+/**
+**************************************************************************
+**                              mynotebook                              **
+**************************************************************************
+* @package     local                                                    **
+* @subpackage  mynotebook                                               **
+* @name        mynotebook                                               **
+* @copyright   oohoo.biz                                                **
+* @link        http://oohoo.biz                                         **
+* @author      Theodore Pham                                            **
+* @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later **
+**************************************************************************
+**************************************************************************/
 
-/*.deleted {
-        width:805px;
-  
-        border-top:1px solid #000000;
-        border-right:1px solid #000000;
-        border-left:1px solid #000000;
-        border-bottom:1px solid #000000;
-        border:1px solid #000000;
-        margin:0em 26em;
-                margin:0em auto;
-        
-                border-collapse:collapse;
-position: relative;
-        }*/
-
-
-/*Sets table row height*/ 
+/*Sets table row height*/
 table tr {
     height: 40px;
     width: 300px;
@@ -26,7 +23,7 @@ tr.odd .column1 {
     background:#white;
     height:100px;
     /*        width:200px;*/
-}	
+}
 .column1	{
     background:#white;
     /*        width:200px;*/
@@ -62,7 +59,7 @@ div#drag td{
     /* without width, IE6/7 will not apply filter/opacity to the element ?! */
     /* IE needs element layout */
     width: 120px;
-    /*        border-radius: 10px;  Opera, Chrome 
+    /*        border-radius: 10px;  Opera, Chrome
             -moz-border-radius: 10px;  FF */
 
     /* round corners for FF, Chrome, Safari (except IE) */
@@ -108,14 +105,14 @@ th {
     border:1px solid #white;
 
     padding:.3em 1em;
-}	
+}
 thead th {
     /*background:#f4f9fe;*/
     text-align:center;
     font:bold 1.2em/2em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
     color:#66a3d3
 
-}				
+}
 
 .mark {
     color: #66a3d3;
@@ -213,7 +210,7 @@ a.button2:active span {
 }
 
 #delete{
-    
+
 }
 
 #restore{
@@ -221,5 +218,5 @@ a.button2:active span {
 }
 
 #checkall{
-    
+
 }

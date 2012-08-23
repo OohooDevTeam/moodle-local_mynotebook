@@ -15,7 +15,13 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-//Reindex a single array
+/**
+ * Reorders a single array index in ascending sequential order
+ *
+ * @param array $source This array holds the array to be reindexed
+ * @param array $conditions_list This array holds the conditions for reindexing
+ * @return array Returns the reindexed array
+ */
 function reorderindex(array $source, $conditions_list = array()) {
     $i = 0;
     foreach ($source as $key => $val) {
@@ -34,22 +40,7 @@ function reorderindex(array $source, $conditions_list = array()) {
             }
         }
     }
-
     return $source;
-}
-
-//Reindex a multidimensional array (2)
-function reindex_this_array($anArray) {
-    if (!is_array($anArray)) {
-        return $anArray;
-    }
-
-    $reindexed_array = array();
-    foreach ($anArray as $anElement) {
-        $reindexed_array[] = reindex_this_array($anElement);
-    }
-
-    return $reindexed_array;
 }
 
 //Exports the user notes
@@ -78,7 +69,6 @@ xmlhttp.onreadystatechange=function()
     document.getElementById('Show_option').innerHTML=xmlhttp.responseText;
     }
   }
-  console.log(str);
 xmlhttp.open('GET','export.php?q='+str ,true);
 xmlhttp.send();
 }
@@ -87,6 +77,12 @@ xmlhttp.send();
 }
 
 //Limits the number of charater a text can have
+/**
+ * Cuts of the string if more than 13 characters and adds ellipses
+ *
+ * @param string $text This string is the text to be trimmed
+ * @return string Returns the substring
+ */
 function text_limit($text) {
     $chars = 13;
     $points = (strlen($text) > $chars) ? '...' : '';
@@ -94,13 +90,25 @@ function text_limit($text) {
 }
 
 //Stores all the record for the note titles in hidden fields
+/**
+ * This function contains hidden input fields for storing the note title
+ *
+ * @param int $i This number is for a unique courseid and noteid and act as an iterator
+ * @param int $courseid This number is for finding the course the note is taken
+ * @param int $noteid This number is for finding the note
+ */
 function hidden_note_title_values($i, $courseid, $noteid) {
     echo "<input id='iterator' type='hidden' value=' $i '/>";
     echo "<input id='courseid$i' type='hidden' value=' $courseid '/>";
     echo "<input id='note_id$i' type='hidden' value=' $noteid '/>";
 }
 
-
+/**
+ * Displays 2 drop down menu for the user to merge their notes
+ *
+ * @global moodle_database $DB
+ * @global stdClass $USER
+ */
 function display_courses_2_merge(){
     global $DB, $USER;
     merge();
@@ -110,7 +118,6 @@ function display_courses_2_merge(){
     $registered_courseids = array_keys($courses);
 
     $courseids = $DB->get_records('notes', array('userid' => $USER->id));
-
 
     $array_courseid = array();
     foreach ($courseids as $courseid) {
@@ -142,84 +149,81 @@ function display_courses_2_merge(){
     $number_no_notes = sizeof($course_no_notes);
     $count = sizeof($course_name);
 
-    echo "<div id='merge_left' title='Merge Notes'>";
-    echo "<fieldset>";
-    echo"<form>";
+    //Left drop down menu
+    echo "<div id='merge_left' title='" . get_string('merge_title', 'local_mynotebook'). "'>";
+    echo    "<fieldset>";
+    echo        "<form>";
     //Course on left hand
-    echo "Source:</br>";
-    echo "<select style='width:200px' name='merge_left' id='merge_left'>";
+    echo            get_string('source', 'local_mynotebook');
+    echo"</br>";
+    echo            "<select style='width:200px' name='merge_left' id='merge_left'>";
 
-//    echo "<select style='width:200px' name='merge_left' id='merge_left' onchange='merge_notes_left()'>";
-        //Displays courses with notes
-        for ($i = 0; $i < $count; $i++) {
-            echo "<optgroup label='$course_name[$i]'</optgroup>";
-            $courseid = $DB->get_record('course', array('fullname'=>$course_name[$i]));
-            $course_notes = $DB->get_records('notes', array('userid'=>$USER->id, 'courseid'=>$courseid->id, 'deleted'=>0));
-            foreach ($course_notes as $notes){
-                echo "<option value='$notes->name'>$notes->name</option>";
-            }
+                    //Displays courses with notes
+                    for ($i = 0; $i < $count; $i++) {
+                        echo "<optgroup label='$course_name[$i]'</optgroup>";
+                        $courseid = $DB->get_record('course', array('fullname'=>$course_name[$i]));
+                        $course_notes = $DB->get_records('notes', array('userid'=>$USER->id, 'courseid'=>$courseid->id, 'deleted'=>0));
+                        foreach ($course_notes as $notes){
+                            echo "<option value='$notes->name'>$notes->name</option>";
+                        }
+                    }
 
-        }
+                    //Courses with no notes as greyed out
+                    for ($j = 0; $j < $number_no_notes; $j++) {
+                        $coursenames = $DB->get_record('course', array('id' => $course_no_notes[$j]));
+                        if (strlen($coursenames->fullname) < 28) {
+                            $no_notes = $coursenames->fullname;
+                        } else {
+                            $no_notes = substr($coursenames->fullname, 0, 27);
+                            $no_notes = $no_notes . "...";
+                        }
+                        echo "<optgroup label='$no_notes' disabled='disabled'></optgroup>";
+                    }
+    echo            "</select>";
+    echo        "</form>";
+    echo    "</fieldset>";
+    echo "</div>";
 
-        //Courses with no notes as greyed out
-        for ($j = 0; $j < $number_no_notes; $j++) {
-            $coursenames = $DB->get_record('course', array('id' => $course_no_notes[$j]));
-            if (strlen($coursenames->fullname) < 28) {
-                $no_notes = $coursenames->fullname;
-            } else {
-                $no_notes = substr($coursenames->fullname, 0, 27);
-                $no_notes = $no_notes . "...";
-            }
-            echo "<optgroup label='$no_notes' disabled='disabled'></optgroup>";
-        }
-    echo"</select>";
-    echo"</form>";
-    echo"</fieldset>";
-//    echo"<div id='Merge_left_option'></div>";
-    echo"</div>";
+    //Right drop down menu
+    echo "<div id='merge_right' title='" . get_string('merge_title', 'local_mynotebook'). "'>";
+    echo    "<form>";
+    echo        "<fieldset>";
 
-    echo "<div id='merge_right' title='Merge Notes'>";
-    echo "<fieldset>";
-    echo"<form>";
-
-    echo "</br>";
+    echo            "</br>";
 
     //Course on right hand
-    echo "Destination:</br>";
-    echo "<select style='width:200px' name='merge_right' id='merge_right'>";
+    echo            get_string('destination', 'local_mynotebook');
+    echo"</br>";
+    echo            "<select style='width:200px' name='merge_right' id='merge_right'>";
 
-//    echo "<select style='width:200px' name='merge_right' id='merge_right' onchange='merge_notes_left()'>";
-        //Displays courses with notes
-        for ($i = 0; $i < $count; $i++) {
-            echo "<optgroup label='$course_name[$i]'</optgroup>";
-            $courseid = $DB->get_record('course', array('fullname'=>$course_name[$i]));
-            $course_notes = $DB->get_records('notes', array('userid'=>$USER->id, 'courseid'=>$courseid->id, 'deleted'=>0));
-            foreach ($course_notes as $notes){
-                echo "<option value='$notes->name'>$notes->name</option>";
-            }
-        }
+                    //Displays courses with notes
+                    for ($i = 0; $i < $count; $i++) {
+                        echo "<optgroup label='$course_name[$i]'</optgroup>";
+                        $courseid = $DB->get_record('course', array('fullname'=>$course_name[$i]));
+                        $course_notes = $DB->get_records('notes', array('userid'=>$USER->id, 'courseid'=>$courseid->id, 'deleted'=>0));
+                        foreach ($course_notes as $notes){
+                            echo "<option value='$notes->name'>$notes->name</option>";
+                        }
+                    }
 
-        //Courses with no notes as greyed out
-        for ($j = 0; $j < $number_no_notes; $j++) {
-            $coursenames = $DB->get_record('course', array('id' => $course_no_notes[$j]));
-            if (strlen($coursenames->fullname) < 28) {
-                $no_notes = $coursenames->fullname;
-            } else {
-                $no_notes = substr($coursenames->fullname, 0, 27);
-                $no_notes = $no_notes . "...";
-            }
-            echo "<optgroup label='$no_notes' disabled='disabled'></optgroup>";
-        }
-    echo"</select>";
-    echo"</form>";
-    echo"</fieldset>";
-//    echo"<div id='Merge_right_option'></div>";
+                    //Courses with no notes as greyed out
+                    for ($j = 0; $j < $number_no_notes; $j++) {
+                        $coursenames = $DB->get_record('course', array('id' => $course_no_notes[$j]));
+                        if (strlen($coursenames->fullname) < 28) {
+                            $no_notes = $coursenames->fullname;
+                        } else {
+                            $no_notes = substr($coursenames->fullname, 0, 27);
+                            $no_notes = $no_notes . "...";
+                        }
+                        echo "<optgroup label='$no_notes' disabled='disabled'></optgroup>";
+                    }
+    echo            "</select>";
+    echo        "</fieldset>";
+    echo    "</form>";
     echo"</div>";
 
-
     echo"<div id='Merge_result'></div>";
-
-    }
+}
 
 //Retrieves the notes that the user wants to merge together
 function merge() {
@@ -228,12 +232,7 @@ echo "<script type='text/javascript'>
 function merge_notes()
 {
     var source = $('select#merge_left').val();
-    console.log(source);
-        console.log($('select#merge_left'));
-
     var destination = $('select#merge_right').val();
-    console.log(destination);
-        console.log($('select#merge_right'));
 
     $('#Merge_result').load('mergenotes.php', {'source': source, 'destination': destination});
 
@@ -252,11 +251,9 @@ function check_button_clicked() {
        switch(id) {
           case 'delete':
             window.location.href = '$CFG->wwwroot/local/mynotebook/view.php?delete=' + id;
-            console.log('id' + id)
             break;
           case 'restore':
             window.location.href = '$CFG->wwwroot/local/mynotebook/view.php?restore=' + id;
-            console.log('id' + id)
             break;
         }
     }";
@@ -264,17 +261,28 @@ function check_button_clicked() {
 }
 
 //Permeantly delete the selected notes
+/**
+ * Permanently deletes the selected note(s)
+ *
+ * @global moodle_database $DB
+ * @global stdClass $USER
+ */
 function delete_notes() {
     global $DB, $USER;
     if (!empty($_POST['checkbox'])) {
         for ($i = 0; $i < count($_POST['checkbox']); $i++) {
             $DB->delete_records('notes', array('id' => $_POST['checkbox'][$i], 'userid' => $USER->id));
         }
-        echo "Delete Completed";
     }
 }
 
 //Restores the selected notes
+/**
+ * Restores the selected note(s)
+ *
+ * @global moodle_database $DB
+ * @global stdClass $USER
+ */
 function restore_notes() {
     global $DB, $USER;
     echo $_POST['checkbox'];
@@ -284,7 +292,6 @@ function restore_notes() {
             $update2->deleted = 0;
             $DB->update_record('notes', $update2);
         }
-        echo "Restore Completed";
     }
 }
 
@@ -297,23 +304,26 @@ function check_all() {
       function checkedAll () {
         if (checked == false){
         checked = true
-            console.log(checked)
+
         } else {
         checked = false
-            console.log(checked)
         }
 
 	for (var i = 0; i < document.getElementById('check').elements.length; i++) {
 	  document.getElementById('check').elements[i].checked = checked;
 	}
-        console.log('Grabbed All IDs')
       }
 ";
     echo "</script>";
 }
 
-
-function restore_delete(){
+/**
+ * Function which displays all the notes that have been moved to the recycle bin
+ *
+ * @global moodle_database $DB
+ * @global stdClass $USER
+ */
+function display_recyclebin(){
     global $DB, $USER;
 
     //Display all the notes that are sent to the recycle bin
@@ -326,10 +336,10 @@ function restore_delete(){
     echo"<br/><input type='submit' name='checkall' id='checkall' value='Select All' onclick='checkedAll();return false;'/>";
 
     check_button_clicked();
-    echo "  <input type='submit' name='delete' id='delete' value='Delete' onclick='if( confirm(\"Permanently delete selected notes?\")){ return checkData(this.id);}'/>";
+    echo "  <input type='submit' name='delete' id='delete' value='Delete' onclick=\"if( confirm(' ". get_string('delete_msg', 'local_mynotebook'). " ')){ return checkData(this.id);}\"/>";
 
     //Reloads parent window when you restore notes
-    echo "  <input type='submit' name='restore' id='restore' value='Restore' onclick='if( confirm(\"Are you sure you want to restore these notes?\")){ return checkData(this.id);}'/>";
+    echo "  <input type='submit' name='restore' id='restore' value='Restore' onclick=\"if( confirm(' " . get_string('restore_msg', 'local_mynotebook'). " ')){ return checkData(this.id);}\"/>";
 
     $deleted_notes = $DB->get_records('notes', array('deleted' => 1, 'userid' => $USER->id));
     $count = $DB->count_records('notes', array('deleted' => 1, 'userid' => $USER->id));
@@ -339,20 +349,21 @@ function restore_delete(){
         $get = array_pop($deleted_notes);
         if (isset($get)) {
             $name = text_limit($get->name);
-            echo"<ul class='recycle'>";
-                echo"<li>";
-                    echo "<div align='left' id='$get->id'>";
-                        echo "<br/>";
-                        echo "<input type='checkbox' name='checkbox[]' value='$get->id'/>";
-                        echo "</br>";
-                    echo "</div>";
 
-                    echo"<a href='#' >";
-                        echo"<h2>$name</h2>";
-                        echo"<p>$get->text</p>";
-                    echo"</a>";
-                echo"</li>";
-            echo"</ul>";
+    echo    "<ul class='recycle'>";
+    echo        "<li>";
+    echo            "<div align='left' id='$get->id'>";
+    echo                "<br/>";
+    echo                "<input type='checkbox' name='checkbox[]' value='$get->id'/>";
+    echo                "</br>";
+    echo            "</div>";
+
+    echo            "<a href='#' >";
+    echo                "<h2>$name</h2>";
+    echo                "<p>$get->text</p>";
+    echo                "</a>";
+    echo        "</li>";
+    echo    "</ul>";
         }
     }
     echo "</br>";
@@ -360,5 +371,4 @@ function restore_delete(){
     echo "</br>";
 echo "</form>";
 }
-
 ?>

@@ -67,7 +67,7 @@ echo"<div align=center>
                 none;background:silver;padding:0in 5.75pt 0in 5.75pt;height:51.0pt'>
                 <p class='MsoNormal' align='right' style='text-align:right'><b><sup><span style='font-size:16.0pt;line-height:115%'>$note->time_modified</span></sup></b></p>
                 <p class='MsoNormal' align='center' style='text-align:center'><b><span lang='FR' style='font-size:16.0pt;line-height:115%'>Content</span><span lang='FR' style='font-size:16.0pt;line-height:115%'>Content</span></b></p>
-                <p class='MsoNormal' align='right' style='text-align:right'><b><sup><span style='font-size:16.0pt;line-height:115%'>&nbsp;</span></sup></b></p>            
+                <p class='MsoNormal' align='right' style='text-align:right'><b><sup><span style='font-size:16.0pt;line-height:115%'>&nbsp;</span></sup></b></p>
             </td>
         </tr>
         <tr style='height:559.4pt'>

@@ -53,6 +53,7 @@ echo"</head><body>";
         echo "<script type=text/javascript>";
         echo    "var index = $('select#merge_left').get(0).selectedIndex;";
         echo    "$('select#merge_left option:eq(' + index + ')').remove();";
+        echo    "$('select#merge_right option:eq(' + index + ')').remove();";
         echo    "alert('Merging Completed')";
         echo "</script>";
     }

@@ -21,7 +21,6 @@ require_once(dirname(__FILE__) . '/mod_form.php');
 global $CFG, $DB, $USER, $PAGE;
 $courseid = required_param('courseid', PARAM_INT);
 
-//Was added since error in moodle 2.0
 $system = get_context_instance(CONTEXT_SYSTEM);
 $PAGE->set_context($system);
 $PAGE->set_url('/local/mynotebook/notebook.php');
@@ -31,7 +30,6 @@ require_login();
   will not display properly */
 echo"<html><head>";
 //echo $OUTPUT->header();
-
 
 global $CFG, $USER, $DB;
 
@@ -44,7 +42,7 @@ echo"<link rel='stylesheet' type='text/css' href='$CFG->wwwroot/local/mynotebook
 /* * ******************************************************** *///Javascript declaration
 echo"<script type='text/javascript' src='js/jquery-1.7.2.js'></script>";
 echo"<script type='text/javascript' src='js/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js'></script>";
-// Global variable 
+// Global variable
 echo"<script type='text/javascript'> var handle; </script>";
 
 //<!--JS for page flip animation-->
@@ -126,6 +124,8 @@ echo"<li><a class='hsubs ' href='#' title='Help'><img src='images/help.png' heig
 
 //echo"<li><a href='javascript:void(0)' onclick='bookmarkpage()' class='hsubs'><img src='images/bookmark_icon.png' title='Add Bookmark' height='25' width='25' border='0'/></a></li>";
 
+//echo"<li><a href='javascript:void(0)' onclick='savepage()' class='hsubs'><img src='images/savei.png' title='Save' height='25' width='25' border='0'/></a></li>";
+
 echo"<li><a class='hsubs '>
         <div id='controls'>
             <label for='page-number'>Page:</label><input type='text' size='3' id='page-number'> of <span id='number-pages'></span>
@@ -189,14 +189,13 @@ foreach ($notes as $note) {
                     hidden_note_title_values($i, $note->courseid, $note->id);
 
                     echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
-                    
+
                 } else {
                     echo"<div >Course Page</div>";
                     echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
                     hidden_note_title_values($i, $note->courseid, $note->id);
 
                     echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
-                
                 }
             echo"</div>";
         }
@@ -204,6 +203,9 @@ foreach ($notes as $note) {
         $i++;
     }
 }
+
+//echo "<div>HELO</div>";
+
 echo"</div>"; //end notebook
 
 //echo"
