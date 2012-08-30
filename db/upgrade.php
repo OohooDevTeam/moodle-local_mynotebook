@@ -27,7 +27,7 @@ function xmldb_local_mynotebook_upgrade($oldversion) {
 
     $dbman = $DB->get_manager(); // loads ddl manager and xmldb classes
 
-    if ($oldversion < 2012081700) {
+    if ($oldversion < 2012083000) {
     }
 
     return true;

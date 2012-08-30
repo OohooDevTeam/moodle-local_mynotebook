@@ -21,12 +21,12 @@ require_once(dirname(__FILE__) . '/mod_form.php');
 global $DB, $USER, $PAGE;
 
 //CSS files
-$PAGE->requires->css('/local/mynotebook/js/jquery-ui-1.8.18.custom/css/ui-lightness/jquery-ui-1.8.18.custom.css');
-$PAGE->requires->css('/local/mynotebook/css/view.css');
-$PAGE->requires->css('/local/mynotebook/css/cssplay6.css');
-$PAGE->requires->css('/local/mynotebook/css/target.css');
-$PAGE->requires->css('/local/mynotebook/css/recycle.css');
-$PAGE->requires->css('/local/mynotebook/css/followtab.css');
+$PAGE->requires->css(new moodle_url('/local/mynotebook/js/jquery-ui-1.8.18.custom/css/ui-lightness/jquery-ui-1.8.18.custom.css'));
+$PAGE->requires->css(new moodle_url('/local/mynotebook/css/view.css'));
+$PAGE->requires->css(new moodle_url('/local/mynotebook/css/cssplay6.css'));
+$PAGE->requires->css(new moodle_url('/local/mynotebook/css/target.css'));
+$PAGE->requires->css(new moodle_url('/local/mynotebook/css/recycle.css'));
+$PAGE->requires->css(new moodle_url('/local/mynotebook/css/followtab.css'));
 
 $PAGE->requires->css('/local/mynotebook/css/paper.css');
 
@@ -58,11 +58,9 @@ $PAGE->set_title($title);
 $PAGE->set_heading($USER->firstname . '\'s ' . $title);
 
 //JS files
-$PAGE->requires->js('/local/mynotebook/js/jquery-1.7.2.js', true);
-$PAGE->requires->js('/local/mynotebook/js/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js', true);
-$PAGE->requires->js('/local/mynotebook/js/trigger.js', true);
-
-//$PAGE->requires->js('/local/mynotebook/js/essential_functions.js', true);
+$PAGE->requires->js(new moodle_url('/local/mynotebook/js/jquery-1.7.2.js'));
+$PAGE->requires->js(new moodle_url('/local/mynotebook/js/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js'));
+$PAGE->requires->js(new moodle_url('/local/mynotebook/js/trigger.js'));
 
 echo $OUTPUT->header();
 

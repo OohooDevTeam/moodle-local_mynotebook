@@ -26,18 +26,15 @@ $PAGE->set_context($system);
 $PAGE->set_url('/local/mynotebook/notebook.php');
 require_login();
 
-/* Should use output header for pages that are used in popups and dialogs since they
-  will not display properly */
 echo"<html><head>";
-//echo $OUTPUT->header();
 
 global $CFG, $USER, $DB;
 
 echo"<link rel='stylesheet' type='text/css' href='$CFG->wwwroot/local/mynotebook/css/notebook.css'/>";
 echo"<link rel='stylesheet' type='text/css' href='$CFG->wwwroot/local/mynotebook/css/paper.css'/>";
-echo"<link rel='stylesheet' type='text/css' href='$CFG->wwwroot/local/mynotebook/css/menu.css'/>";
 
-//echo"<link rel='stylesheet' type='text/css' href='$CFG->wwwroot/local/mynotebook/jquerygravitysource/css/gravity.css'/>";
+echo"<link rel='stylesheet' type='text/css' href='$CFG->wwwroot/local/mynotebook/css/menu2.css'/>";
+
 
 /* * ******************************************************** *///Javascript declaration
 echo"<script type='text/javascript' src='js/jquery-1.7.2.js'></script>";
@@ -52,8 +49,9 @@ echo"<script type='text/javascript' src='js/notebook.js'></script>";
 /* * ******************************************************** *///End Javascript declaration
 echo"<script type='text/javascript' src='js/save_title.js'></script>";
 
-//echo"<script type='text/javascript' src='jquerygravitysource/js/gravity.js'></script>";
-//echo"<script type='text/javascript' src='jquerygravitysource/js/jquery.easing.1.3.js'></script>";
+echo"<script type='text/javascript' src='js/jquery.easing.1.3.js'></script>";
+echo"<script type='text/javascript' src='js/menu.js'></script>";
+
 
 echo"</head><body>";
 
@@ -84,19 +82,24 @@ $notes = $DB->get_records('notes', array('userid' => $USER->id, 'deleted' => 0))
 
 /* * ************************************************ */
 //Menubar for all coursenotes for quick access
-echo"<span ><ul id='nav'>";
+echo"<div class='menu'>";
+echo"        <ul class='nav'>";
+echo"		    <div id='navLeft'></div>";
+echo"			<div id='navRight'></div>";
+echo"           <li class = 'mainmenu'><a href='javascript:void(0)' onclick='turn2page(1)'>Main Page</a></li>";
+
 $i=2;
 for ($j = 0; $j < sizeof($ordered_course_id); $j++) {
-    //Limits the text to 10 chars for course names in the navbar
+//    //Limits the text to 10 chars for course names in the navbar
     $name = substr($ordered_course_name[$j], 0, 4);
     if (strlen($name) == 4) {
         $name = $name . "...";
     }
-    //Ajaxtrigger is what loads the page into a div == dialog
-    echo"<li><a class='hsubs ajaxtrigger' coursename='$name' href='notebook.php?courseid=$ordered_course_id[$j]'>$name</a>";
-    echo"<ul class='subs'>";
 
-    //Displays all the notes for specified course
+echo"           <li class = 'submenu'><a class='hsubs ajaxtrigger' coursename='$name' href='notebook.php?courseid=$ordered_course_id[$j]'><span></span>$name</a>";
+
+echo"			<ul>";
+//    //Displays all the notes for specified course
     foreach ($notes as $note) {
         if ($note->courseid == $ordered_course_id[$j]) {
             if (strlen($note->name) < 23) {
@@ -105,45 +108,58 @@ for ($j = 0; $j < sizeof($ordered_course_id); $j++) {
                 $notename = substr($note->name, 0, 22);
                 $notename = $notename . "...";
             }
-            echo"<li><a href='javascript:void(0)' onclick='turn2page($i)'>$notename</a></li>";
+
+echo"		<li><a href='javascript:void(0)' onclick='turn2page($i)'>$notename</a></li>";
             $i++;
-            echo $i;
         }
     }
-    echo"</ul>";
-    echo"</li>";
+
+echo"			</ul>";
+echo"           </li>";//End submenu
     $i=2;
 }
-echo"<div id='lavalamp'></div>";
-echo"</ul></span>"; // End nav
+echo"			<div id='box'><div class='head'></div></div>";
+echo"         </ul>";//End Nav
+echo"</div>";//End menu
 
-/* * ************************************************ */
-//Buttons on the right of the page
-echo"<span><ul id='options'>";
-echo"<li><a class='hsubs ' href='#' title='Help'><img src='images/help.png' height='25' width='25' border='0' /></a></li>";
-
-//echo"<li><a href='javascript:void(0)' onclick='bookmarkpage()' class='hsubs'><img src='images/bookmark_icon.png' title='Add Bookmark' height='25' width='25' border='0'/></a></li>";
-
-//echo"<li><a href='javascript:void(0)' onclick='savepage()' class='hsubs'><img src='images/savei.png' title='Save' height='25' width='25' border='0'/></a></li>";
-
-echo"<li><a class='hsubs '>
-        <div id='controls'>
-            <label for='page-number'>Page:</label><input type='text' size='3' id='page-number'> of <span id='number-pages'></span>
-        </div>
-    </a></li>";
-
-echo"</ul></span>"; // End options
-/* * ************************************************ */
 
 $course = $DB->get_record('course', array('id' => $courseid));
 
 echo"<div id='notebook'>";
-echo"<div id='cover'>";
-echo"<div id='notetitleleft'>$course->fullname</div>";
-echo"</div>"; //end cover
+echo    "<div id='cover'>";
+echo        "<div id='table_content'>Table Of Contents</div>";
+
+/*http://www.w3.org/Style/Examples/007/leaders.en.html*/
+echo"<div class='content_container'>";
+echo"    <ul class='leaders'>";
+
+    $page_start = 2;
+    foreach ($notes as $note) {
+        if ($note->courseid == $courseid) {
+            if (strlen($note->name) < 23) {
+                $notename = $note->name;
+            } else {
+                $notename = substr($note->name, 0, 22);
+                $notename = $notename . '...';
+            }
+            echo"<li><span><a href='javascript:void(0)' onclick='turn2page($page_start)'>$notename</a></span>";
+            echo"<span>$page_start</span></li>";
+            echo"<BR />";
+            $page_start++;
+        }
+    }
+    $page_start = 2;
+
+echo"    </ul>";
+echo"   </div>";
+
+echo "<div id='pagefooter'>[1]</div>";
+
+echo    "</div>"; //end cover
 
 $n = 0;
 $i = 0;
+$page = 2;
 foreach ($notes as $note) {
     //Check if the courseids match up
     if ($courseid == $note->courseid) {
@@ -169,14 +185,20 @@ foreach ($notes as $note) {
                     echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
                     hidden_note_title_values($i, $note->courseid, $note->id);
 
-                    echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
+                    echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:90%; width:100%'></iframe>";
+
+//                    echo "<div>$page<input type='text' size='3' disabled='disabled' id='pagefooter'></div>";
+                    echo "<div id='pagefooter'>[$page]</div>";
 
                 } else {
                     echo"<div >$course_section->name</div>";
                     echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
                     hidden_note_title_values($i, $note->courseid, $note->id);
 
-                    echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
+                    echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:90%; width:100%'></iframe>";
+
+//                    echo "<div>$page<input type='text' size='3' disabled='disabled' id='pagefooter'></div>";
+                    echo "<div id='pagefooter'>[$page]</div>";
 
                 }
             echo"</div>";
@@ -184,83 +206,35 @@ foreach ($notes as $note) {
         } else {
             echo"<div >";
                 if ($n % 2 == 0) {
-                    echo"<div >Course Page</div>";
-                    echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
+                    echo "<div >Course Page$i</div>";
+                    echo "<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
                     hidden_note_title_values($i, $note->courseid, $note->id);
 
-                    echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
+                    echo "<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:90%; width:100%'></iframe>";
+
+//                    echo "<div>$page<input type='text' size='3' disabled='disabled' id='pagefooter' ></div>";
+                    echo "<div id='pagefooter'>[$page]</div>";
 
                 } else {
-                    echo"<div >Course Page</div>";
-                    echo"<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
+                    echo "<div >Course Page$i</div>";
+                    echo "<div id='pagenum'><input class='title' type='text' value='$note->name' style='border:0px; text-align:center; font:18px bold;' maxlength='18'/></div>";
                     hidden_note_title_values($i, $note->courseid, $note->id);
 
-                    echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:100%; width:100%'></iframe>";
+                    echo "<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:90%; width:100%'></iframe>";
+
+//                    echo "<div>$page<input type='text' size='3' disabled='disabled' id='pagefooter'></div>";
+                    echo "<div id='pagefooter'>[$page]</div>";
                 }
             echo"</div>";
         }
         $n++;
         $i++;
+        $page++;
     }
 }
-
-//echo "<div>HELO</div>";
-
 echo"</div>"; //end notebook
 
-//echo"
-//                <div id='air'>
-//                    <div style='padding-left: 100px;' class='blockz_container'>
-//                        <div class='blockz'>
-//                            Block 1
-//                        </div>
-//                        <div class='handle_wrap'>
-//                            <div class='handle'>
-//                                &nbsp;
-//                            </div>
-//                        </div>
-//                        <div class='blockz'>
-//                            Block 2
-//                        </div>
-//                    </div>
-//
-//                    <div style='padding-left: 100px' class='blockz_container'>
-//                        <div class='blockz'>
-//                            Block 3
-//                        </div>
-//                        <div class='handle_wrap'>
-//                            <div class='handle'>
-//                                &nbsp;
-//                            </div>
-//                        </div>
-//                        <div class='blockz'>
-//                            Block 4
-//                        </div>
-//                    </div>
-//
-//                    <div style='padding-left: 100px' class='blockz_container'>
-//                        <div class='blockz'>
-//                            Block 5
-//                        </div>
-//                        <div class='handle_wrap'>
-//                            <div class='handle'>
-//                                &nbsp;
-//                            </div>
-//                        </div>
-//                        <div class='blockz'>
-//                            Block 6
-//                        </div>
-//                    </div>
-//                </div>
-//                <div id='ground'>
-//                    &nbsp;
-//                </div>
-//
-//                <br />
-//";
-
 echo"</body></html>";
-//echo $OUTPUT->footer();
 
 ?>
 

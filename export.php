@@ -60,12 +60,12 @@ $count = sizeof($course_name);
 //Users choice
 $q = $_GET["q"];
 
-if ($q == 'All Notes') {
+if ($q == get_string('allnotes', 'local_mynotebook')) {
     export_all();
-} else if ($q == 'Course Notes') {
+} else if ($q == get_string('coursenotes', 'local_mynotebook')) {
     export_course($course_name, $count, $course_no_notes, $number_no_notes);
 } else {
-    echo "No option selected";
+    //Do nothing
 }
 
 /**
@@ -74,16 +74,17 @@ if ($q == 'All Notes') {
 function export_all() {
     echo"</br>";
     echo"<form id='export_all' name='export_all' method='post' action='html2word.php?user_choice=all_notes'>";
-    echo"Name: ";
+    echo get_string('name', 'local_mynotebook');
     echo"<input name='filename' type='text' id='filename' size='10' required='required'/></br></br>
-   extension:
+   " . get_string('ext', 'local_mynotebook'). "
    <select name='tpl' id='tpl'>
-            <option value='ms_word.doc'> Ms Word Document (.doc)</option>
+            <option value='ms_word.doc'> " . get_string('msword', 'local_mynotebook'). "</option>
             </select>";
     echo "</br></br>";
     //Input type before was submit
-    echo"<input type='image' name='btn_go' id='btn_go' value='export' src='images/submit.gif' />";
-    echo"</form>";
+    echo"<div style='text-align: center;'>";
+    echo"<input type='image' title='" . get_string('dl', 'local_mynotebook'). "' name='btn_go' id='btn_go' value='export' src='images/dl.png' />";
+    echo"</div></form>";
 }
 
 /**
@@ -99,14 +100,14 @@ function export_course($course_name, $count, $course_no_notes, $number_no_notes)
     global $DB;
     echo"</br>";
     echo"<form id='export_course' name='export_course' method='post' action='html2word.php?user_choice=course_notes' >";
-    echo"Name: ";
+    echo get_string('name', 'local_mynotebook');
     echo"<input name='filename' type='text' id='filename' size='10' required='required'/></br></br>
-            extension:
+            " . get_string('ext', 'local_mynotebook'). "
             <select name='tpl' id='tpl'>
-            <option value='ms_word.doc'> Ms Word Document (.doc)</option>
+            <option value='ms_word.doc'> " . get_string('msword', 'local_mynotebook'). "</option>
             </select>
             </br></br>
-            Course : ";
+            " . get_string('course', 'local_mynotebook'). " ";
     echo "<select name='course_name' id='course_name'>";
 
     //Creates a drop down menu with all the course
@@ -120,7 +121,7 @@ function export_course($course_name, $count, $course_no_notes, $number_no_notes)
         if (strlen($coursenames->fullname) < 28) {
             $no_notes = $coursenames->fullname;
 
-            //Adds ellipses to names that are too long
+        //Adds ellipses to names that are too long
         } else {
             $no_notes = substr($coursenames->fullname, 0, 27);
             $no_notes = $no_notes . "...";
@@ -131,8 +132,9 @@ function export_course($course_name, $count, $course_no_notes, $number_no_notes)
     echo"</select>";
 
     echo "</br></br>";
-    echo"<input type='image' name='btn_go' id='btn_go' value='export' src='images/submit.gif' />";
-    echo"</form>";
+    echo"<div style='text-align: center;'>";
+    echo"<input type='image' title='" . get_string('dl', 'local_mynotebook'). "' name='btn_go' id='btn_go' value='export' src='images/dl.png'/>";
+    echo"</div></form>";
 }
 
 ?>

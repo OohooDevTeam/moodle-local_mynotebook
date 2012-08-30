@@ -17,7 +17,7 @@
 **************************************************************************
 **************************************************************************/-->
 <TABLES>
-    <TABLE NAME="default" COMMENT="Default comment for newmodule, please edit me">
+    <TABLE NAME="default" COMMENT="Must include to install properly. (Default table)">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="course"/>
         <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="Course newmodule activity belongs to" PREVIOUS="id" NEXT="name"/>

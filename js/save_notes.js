@@ -25,14 +25,18 @@ function initMCE() {
             //Initialize tinyMCE variable to apply to specified text area
             var editor = tinyMCE.get('areaText');
 
+//            tinyMCE.get('areaText_resize').remove();
+
             //Make the height and width dynamic since they change when on blur and focus
             //When textarea is unactive
             $(editor.getBody()).blur(
             function()
                 {
                     $(editor.getContainer()).find(".mceToolbar, .mceStatusbar").hide()
+//                        var width = 500;
+//                        var height = 620;
                         var width = 500;
-                        var height = 620;
+                        var height = 585;
                         editor.theme.resizeTo(width, height);
                 });
 
@@ -41,14 +45,18 @@ function initMCE() {
             function()
             {
                 $(editor.getContainer()).find(".mceToolbar, .mceStatusbar").show()
+//                    var width = 500;
+//                    var height = 522;
                     var width = 500;
-                    var height = 522;
+                    var height = 487;
                     editor.theme.resizeTo(width, height);
 
                     editor.addShortcut('ctrl+s', 'saveFunction', save);
+//                    tinyMCE.get('areaText_resize').hide();
             });
 
-//            $(editor.getBody()).blur();
+            //Hides tinyMCE on load
+            $(editor.getBody()).blur();
 
             //CSS for the gradient lines to display for Chrome, Safari, Mozilla, IE, and Opera
             $(editor.getBody()).css({
@@ -191,6 +199,8 @@ var save = function() {
 
 /**
  * Trims the whites spaces on the numbers
+ *
+ * @param string s This string is to be trimmed
  */
 function trim(s)
 {
@@ -202,9 +212,13 @@ function trim(s)
 	return s.substring(l, r+1);
 }
 
+// executes when HTML-Document is loaded and DOM is ready
+//$(document).ready(function(){
+ // executes when complete page is fully loaded, including all frames, objects and images
+$(window).load(function(){
 
-$(document).ready(function(){
     initMCE();
+//    console.log("HEHRH");
 
     //Save shortcut
     $(document).bind('keydown', function(event) {

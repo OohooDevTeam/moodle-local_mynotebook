@@ -14,7 +14,7 @@
 
 #cover{
     position:relative;
-    text-align:center;
+/*    text-align:center;*/
     color:#FFFFFF;
     bottom:0px;
     width:100%;
@@ -26,7 +26,7 @@
     margin-left:auto;
 }
 
-/*CSS for the deafault front and back pages. Does not work when in css file*/
+/*CSS for the default front and back pages. Does not work when in css file*/
 /*width and height must be in pix or a number*/
 #notebook{
     position:relative;
@@ -78,7 +78,7 @@
 #notetitleleft{
     position:relative;
     width:375px;
-    height:48px;
+    height:80px;
     background-color:transparent;
     font-size:21px;
     border-color: #000;
@@ -87,7 +87,23 @@
     margin:auto;
     color:#000;
     resize:none;
-    padding-top:5px;
+    padding-top:20px;
+    text-decoration:underline;
+}
+
+#table_content{
+    position:relative;
+    width:375px;
+    height:80px;
+    background-color:transparent;
+    font-size:21px;
+    border-color: #000;
+    text-align:center;
+    overflow:hidden;
+    margin:auto;
+    color:#000;
+    resize:none;
+    padding-top:100px;
 }
 
 #pagetextright{
@@ -119,4 +135,94 @@
 
 #controls input, #controls label{
 /*	font:30px arial;*/
+text-align:center;
+width:20px;
+height:20px;
 }
+
+#pagefooter{
+    color:black;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    border: none;
+    background-color:transparent;
+    font-size: 18px;
+}
+
+
+/*http://www.w3.org/Style/Examples/007/leaders.en.html*/
+div.content_container {
+    margin: 1.3em 1.5em;
+        height:455px;
+}
+
+/* Reset some properties to their defaults inside the examples */
+div.content_container li:before {
+    overflow: visible; direction: ltr; margin: 0;
+  content: ""; content: none; width: auto
+}
+div.content_container li {
+    margin: 0
+}
+div.content_container {
+    line-height: auto
+}
+
+ul.leaders {
+    color:black;
+    max-width: 38em;
+    padding: 0;
+    overflow: hidden;
+    list-style: none
+}
+
+ul.leaders li:before {
+    float: left;
+    width: 0;
+    white-space: nowrap;
+    content:
+ ". . . . . . . . . . . . . . . . . . . . "
+ ". . . . . . . . . . . . . . . . . . . . "
+ ". . . . . . . . . . . . . . . . . . . . "
+ ". . . . . . . . . . . . . . . . . . . . "
+}
+ul.leaders span:first-child {
+    padding-right: 0.33em;
+/*    padding-right: 0.10em;*/
+    background: white
+}
+ul.leaders span + span {
+    float: right;
+    padding-left: 0.33em;
+/*    padding-left: 0.10em;*/
+    background: white
+}
+
+
+
+/*.dotted {
+    position:relative;
+    border-bottom: 1px dotted black;
+    background:white;
+    height:24px;
+    width:300px;
+}
+
+.item {
+    color:black;
+    position:absolute;
+    height:26px;
+    line-height:30px;
+    text-align:left;
+    background:white;
+}
+.value {
+        color:black;
+    position:absolute;
+    right:0px;
+    height:26px;
+    line-height:30px;
+    background:white;
+    text-align:right;
+}*/

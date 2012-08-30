@@ -1,0 +1,228 @@
+/*body {
+	top:0px;
+	background:#242424 url(body.png) center top no-repeat;
+	color:#161514;
+	font-size:13px;
+	}*/
+/*settings for whole menu*/
+/*.menu{
+
+}*/
+.nav {
+   /*width: 544px !important;*/
+   width: 1050px !important;
+   height:48px;
+   background-image:url('../images/backgroundMiddle.png');
+   background:black;
+   border-radius:5px;
+   padding:0px 0px 0px 0px;
+   text-align:center;
+/*   margin-left:35%;*/
+/*   margin-top:75px;*/
+   margin-left:auto;
+   margin-right:auto;
+   margin-top:7px;
+    /*background: url('../images/menu_line.png') repeat scroll right 5px ;*/
+
+}
+.nav #navLeft{
+   width:4px;
+   height:40px;
+   background-image:url('../images/backgroundLeft.png');
+   margin-left:-4px;
+   margin-top:4px;
+   float:left;
+}
+.nav #navRight{
+   width:4px;
+   height:40px;
+   background-image:url('../images/backgroundRight.png');
+   margin-top:0px;
+   margin-right:-4px;
+   margin-top:4px;
+   float:right;
+}
+.nav ul {
+   height:0px;
+   cursor:pointer;
+   position:fixed;
+   list-style: none;
+   font-size: 12px;
+   margin-top:15px;
+}
+
+.nav ul ul{
+   position:relative;
+   z-index:100;
+   margin-left:120px;
+   margin-top:-20px;
+
+}
+.nav ul ul ul{
+   margin-top:-20px;
+}
+/*settings for upper menu main links */
+.nav a {
+   cursor:pointer;
+   text-decoration: none;
+   font-family: 'Lucida Sans Unicode', Verdana, sans-serif;
+}
+/*settings for upper menu main links*/
+.nav li {
+    cursor:pointer;
+	height:30px;
+    padding-bottom:0px;
+    position:relative;
+	float: left;
+	list-style:none;
+    position:relative;
+	z-index:30;
+	margin-top:15px;
+}
+
+ /*settings for links of main menu*/
+.nav li a {
+   position:relative;
+   z-index:3;
+   padding:0px 15px 0px;
+   cursor:pointer;
+   font-size:12px;
+   display:inline;
+   color:#fff;
+   text-transform: uppercase;
+   padding-top:10px;
+    cursor: pointer;
+}
+/*settings for submenus*/
+.nav li li {
+/*   border-bottom:thin dotted #454545;*/
+   border:thin solid #454545;
+   cursor:pointer;
+   width: 120px;
+   min-height:23px;
+   height:23px;
+   display:none;
+   font-size: 12px;
+   padding-top:4px;
+   background-color: #1E1E20;
+   margin: 0px -40px;
+   filter:alpha(opacity=100);
+   -moz-opacity:1;
+   -khtml-opacity: 1;
+   opacity: 1;
+   color:#fff;
+}
+.nav li li a{
+   text-transform: capitalize;
+   text-decoration: none;
+   color:#fff;
+}
+
+.nav  li li li{
+   color: #DC3522;
+   background-color: #2A2B2C;
+}
+.nav  li li li li{
+   color: #fff;
+   background-color: #000;
+}
+
+/* settings for submenu links on rollover*/
+.nav ul, li li{
+  width: 0px;
+}
+/*settings for submenu links*/
+
+/*settings for lava lamp sliding effect*/
+
+.nav #box {
+    position:absolute;
+    cursor:pointer;
+    z-index:1;
+    background:url('../images/hoverMaino.png');
+    height:50px;
+    padding-right:0px;
+    /*margin-left:0px;*/
+    /*margin-top:-17px;*/
+    margin-left:-50px;
+    margin-top:20px;
+}
+
+
+.nav li li.alt{
+background-color:#333;
+}
+ul.nav li a span {
+background:url('../images/triangle.png') 100% 1px no-repeat;
+margin-top:7px;
+position:absolute;
+top:2px;
+margin-left:0px;
+left:0;
+height:100%;
+width:100%;
+
+}
+
+ul.nav li li.submenu2 span {
+background:url('../images/triangle_sub.png') 0% 35% no-repeat;
+}
+
+.submenu {
+	background:url('../images/triangle_small.png') 100% 0px no-repeat;
+
+}
+.submenu:hover {
+
+}
+.nav li li.submenu2{
+
+	background:url('../images/triangle_sub_small.png') 98% 50% no-repeat;
+	background-color:#1E1E20;
+}
+.nav li li.submenu2:hover, .nav li li.submenu3:hover{
+
+	background:url('../images/triangle_sub.png') 98% 50% no-repeat;
+	background-color:#fff;
+	border-bottom:thin dotted #fff;
+}
+.nav li li li.submenu3{
+	background:url('../images/triangle_sub_small.png') 98% 50% no-repeat;
+}
+.nav li li:hover, .nav li li li:hover{
+	background-color:#fff;
+	border-bottom:thin dotted #fff;
+}
+.nav li li.submenu2 li{
+	background-color:#1E1E20;
+}
+.nav li li.submenu2 li:hover{
+	background-color:#fff;
+	border-bottom:thin dotted #fff;
+}
+.submenu  li:hover a{/*color of font of hover effect on first submenu*/
+	/*color:#000;*/
+            color: #f6a828;
+
+}
+.submenu li:hover li a, .submenu li:hover li:hover li a, .submenu li li a{/*color of font for submenu level 2 and 3*/
+	/*color:#fff;*/
+            color: #f6a828;
+
+}
+.submenu li:hover li:hover a{/*color of font for hover on submenu level 1*/
+	/*color:#000;*/
+            color: #f6a828;
+
+}
+.submenu li:hover li:hover li:hover a{/*color of font for hover on submenu level 2*/
+	/*color:#000;*/
+            color: #f6a828;
+
+}
+.titleMenu2{
+	text-align:center;
+}
+.linkText{
+	text-align:center;
+}

@@ -12,6 +12,7 @@
 **************************************************************************
 **************************************************************************/
 
+//Initializes page flipping
 $(window).ready(function() {
     $('#notebook').turn({
         display: 'double',
@@ -25,11 +26,20 @@ $(window).ready(function() {
             //Determines the number of pages in the book - each note is a page
             var numberOfPages = $(this).turn('pages');
             $('#number-pages').html(numberOfPages);
+
+//Testing to show for page numbers
+//           var page = $('#notebook').turn('page');
+            $('#pagefooter').val(page);
             }
         }
     });
 });
 
+/**
+ * Function turns to the desired page
+ *
+ * @param int pagenum This number is the desired page to turn to
+ */
 function turn2page(pagenum){
         $('#notebook').turn('page', pagenum);
 }
@@ -37,10 +47,6 @@ function turn2page(pagenum){
 function bookmarkpage(){
         $('#notebook').turn('page');
 }
-
-//Binds the arrow keys for page turning
-//arrowleft:37; arrowright:39
-//numpadleft:100; numpadright:102
 
 $(window).bind('keydown', function(e){
 
@@ -57,11 +63,15 @@ $(window).bind('keydown', function(e){
     }
 });
 
-//Shorthand for DOMReady
-//When user enters a page to go to in the search box
+
+/**
+ * When user enters a page to go to in the search box
+ * Shorthand for DOMReady
+ */
 $(function(){
     $("#page-number").keypress(function(event) {
         if ( event.which == 13 ) {
+            //Prevents the default functionality of the 'enter' key
             event.preventDefault();
             page = $("#page-number").val();
             $('#notebook').turn('page', page);
@@ -69,4 +79,13 @@ $(function(){
     });
 });
 
+//$(function(){
+//                var numberOfPages = $(this).turn('pages');
+//                          $('#pagefooter').html(numberOfPages);
+//                          var page =         $('#notebook').turn('page');
+//
+//            $('#pagefooter').val(page);
+//
+//                     console.log('TeST');
+//});
 

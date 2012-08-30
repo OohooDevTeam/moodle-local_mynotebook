@@ -15,10 +15,9 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2012081700;
-//$plugin->requires = 2010112400; //Moodle 2.0
-$plugin->requires = 2011070100; //Moodle 2.1
+$plugin->version = 2012083000;
+$plugin->requires = 2012062500; //Moodle 2.3
 
 $plugin->maturity = MATURITY_ALPHA;
-$plugin->release = '0.5.0 (Build: 2012081700)';
+$plugin->release = '0.5.0 (Build: 2012083000)';
 $plugin->component = 'local_mynotebook';

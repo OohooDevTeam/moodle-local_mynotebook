@@ -32,6 +32,9 @@
 
 /*Opening the notebook*/
 #target{
+/*  background:#242424 url('../images/body.png') center top no-repeat;*/
+    background-color:black;
+
     position:relative;
 
     width:90%;

@@ -19,34 +19,40 @@ $string['modulename'] = 'Mynotebook';
 $string['modulenameplural'] = 'Mynotebooks';
 
 //Hover over a book
-$string['hover'] = 'Hover to open';
 $string['content'] = 'Content';
+$string['hover'] = 'Hover to open';
 
 //No notes
 $string['nonotes'] = ' (No Notes)';
 
 //Export
-$string['export_title'] = 'Export Notes';
-$string['export'] = 'Export:';
-$string['none'] = 'None';
 $string['allnotes'] = 'All Notes';
+$string['course'] = 'Course: ';
 $string['coursenotes'] = 'Course Notes';
+$string['dl'] = 'Download';
+$string['export'] = 'Export:';
+$string['export_title'] = 'Export Notes';
+$string['ext'] = 'Extension: ';
+$string['msword'] = 'MS Word Document (.doc)';
+$string['name'] = 'Name: ';
+$string['none'] = 'None';
 
 //Merge
-$string['merge_title'] = 'Merge Notes';
-$string['merge'] = 'Merge';
-$string['source'] = "Source:";
 $string['destination'] = "Destination:";
+$string['merge'] = 'Merge';
+$string['merge_title'] = 'Merge Notes';
+$string['source'] = "Source:";
 
 //Recyclebin
-$string['recycle_title'] = 'Recycle Bin';
 $string['delete_msg'] = "Permanently delete selected notes?";
+$string['recycle_title'] = 'Recycle Bin';
 $string['restore_msg'] = "Restore selected notes?";
 
 
-$string['mynotebookfieldset'] = 'Custom example fieldset';
-$string['mynotebookname'] = 'mynotebook name';
-$string['mynotebookname_help'] = 'This is the content of the help tooltip associated with the mynotebookname field. Markdown syntax is supported.';
+//$string['mynotebookfieldset'] = 'Custom example fieldset';
+//$string['mynotebookname'] = 'mynotebook name';
+//$string['mynotebookname_help'] = 'This is the content of the help tooltip associated with the mynotebookname field. Markdown syntax is supported.';
+
 $string['mynotebook'] = 'mynotebook';
 $string['pluginadministration'] = 'mynotebook administration';
 $string['pluginname'] = 'mynotebook';

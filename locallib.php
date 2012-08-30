@@ -43,7 +43,9 @@ function reorderindex(array $source, $conditions_list = array()) {
     return $source;
 }
 
-//Exports the user notes
+/*
+ * Gets the user input of either exporting all notes or specific ones and displays the options
+ */
 function call_to_export() {
 
     echo "<script type='text/javascript'>
@@ -225,7 +227,9 @@ function display_courses_2_merge(){
     echo"<div id='Merge_result'></div>";
 }
 
-//Retrieves the notes that the user wants to merge together
+/**
+ * Merges the notes that the user has chosen
+ */
 function merge() {
 
 echo "<script type='text/javascript'>
@@ -243,7 +247,12 @@ function merge_notes()
 
 
 
-//Check whether the delete or restore button was clicked in the recycle bin
+
+/**
+ * Check whether the delete or restore button was clicked in the recycle bin
+ *
+ * @global stdClass $CFG 
+ */
 function check_button_clicked() {
     global $CFG;
         echo "<script type='text/javascript'>
@@ -295,7 +304,10 @@ function restore_notes() {
     }
 }
 
-//Select all the boxes
+
+/**
+ * Selects all the boxes
+ */
 function check_all() {
 
     echo "<script language='JavaScript'>
@@ -333,13 +345,13 @@ function display_recyclebin(){
     echo "<form id='check' method='post' action='view.php'>";
 
     check_all();
-    echo"<br/><input type='submit' name='checkall' id='checkall' value='Select All' onclick='checkedAll();return false;'/>";
+    echo"<br/><input type='submit' class='selectall' name='checkall' id='checkall' value='[ √ ]' onclick='checkedAll();return false;'/>";
 
     check_button_clicked();
-    echo "  <input type='submit' name='delete' id='delete' value='Delete' onclick=\"if( confirm(' ". get_string('delete_msg', 'local_mynotebook'). " ')){ return checkData(this.id);}\"/>";
+    echo "  <input type='submit' class='delete' name='delete' id='delete' value='Delete' onclick=\"if( confirm(' ". get_string('delete_msg', 'local_mynotebook'). " ')){ return checkData(this.id);}\"/>";
 
     //Reloads parent window when you restore notes
-    echo "  <input type='submit' name='restore' id='restore' value='Restore' onclick=\"if( confirm(' " . get_string('restore_msg', 'local_mynotebook'). " ')){ return checkData(this.id);}\"/>";
+    echo "  <input type='submit' class='restore' name='restore' id='restore' value='Restore' onclick=\"if( confirm(' " . get_string('restore_msg', 'local_mynotebook'). " ')){ return checkData(this.id);}\"/>";
 
     $deleted_notes = $DB->get_records('notes', array('deleted' => 1, 'userid' => $USER->id));
     $count = $DB->count_records('notes', array('deleted' => 1, 'userid' => $USER->id));
