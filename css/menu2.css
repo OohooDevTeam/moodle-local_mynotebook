@@ -11,9 +11,9 @@
 .nav {
    /*width: 544px !important;*/
    width: 1050px !important;
-   height:48px;
+   height:60px;
    background-image:url('../images/backgroundMiddle.png');
-   background:black;
+   /*background:black;*/
    border-radius:5px;
    padding:0px 0px 0px 0px;
    text-align:center;
@@ -22,13 +22,13 @@
    margin-left:auto;
    margin-right:auto;
    margin-top:7px;
-    /*background: url('../images/menu_line.png') repeat scroll right 5px ;*/
+    background: url('../images/menu_line.png') repeat scroll right 5px ;
 
 }
 .nav #navLeft{
    width:4px;
    height:40px;
-   background-image:url('../images/backgroundLeft.png');
+   /*background-image:url('../images/backgroundLeft.png');*/
    margin-left:-4px;
    margin-top:4px;
    float:left;
@@ -36,7 +36,7 @@
 .nav #navRight{
    width:4px;
    height:40px;
-   background-image:url('../images/backgroundRight.png');
+   /*background-image:url('../images/backgroundRight.png');*/
    margin-top:0px;
    margin-right:-4px;
    margin-top:4px;
@@ -77,7 +77,21 @@
 	list-style:none;
     position:relative;
 	z-index:30;
+/*	margin-top:15px;*/
+    margin-top:20px;
+}
+
+.nav li#submenu_right{
+    cursor:pointer;
+	height:30px;
+    padding-bottom:0px;
+    position:relative;
+	float: right;
+	list-style:none;
+    position:relative;
+	z-index:30;
 	margin-top:15px;
+        color:#FFFFFF;
 }
 
  /*settings for links of main menu*/
@@ -89,7 +103,7 @@
    font-size:12px;
    display:inline;
    color:#fff;
-   text-transform: uppercase;
+   /*text-transform: uppercase;*/
    padding-top:10px;
     cursor: pointer;
 }
@@ -133,26 +147,13 @@
 }
 /*settings for submenu links*/
 
-/*settings for lava lamp sliding effect*/
 
-.nav #box {
-    position:absolute;
-    cursor:pointer;
-    z-index:1;
-    background:url('../images/hoverMaino.png');
-    height:50px;
-    padding-right:0px;
-    /*margin-left:0px;*/
-    /*margin-top:-17px;*/
-    margin-left:-50px;
-    margin-top:20px;
-}
 
 
 .nav li li.alt{
 background-color:#333;
 }
-ul.nav li a span {
+/*ul.nav li a span {
 background:url('../images/triangle.png') 100% 1px no-repeat;
 margin-top:7px;
 position:absolute;
@@ -162,6 +163,19 @@ left:0;
 height:100%;
 width:100%;
 
+}*/
+
+ul.nav li a.submenu_right1 span#number-pages  {
+/*background:url('../images/triangle.png') 100% 1px no-repeat;*/
+/*margin-top:7px;*/
+/*position:relative;*/
+opacity:1 !important;
+top:2px;
+margin-left:0px;
+left:0;
+height:100%;
+width:100%;
+color:#FFFFFF;
 }
 
 ul.nav li li.submenu2 span {
@@ -172,6 +186,8 @@ background:url('../images/triangle_sub.png') 0% 35% no-repeat;
 	background:url('../images/triangle_small.png') 100% 0px no-repeat;
 
 }
+
+
 .submenu:hover {
 
 }
@@ -220,9 +236,75 @@ background:url('../images/triangle_sub.png') 0% 35% no-repeat;
             color: #f6a828;
 
 }
+
+
+.submenu_right1 {
+    color:#FFFFFF;
+
+}
+.submenu_right1:hover {
+    color:#FFFFFF;
+
+}
+.submenu_right1  li:hover a{/*color of font of hover effect on first submenu*/
+            color: #FFFFFF;
+}
+.submenu_right1 li:hover li a, .submenu_right1 li:hover li:hover li a, .submenu_right1 li li a{/*color of font for submenu level 2 and 3*/
+            color: #FFFFFF;
+}
+.submenu_right1 li:hover li:hover a{/*color of font for hover on submenu level 1*/
+            color: #FFFFFF;
+}
+.submenu_right1 li:hover li:hover li:hover a{/*color of font for hover on submenu level 2*/
+            color: #FFFFFF;
+}
+
 .titleMenu2{
 	text-align:center;
 }
 .linkText{
 	text-align:center;
+}
+
+/*settings for lava lamp sliding effect*/
+/*Firefox*/
+.nav #box {
+    position:absolute;
+    cursor:pointer;
+    z-index:1;
+    background:url('../images/hoverMaino.png');
+    height:50px;
+    padding-right:0px;
+    /*margin-left:0px;*/
+    /*margin-top:-17px;*/
+    margin-left:-400px;
+    /*margin-top:20px;*//*Without the background*/
+    margin-top:22px;
+}
+
+/*IE9*/
+.ie9 .nav #box {
+    position:absolute;
+    cursor:pointer;
+    z-index:1;
+    background:url('../images/hoverMaino.png');
+    height:50px;
+    padding-right:0px;
+    margin-left:-400px;
+    margin-top:25px;
+}
+
+/*Chrome and Safari*/
+@media screen and (-webkit-min-device-pixel-ratio:0){
+    .nav #box {
+    position:absolute;
+    cursor:pointer;
+    z-index:1;
+    background:url('../images/hoverMaino1.png');
+    height:56px;
+    padding-right:0px;
+    margin-left:-100px;
+    margin-top:22px;
+
+}
 }

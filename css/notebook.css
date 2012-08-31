@@ -126,11 +126,29 @@
     resize:none;
 }
 
+@-moz-document url-prefix() {
+    #controls{
+    margin-top:-15px;
+    }
+}
 #controls{
 /*	width:100px;*/
 /*	text-align:center;*/
 /*	margin:20px 0px;*/
 /*	font:30px arial;*/
+/*margin-top:-15px;*/
+
+
+}
+
+.ie9 #controls{
+/*	width:100px;*/
+/*	text-align:center;*/
+/*	margin:20px 0px;*/
+/*	font:30px arial;*/
+/*margin-top:-15px;*/
+margin-top:-15px;
+
 }
 
 #controls input, #controls label{

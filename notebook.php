@@ -118,16 +118,27 @@ echo"			</ul>";
 echo"           </li>";//End submenu
     $i=2;
 }
+
+echo"<li id='submenu_right'><a class='submenu_right1' href='#' title='Help'><img src='images/help.png' height='25' width='25' border='0' /></a></li>";
+
+
+echo"<li id='submenu_right'><a class='submenu_right1 '>
+        <div id='controls'>
+            <label for='page-number'>". get_string('page', 'local_mynotebook') ."</label><input type='text' size='3' id='page-number'>
+                ". get_string('of', 'local_mynotebook') ."
+            <span id='number-pages'></span>
+        </div>
+    </a></li>";
+
 echo"			<div id='box'><div class='head'></div></div>";
 echo"         </ul>";//End Nav
 echo"</div>";//End menu
-
 
 $course = $DB->get_record('course', array('id' => $courseid));
 
 echo"<div id='notebook'>";
 echo    "<div id='cover'>";
-echo        "<div id='table_content'>Table Of Contents</div>";
+echo        "<div id='table_content'>". get_string('tblcontent', 'local_mynotebook') ."</div>";
 
 /*http://www.w3.org/Style/Examples/007/leaders.en.html*/
 echo"<div class='content_container'>";
@@ -173,10 +184,15 @@ foreach ($notes as $note) {
                     WHERE th.id = '$section->section' AND th.course = '$note->courseid'";
             $course_section = $DB->get_record_sql($sql);
 
+            /*Under dev*/
             if ($course_section->name == NULL) {
+                //No course section name
                 $course_section->name = 'Section name not specified, but section# is:' . $course_section->section;
 
+            } else {
+                //Grab the section name from the database
             }
+            /**/
             echo"<div>";
 
                 //Notes on a Course Module Page
@@ -187,7 +203,6 @@ foreach ($notes as $note) {
 
                     echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:90%; width:100%'></iframe>";
 
-//                    echo "<div>$page<input type='text' size='3' disabled='disabled' id='pagefooter'></div>";
                     echo "<div id='pagefooter'>[$page]</div>";
 
                 } else {
@@ -197,7 +212,6 @@ foreach ($notes as $note) {
 
                     echo"<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:90%; width:100%'></iframe>";
 
-//                    echo "<div>$page<input type='text' size='3' disabled='disabled' id='pagefooter'></div>";
                     echo "<div id='pagefooter'>[$page]</div>";
 
                 }
@@ -212,7 +226,6 @@ foreach ($notes as $note) {
 
                     echo "<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:90%; width:100%'></iframe>";
 
-//                    echo "<div>$page<input type='text' size='3' disabled='disabled' id='pagefooter' ></div>";
                     echo "<div id='pagefooter'>[$page]</div>";
 
                 } else {
@@ -222,7 +235,6 @@ foreach ($notes as $note) {
 
                     echo "<iframe src='notepage.php?note_id=$note->id&courseid=$courseid' style='height:90%; width:100%'></iframe>";
 
-//                    echo "<div>$page<input type='text' size='3' disabled='disabled' id='pagefooter'></div>";
                     echo "<div id='pagefooter'>[$page]</div>";
                 }
             echo"</div>";

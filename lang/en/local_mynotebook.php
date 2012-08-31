@@ -43,6 +43,11 @@ $string['merge'] = 'Merge';
 $string['merge_title'] = 'Merge Notes';
 $string['source'] = "Source:";
 
+//Notebook
+$string['of'] = 'Of';
+$string['page'] = 'Page: ';
+$string['tblcontent'] = 'Table Of Contents';
+
 //Recyclebin
 $string['delete_msg'] = "Permanently delete selected notes?";
 $string['recycle_title'] = 'Recycle Bin';

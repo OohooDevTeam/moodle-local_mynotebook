@@ -33,17 +33,19 @@ $PAGE->requires->js(new moodle_url('/local/mynotebook/js/save_notes.js'));
 //This is what causes the errors to appear in IE9
 //Works when viewing in compatibility mode
 echo $OUTPUT->header();
-//
+
 //Temp fix for IE9, but tinyMCE breaks
-//echo'
-//<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-//<html xmlns="http://www.w3.org/1999/xhtml">
-//<head>
-//<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-//    <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
-//    <script type="text/javascript" src="js/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js"></script>
-//    <script type="text/javascript" src="js/save_notes.js"></script>
-//</head><body>';
+//echo'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
+//echo'<html xmlns="http://www.w3.org/1999/xhtml">';
+//echo'<head>';
+//echo'<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">';
+////echo'<meta http-equiv="X-UA-Compatible" content="IE=Edge" >';
+////echo'<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>';
+//echo'<script type="text/javascript" src="js/jquery-1.7.2.js"></script>';
+//echo'<script type="text/javascript" src="js/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js"></script>';
+//echo'<script type="text/javascript" src="../../lib/editor/tinymce/lib.php"></script>   ';
+//echo'<script type="text/javascript" src="js/save_notes.js"></script>';
+//echo'</head><body>';
 
 //echo"<html><head>";
 //    echo'<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">';

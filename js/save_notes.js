@@ -215,8 +215,9 @@ function trim(s)
 // executes when HTML-Document is loaded and DOM is ready
 //$(document).ready(function(){
  // executes when complete page is fully loaded, including all frames, objects and images
+// var $ = jQuery;
 $(window).load(function(){
-
+//alert('jQuery' in window);
     initMCE();
 //    console.log("HEHRH");
 
@@ -229,6 +230,7 @@ $(window).load(function(){
             event.stopPropagation();
             return false;
         }
+        return true;
     });
 });
 
